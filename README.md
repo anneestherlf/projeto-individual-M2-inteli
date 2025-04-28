@@ -4,7 +4,7 @@ Anne Esther. T18.
 - Opção 1: Gerenciador de tarefas para organização e produtividade.
 
 ## Requisitos:
-O projeto está em em processo de desenvolvimento e irá incluir:
+O projeto está em em processo de desenvolvimento e incluirá:
 
  ✅ Banco de Dados: Estrutura relacional ou não-relacional para armazenamento das informações.
 

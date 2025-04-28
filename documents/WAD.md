@@ -21,11 +21,25 @@
 <br>
 
 ## <a name="c1"></a>1. Introdução (Semana 01)
-
+<!-- 
 *Preencha com até 300 palavras – sem necessidade de fonte.*
-*Descreva brevemente o sistema que você irá desenvolver.*
+*Descreva brevemente o sistema que você irá desenvolver.* -->
 
----
+A opção escolhida para o desenvovimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para produtividade e organização financeira, destinado especialmente a pessoas com dificuldades em controlar seus gastos e pouco familiarizadas com termos econômicos complexos. 
+
+O principal objetivo é oferecer uma solução simples e intuitiva, que permita ao usuário gerenciar suas finanças sem exigir conhecimentos técnicos ou tempo excessivo - diferentemente das ferramentas atuais, que demandam ou grande expertise financeira ou cerca de 20 minutos diários para preenchimento detalhado de planilhas. A proposta é revolucionar essa experiência através de um sistema prático, onde com apenas 5 minutos diários para registrar compras em um formulário simplificado, o usuário poderá visualizar gráficos claros de sua situação financeira, acompanhar metas de economia e planejar a realização de sonhos de consumo através de um *planner* de tarefas. 
+
+Combinando usabilidade intuitiva com funcionalidades estratégicas, a solução busca empoderar financeiramente seus usuários, transformando o controle orçamentário em um hábito acessível e, principalmente, sustentável.
+
+### 1.2 Benchmarking
+
+Pesquisando sobre ferramentas de gestão financeira e produtividade, encontrei as principais listadas na tabela abaixo:
+ 
+<!-- tabela aqui -->
+
+Dessa forma, a decisão do escopo das funcionalidades que o projeto contemplarará foi tomada com base na análise dos pontos positivos e negativos de ferramentas já existentes no mercado. As principais funcionalidades serão ...
+
+<!-- Adicionar concorrência e benchmarking nessa seção de introdução -->
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
