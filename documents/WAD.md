@@ -25,11 +25,21 @@
 *Preencha com até 300 palavras – sem necessidade de fonte.*
 *Descreva brevemente o sistema que você irá desenvolver.* -->
 
-A opção escolhida para o desenvovimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para produtividade e organização financeira, destinado especialmente a pessoas com dificuldades em controlar seus gastos e pouco familiarizadas com termos econômicos complexos. 
+A opção escolhida para o desenvovimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para produtividade e organização financeira, destinado especialmente a jovens universitários com dificuldades em controlar seus gastos e pouco familiarizadas com termos econômicos complexos. 
+
+Na população brasileira em geral, há uma grande necessidade de educação financeira: 90% dos brasileiros admitem ter necessidade de recursos sobre esse tema, e a pesquisa Fenaprevi revela que 76% deles afirmam ter alguma meta de planejamento financeiro[1]. Além disso, sobre o público foco (universitários),
+
+
+Além disso, artigos mostram que mulheres são as que mais enfrentam a dificuldade da falta de acesso à educação financeira no ensino básico, que traz sequelas para o ensino superior:
+
+> *"Um resultado encontrado que não nos deu motivos para sorrir é que, em média, homens têm um nível de educação financeira superior às mulheres – infelizmente, esse resultado é corroborado por diversas pesquisas anteriores realizadas no Brasil e no mundo. Esperamos que esse tipo de diferença entre homens e mulheres suma muito em breve, tendo em vista que educação financeira é importante para todos, sem distinção."* 
+
+(Texto por Carlos Heitor Campani, Ph.D., CNPI - [2])
+
 
 O principal objetivo é oferecer uma solução simples e intuitiva, que permita ao usuário gerenciar suas finanças sem exigir conhecimentos técnicos ou tempo excessivo - diferentemente das ferramentas atuais, que demandam ou grande expertise financeira ou cerca de 20 minutos diários para preenchimento detalhado de planilhas. A proposta é revolucionar essa experiência através de um sistema prático, onde com apenas 5 minutos diários para registrar compras em um formulário simplificado, o usuário poderá visualizar gráficos claros de sua situação financeira, acompanhar metas de economia e planejar a realização de sonhos de consumo através de um *planner* de tarefas. 
 
-Combinando usabilidade intuitiva com funcionalidades estratégicas, a solução busca empoderar financeiramente seus usuários, transformando o controle orçamentário em um hábito acessível e, principalmente, sustentável.
+Combinando usabilidade intuitiva com funcionalidades estratégicas, a solução busca empoderar financeiramente todos os jovens que a acessarem, com o objetivo de promover uma organização financeira de qualidade independetemente da bagagem técnica que o jovem carrega. Com isso, o projeto transforma o controle orçamentário em um hábito acessível e, principalmente, sustentável ao longo do tempo.
 
 ### 1.2 Benchmarking
 
@@ -45,11 +55,32 @@ Dessa forma, a decisão do escopo das funcionalidades que o projeto contemplarar
 
 ### 2.1. Personas (Semana 01)
 
-*Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.*
+Proto-personas foram desenvolvidas para melhor identificar as necessidades do público alvo do projeto, desenvolvendo, assim *features* inteligentes que geram valor ao produto do presente projeto.
+
+Proto-personas são personas desenvolvidas sem pesquisa qualitativa ou quantitativa [3], mas através de experiências de vivências do próprio autor do projeto. Dessa forma, as personas abaixo são inspiradas em pessoas reais no meio social da autora do presente projeto.
+
+<div align="center">
+  <sub>Júlia Oliveira - Proto Persona</sub><br>
+  <img src="../assets/wad-assets/julia-oliveira-persona.jpg" width="100%" 
+  alt="Júlia Oliveira Persona"><br>
+  <sup>Fonte: feito pela autora.</sup>
+</div>
+
+<div align="center">
+  <sub>Lucas Souza - Proto Persona</sub><br>
+  <img src="../assets/wad-assets/lucas-souza-persona.jpg" width="100%" 
+  alt="Lucas Souza Persona"><br>
+  <sup>Fonte: feito pela autora.</sup>
+</div>
+
+Por fim, toda a solução será desenvolvida de forma a contemplar as necessidades dos usuários (personas) definidos nessa seção. Além disso, essa seção poderá ser iterada ao longo do desenvolvimento e adaptação do escopo do projeto.
+
+<!-- *Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.* -->
 
 ### 2.2. User Stories (Semana 01)
 
-*Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.*
+Abaixo, estão listadas as *User Stories* definidas para o projeto. Todas contemplam os critérios INVEST (...) [4]
+<!-- *Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.* -->
 
 ---
 
