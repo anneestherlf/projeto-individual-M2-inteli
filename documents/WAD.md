@@ -24,63 +24,78 @@
 <!-- 
 *Preencha com até 300 palavras – sem necessidade de fonte.*
 *Descreva brevemente o sistema que você irá desenvolver.* -->
+ A opção escolhida para o desenvolvimento do presente projeto foi um gerenciador de tarefas para organização e produtividade. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para gestão financeira, destinado especialmente a jovens universitários com dificuldades em controlar seus gastos e que estão pouco familiarizados com termos econômicos complexos.
 
-A opção escolhida para o desenvovimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para produtividade e organização financeira, destinado especialmente a jovens universitários com dificuldades em controlar seus gastos e pouco familiarizadas com termos econômicos complexos. 
+A necessidade de educação financeira é evidente na população brasileira: 90% admitem precisar de recursos sobre o tema, e 76% afirmam ter metas de planejamento financeiro, segundo a pesquisa Fenaprevi [1]. Entre universitários, existe uma necessidade ainda mais intensa. Um estudo da ANBIMA (2022) revela que apenas 34% dos jovens entre 18 e 24 anos conseguem poupar parte da renda, enquanto 68% não acompanham seus gastos mensais [2]. Além disso, dados do Instituto Brasileiro de Economia (FGV/IBRE) mostram que 61% dos universitários não possuem reserva de emergência, e 47% já se endividaram por falta de planejamento [3].
 
-Na população brasileira em geral, há uma grande necessidade de educação financeira: 90% dos brasileiros admitem ter necessidade de recursos sobre esse tema, e a pesquisa Fenaprevi revela que 76% deles afirmam ter alguma meta de planejamento financeiro[1]. Além disso, sobre o público foco (universitários),
+Diante desses desafios, o objetivo principal é oferecer uma solução simples e intuitiva, que permita gerenciar finanças sem exigir conhecimentos técnicos ou tempo excessivo. Diferentemente das ferramentas atuais – que demandam expertise financeira ou cerca de 20 minutos diários para preenchimento de planilhas –, a proposta é revolucionar a experiência do usuário. Com apenas 5 minutos por dia para registrar compras em um formulário simplificado, o usuário terá acesso a gráficos claros de sua situação financeira, metas de economia e um planner para sonhos de consumo (gerenciador de tarefas).
 
+Ao combinar usabilidade intuitiva com funcionalidades estratégicas, a solução busca empoderar financeiramente jovens universitários, promovendo organização financeira de qualidade independentemente de sua bagagem técnica. Assim, o projeto transforma o controle orçamentário em um hábito acessível e, principalmente, sustentável a longo prazo.
 
-Além disso, artigos mostram que mulheres são as que mais enfrentam a dificuldade da falta de acesso à educação financeira no ensino básico, que traz sequelas para o ensino superior:
-
-> *"Um resultado encontrado que não nos deu motivos para sorrir é que, em média, homens têm um nível de educação financeira superior às mulheres – infelizmente, esse resultado é corroborado por diversas pesquisas anteriores realizadas no Brasil e no mundo. Esperamos que esse tipo de diferença entre homens e mulheres suma muito em breve, tendo em vista que educação financeira é importante para todos, sem distinção."* 
-
-(Texto por Carlos Heitor Campani, Ph.D., CNPI - [2])
-
-
-O principal objetivo é oferecer uma solução simples e intuitiva, que permita ao usuário gerenciar suas finanças sem exigir conhecimentos técnicos ou tempo excessivo - diferentemente das ferramentas atuais, que demandam ou grande expertise financeira ou cerca de 20 minutos diários para preenchimento detalhado de planilhas. A proposta é revolucionar essa experiência através de um sistema prático, onde com apenas 5 minutos diários para registrar compras em um formulário simplificado, o usuário poderá visualizar gráficos claros de sua situação financeira, acompanhar metas de economia e planejar a realização de sonhos de consumo através de um *planner* de tarefas. 
-
-Combinando usabilidade intuitiva com funcionalidades estratégicas, a solução busca empoderar financeiramente todos os jovens que a acessarem, com o objetivo de promover uma organização financeira de qualidade independetemente da bagagem técnica que o jovem carrega. Com isso, o projeto transforma o controle orçamentário em um hábito acessível e, principalmente, sustentável ao longo do tempo.
-
-### 1.2 Benchmarking
-
-Pesquisando sobre ferramentas de gestão financeira e produtividade, encontrei as principais listadas na tabela abaixo:
- 
-<!-- tabela aqui -->
-
-Dessa forma, a decisão do escopo das funcionalidades que o projeto contemplarará foi tomada com base na análise dos pontos positivos e negativos de ferramentas já existentes no mercado. As principais funcionalidades serão ...
-
-<!-- Adicionar concorrência e benchmarking nessa seção de introdução -->
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
 ### 2.1. Personas (Semana 01)
 
-Proto-personas foram desenvolvidas para melhor identificar as necessidades do público alvo do projeto, desenvolvendo, assim *features* inteligentes que geram valor ao produto do presente projeto.
-
-Proto-personas são personas desenvolvidas sem pesquisa qualitativa ou quantitativa [3], mas através de experiências de vivências do próprio autor do projeto. Dessa forma, as personas abaixo são inspiradas em pessoas reais no meio social da autora do presente projeto.
+Para garantir que o produto atenda às reais necessidades do público-alvo, foram desenvolvidas proto-personas [4]  baseadas em observações do cotidiano e vivências da autora. Embora não originadas de pesquisas formais (qualitativas/quantitativas), essas personas representam perfis reais identificados no contexto universitário, permitindo a criação de features mais assertivas.
 
 <div align="center">
   <sub>Júlia Oliveira - Proto Persona</sub><br>
   <img src="../assets/wad-assets/julia-oliveira-persona.jpg" width="100%" 
   alt="Júlia Oliveira Persona"><br>
-  <sup>Fonte: feito pela autora.</sup>
+  <sup>Fonte: a autora.</sup>
 </div>
 
 <div align="center">
   <sub>Lucas Souza - Proto Persona</sub><br>
   <img src="../assets/wad-assets/lucas-souza-persona.jpg" width="100%" 
   alt="Lucas Souza Persona"><br>
-  <sup>Fonte: feito pela autora.</sup>
+  <sup>Fonte: a autora.</sup>
 </div>
 
-Por fim, toda a solução será desenvolvida de forma a contemplar as necessidades dos usuários (personas) definidos nessa seção. Além disso, essa seção poderá ser iterada ao longo do desenvolvimento e adaptação do escopo do projeto.
+Essas personas guiarão o desenvolvimento das funcionalidades, mas poderão ser refinadas ao longo do projeto conforme novas descobertas ou validações com usuários reais.
 
 <!-- *Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.* -->
 
 ### 2.2. User Stories (Semana 01)
 
-Abaixo, estão listadas as *User Stories* definidas para o projeto. Todas contemplam os critérios INVEST (...) [4]
+As User Stories abaixo foram cuidadosamente elaboradas para guiar o desenvolvimento do projeto, seguindo os critérios INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable) [5].
+
+Identificação | US01
+--- | ---
+Persona | Lucas Souza
+User Story | Como estudante universitário que recebe bolsas acadêmicas, quero um ambiente para inserir todo o valor da minha renda, para que eu possa enxergar visualmente como vou dividir meus gastos de forma a não gerar futuras dívidas.
+Critério de aceite 1 | CR1: Campo de inserção de renda. Deve existir um campo claro para inserção do valor total da renda mensal. O campo deve aceitar apenas valores numéricos (com validação para números negativos). Deve exibir um ícone/mensagem de confirmação após inserção válida.
+Critério de aceite 2 | CR2: Visualização da distribuição de gastos. O sistema deve exibir um gráfico simples (ex.: pizza ou barras) com a proporção entre renda e gastos totais. Deve permitir visualização por categorias pré-definidas (alimentação, transporte, lazer etc.). O gráfico deve atualizar automaticamente após nova inserção de renda.
+Critério de aceite 3 | CR3: Alertas preventivos. O sistema deve destacar visualmente quando os gastos ultrapassarem 80% da renda inserida. Deve sugerir ajustes nas categorias com maior porcentagem de gastos. |
+Critérios INVEST | Esta User Story atende plenamente aos critérios INVEST por ser Independente (não requer outras funcionalidades para ter valor), Negociável (os detalhes da visualização podem ser refinados com feedback), e Valorosa (resolve diretamente o problema de planejamento financeiro do Lucas). Além disso, é Estimável (o escopo é delimitado e mensurável), Pequena (foca em uma única capacidade essencial) e Testável (com critérios de aceite claros e verificáveis). Essa combinação garante que a US01 seja viável, relevante e eficaz para o desenvolvimento incremental do produto. 
+
+Identificação | US02
+--- | ---
+Persona | Júlia Oliveira
+User Story | Como estudante com renda limitada que deseja realizar o sonho de comprar uma viagem para a Europa, quero acesso a gráficos e funcionalidades de organização de tarefas para definir ações organizadas e atingir meu objetivo financeiro.
+Critério de aceite 1 | CR1: Definição de Meta Financeira. Sistema deve permitir cadastrar o valor total da viagem/meta e prazo desejado. Deve calcular automaticamente a economia mensal necessária. Deve alertar se o valor for incompatível com a renda cadastrada.
+Critério de aceite 2 | CR2: Gráficos de Progresso. Deve exibir gráfico de evolução mensal da economia (tipo linha ou barra). Gráfico deve comparar meta X valor acumulado. Deve permitir filtrar por períodos (mensal, trimestral, anual). 
+| Critério de aceite 3 | CR3: Planner de Ações. Deve oferecer lista de tarefas vinculadas à meta (ex: "reduzir gastos com delivery"). Deve permitir marcar tarefas como concluídas e mostrar impacto no progresso. Deve sugerir ações baseadas nos gastos cadastrados (ex: "Você gasta R$ X com lazer. Reduzir 20% aceleraria sua meta em Y dias"). |
+
+Identificação | US03
+--- | ---
+Persona | Júlia Oliveira
+User Story | Como uma aluna universitária (com tempo e rotina limitados) que não entende temas complexos de finanças e não consegue ser constante no uso de plataformas padrões de gestão financeira, quero uma ferramenta não-técnica de planejamento financeiro, para que eu possa usufruir de suas funcionalidades sem ter a necessidade de estudar profundamente sobre finanças por fora.
+Critério de aceite 1 | CR1: Interface Simplificada. O sistema deve ter um painel principal com no máximo 5 ações primárias visíveis. Todos os termos técnicos devem ter tooltips explicativos com linguagem cotidiana (ex: "Saldo = quanto você tem disponível agora"). Deve usar ícones intuitivos e cores categorizadas (ex: verde para entradas, vermelho para gastos).
+Critério de aceite 2 | CR2: Relatório "Para Humanos". Deve gerar resumo semanal com frases simples (ex: "Você gastou R$120 a mais com delivery que na semana passada"). Gráficos devem ter comparações visuais. Deve destacar apenas 1-2 insights relevantes por gráfico.
+
+Identificação | US04
+--- | ---
+Persona | Lucas Souza
+User Story | Como um jovem que gasta compulsivamente com jogos assim que recebe dinheiro, quero entender quanto da minha renda posso direcionar para cada área da minha vida, para garantir que não ficarei sem dinheiro para necessidades básicas no final do mês.
+Critério de aceite 1 | CR1: Divisão Automática de Renda. O sistema deve sugerir uma distribuição percentual padrão (ex: 50% necessidades, 30% lazer, 20% poupança). Deve permitir ajuste manual dos percentuais. Deve alertar quando valores forem abaixo do mínimo recomendado para necessidades básicas.
+Critério de aceite 2 | CR2: Visualização de Consequências. Deve mostrar projeção do saldo no final do mês baseado nos gastos atuais. Deve comparar com meses anteriores em um gráfico simples.
+
+
 <!-- *Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.* -->
+
+Essa abordagem assegura que todas as features desenvolvidas entreguem valor real aos usuários finais, mantendo o foco na usabilidade e na solução dos problemas-chave identificados.
 
 ---
 
