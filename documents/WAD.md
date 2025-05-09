@@ -65,32 +65,30 @@ Identificação | US01
 --- | ---
 Persona | Lucas Souza
 User Story | Como estudante universitário que recebe bolsas acadêmicas, quero um ambiente para inserir todo o valor da minha renda, para que eu possa enxergar visualmente como vou dividir meus gastos de forma a não gerar futuras dívidas.
-Critério de aceite 1 | CR1: Campo de inserção de renda. Deve existir um campo claro para inserção do valor total da renda mensal. O campo deve aceitar apenas valores numéricos (com validação para números negativos). Deve exibir um ícone/mensagem de confirmação após inserção válida. Essas informações devem ser guardadas em uma conta do usuário que será criada no cadastro e constantemente acessada pelo login.
+Critério de aceite 1 | CR1: Campo de inserção de renda. Deve existir um campo claro para inserção do valor total da renda mensal. O campo deve aceitar apenas valores numéricos (com validação para números negativos). Essas informações devem ser guardadas em uma conta do usuário que será criada no cadastro e constantemente acessada pelo login.
 Critério de aceite 2 | CR2: Visualização da distribuição de gastos. O sistema deve exibir um gráfico simples (ex.: pizza ou barras) com a proporção entre renda e gastos totais. Deve permitir visualização por categorias pré-definidas (alimentação, transporte, lazer etc.). O gráfico deve atualizar automaticamente após nova inserção de renda.
-Critério de aceite 3 | CR3: Alertas preventivos. O sistema deve destacar visualmente quando os gastos ultrapassarem 80% da renda inserida. Deve sugerir ajustes nas categorias com maior porcentagem de gastos. |
 Critérios INVEST | Esta User Story atende plenamente aos critérios INVEST por ser Independente (não requer outras funcionalidades para ter valor), Negociável (os detalhes da visualização podem ser refinados com feedback), e Valorosa (resolve diretamente o problema de planejamento financeiro do Lucas). Além disso, é Estimável (o escopo é delimitado e mensurável), Pequena (foca em uma única capacidade essencial) e Testável (com critérios de aceite claros e verificáveis). Essa combinação garante que a US01 seja viável, relevante e eficaz para o desenvolvimento incremental do produto. 
 
 Identificação | US02
 --- | ---
 Persona | Júlia Oliveira
 User Story | Como estudante com renda limitada que deseja realizar o sonho de comprar uma viagem para a Europa, quero acesso a gráficos e funcionalidades de organização de tarefas para definir ações organizadas e atingir meu objetivo financeiro.
-Critério de aceite 1 | CR1: Definição de Meta Financeira. Sistema deve permitir cadastrar o valor total da viagem/meta e prazo desejado. Deve calcular automaticamente a economia mensal necessária. Deve alertar se o valor for incompatível com a renda cadastrada.
-Critério de aceite 2 | CR2: Gráficos de Progresso. Deve exibir gráfico de evolução mensal da economia (tipo linha ou barra). Gráfico deve comparar meta X valor acumulado. Deve permitir filtrar por períodos (mensal, trimestral, anual). 
-| Critério de aceite 3 | CR3: Planner de Ações. Deve oferecer lista de tarefas vinculadas à meta (ex: "reduzir gastos com delivery"). Deve permitir marcar tarefas como concluídas e mostrar impacto no progresso. Deve sugerir ações baseadas nos gastos cadastrados (ex: "Você gasta R$ X com lazer. Reduzir 20% aceleraria sua meta em Y dias"). |
+Critério de aceite 1 | CR1: Definição de Meta Financeira. Sistema deve permitir cadastrar o valor total da viagem/meta, a quantidade do valor que já está guardado e quanto falta.
+Critério de aceite 2 | CR2: Gráficos de Progresso. Deve exibir gráfico de evolução mensal da economia (tipo linha ou barra). Gráfico deve comparar meta X valor acumulado. 
+| Critério de aceite 3 | CR3: Planner de Ações. Deve oferecer lista de tarefas vinculadas à meta (ex: "reduzir gastos com delivery"). Deve permitir marcar tarefas como concluídas. |
 
 Identificação | US03
 --- | ---
 Persona | Júlia Oliveira
 User Story | Como uma aluna universitária (com tempo e rotina limitados) que não entende temas complexos de finanças e não consegue ser constante no uso de plataformas padrões de gestão financeira, quero uma ferramenta não-técnica de planejamento financeiro, para que eu possa usufruir de suas funcionalidades sem ter a necessidade de estudar profundamente sobre finanças por fora.
-Critério de aceite 1 | CR1: Interface Simplificada. O sistema deve ter um painel principal com no máximo 5 ações primárias visíveis. Todos os termos técnicos devem ter tooltips explicativos com linguagem cotidiana (ex: "Saldo = quanto você tem disponível agora"). Deve usar ícones intuitivos e cores categorizadas (ex: verde para entradas, vermelho para gastos).
-Critério de aceite 2 | CR2: Relatório "Para Humanos". Deve gerar resumo semanal com frases simples (ex: "Você gastou R$120 a mais com delivery que na semana passada"). Gráficos devem ter comparações visuais. Deve destacar apenas 1-2 insights relevantes por gráfico.
+Critério de aceite 1 | CR1: Interface Simplificada. O sistema deve ter um painel principal com no máximo 5 ações primárias visíveis. Todos os termos técnicos devem ser substituídos por palavras da linguagem cotidiana (ex: "Saldo = quanto você tem disponível agora"). Deve usar ícones intuitivos e cores categorizadas (ex: verde para entradas, vermelho para gastos).
+
 
 Identificação | US04
 --- | ---
 Persona | Lucas Souza
 User Story | Como um jovem que gasta compulsivamente com jogos assim que recebe dinheiro, quero entender quanto da minha renda posso direcionar para cada área da minha vida, para garantir que não ficarei sem dinheiro para necessidades básicas no final do mês.
-Critério de aceite 1 | CR1: Divisão Automática de Renda. O sistema deve sugerir uma distribuição percentual padrão (ex: 50% necessidades, 30% lazer, 20% poupança). Deve permitir ajuste manual dos percentuais. Deve alertar quando valores forem abaixo do mínimo recomendado para necessidades básicas.
-Critério de aceite 2 | CR2: Visualização de Consequências. Deve mostrar projeção do saldo no final do mês baseado nos gastos atuais. Deve comparar com meses anteriores em um gráfico simples.
+Critério de aceite 1 | CR1: Divisão de Renda. O sistema deve mostrar em um gráfico a distribuição percentual dos seus gastos (ex: 50% necessidades, 30% lazer, 20% poupança) de forma a apresentar se a divisão de gastos está eficiente ou não (ex: 70% entretenimento seria um alerta).
 
 
 <!-- *Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.* -->
@@ -123,7 +121,46 @@ Essa abordagem assegura que todas as features desenvolvidas entreguem valor real
 
 ### 3.3. Wireframes (Semana 03)
 
-*Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).*
+<!-- *Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).* -->
+
+Os wireframes apresentados nesta seção representam a estrutura básica e o fluxo de navegação do sistema de gerenciamento financeiro para universitários. Desenvolvidos na fase inicial do projeto, esses esboços visuais buscam traduzir as necessidades das personas em interfaces intuitivas e funcionais, priorizando a simplicidade e usabilidade que são fundamentais para nosso público-alvo.
+
+Abaixo, encontram-se as duas telas principais de uso: o **painel de dados financeiros** e a **tela de tarefas para alcance de metas**.
+
+<div align="center">
+  <sub>Painel de dados financeiros - Wireframe</sub><br>
+  <img src="../assets/wad-assets/Painel.png" width="100%" 
+  alt="Painel de dados financeiros"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+<div align="center">
+  <sub>Tela de controle de metas e tarefas - Wireframe</sub><br>
+  <img src="../assets/wad-assets/Tarefas.png" width="100%" 
+  alt="Lucas Souza Persona"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+O painel principal (US01) foi projetado para auxiliar Lucas na organização de seus gastos, oferecendo uma visualização clara de sua distribuição financeira em relação à renda, além de armazenar automaticamente os dados em sua conta para possibilitar o acesso contínuo e atualizado. Além disso, a tela de tarefas (US02) fornece à Júlia as ferramentas necessárias para estruturar seu planejamento em etapas alcançáveis, direcionando-a de forma prática rumo à sua meta de viagem à Europa.
+
+A linguagem acessível e intuitiva adotada nas interfaces (US03) elimina termos técnicos, facilitando a compreensão por parte de jovens sem familiaridade com finanças. Complementarmente, o gráfico de categorias de gastos (US04) atua como um recurso reflexivo, permitindo que o usuário identifique padrões de consumo e tome decisões mais conscientes sobre suas prioridades financeiras. Essa abordagem integrada assegura que o sistema não apenas apresente dados, mas também promova mudanças de comportamento sustentáveis.
+
+<div align="center">
+  <sub>Wireflow</sub><br>
+  <img src="../assets/wad-assets/wireflow.png" width="100%" 
+  alt="Wireflow"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+Além das principais telas, existem: 
+- Tela de Login;
+- Tela de Cadastro;
+- Tela de tutorial de como utilizar o projeto;
+- Tela de formulário de primeiro acesso;
+- Tela de atualização de dados pessoais e dados financeiros.
+
+Para visualizar o wireflow (user flow) e wireframes das demais telas da aplicação, [clique aqui](https://www.figma.com/design/dkTR4PEGsyifPRIcR5tVbP/Projeto-Individual-Integrado---Wireframes?node-id=0-1&t=ViTLmAcZim5B6GDf-1). 
+
 
 ### 3.4. Guia de estilos (Semana 05)
 
