@@ -1,7 +1,7 @@
 #
 ## Sistema de Controle Financeiro para Universitários 
 ## 👩‍💻 Em desenvolvimento por: [Anne Esther](https://www.linkedin.com/in/anneestherlf/) | [GitHub](https://github.com/anneestherlf)
-Projeto Individual Integrado - Módulo 2025-1B
+Projeto Individual Integrado - Módulo 2025-1B para avaliação no Inteli (Instituto de Tecnologia e Liderança)
 
 
 ## 🌟 Sobre o Sistema
