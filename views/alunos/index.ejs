@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD de Alunos</title>
+</head>
+<body>
+  <h1>Cadastro de Alunos</h1>
+
+  <form action="/alunos" method="POST">
+    <input name="nome" placeholder="Nome" required>
+    <input name="email" placeholder="Email" required>
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <hr>
+
+  <ul>
+    <% alunos.forEach(aluno => { %>
+      <li>
+        <%= aluno.nome %> - <%= aluno.email %>
+        <form action="/alunos/edit/<%= aluno.id %>" method="POST" style="display:inline">
+          <input name="nome" placeholder="Novo nome" required>
+          <input name="email" placeholder="Novo email" required>
+          <button type="submit">Editar</button>
+        </form>
+        <form action="/alunos/delete/<%= aluno.id %>" method="POST" style="display:inline">
+          <button type="submit">Apagar</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
