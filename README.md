@@ -1,9 +1,9 @@
-## Sistema de Controle Financeiro para Universitários 
+# Sistema de Controle Financeiro para Universitários 
 ## 👩‍💻 Em desenvolvimento por: [Anne Esther](https://www.linkedin.com/in/anneestherlf/) | [GitHub](https://github.com/anneestherlf)
 Projeto Individual Integrado - Módulo 2025-1B
 
 
-## 🌟 Sobre o Sistema
+##  Sobre o Sistema
 A opção escolhida para o desenvolvimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para gestão financeira, destinado especialmente a jovens universitários com dificuldades em controlar seus gastos e que estão pouco familiarizados com termos econômicos complexos.
 
 ## 🗂️ Estrutura de Pastas e Arquivos (Arquitetura MVC)
