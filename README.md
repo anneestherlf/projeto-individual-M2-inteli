@@ -6,25 +6,40 @@ Projeto Individual Integrado - Módulo 2025-1B para avaliação no Inteli (Insti
 ##  Sobre o Sistema
 A opção escolhida para o desenvolvimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para gestão financeira, destinado especialmente a jovens universitários com dificuldades em controlar seus gastos e que estão pouco familiarizados com termos econômicos complexos.
 
-## 🗂️ Estrutura de Pastas e Arquivos (Arquitetura MVC)
+## 🗂️ Estrutura de Pastas e Principais Arquivos (Arquitetura MVC)
 
 ```
 
 projeto-individual-M2-inteli/
 │
 ├── assets/ # Arquivos públicos como imagens e fontes
+│   └── wad-assets/ # Pasta de arquivos de imagem da documentação (WAD)
+│       └── ...
+│   └── favicon.ico # Ícone para a guia do navegador
 ├── config/ # Arquivos de configuração (ex: conexão com banco)
+│   └── db.js
 ├── controllers/ # Lógica de controle das requisições
-├── documents/ # Documentação adicional do projeto
+│   └── ...
+├── documents/ # Documentação do projeto
+│   └── WAD.md # Web Application Document
 ├── models/ # Definição dos modelos de dados (estrutura do banco)
+│   └── ...
 ├── node_modules/ # Dependências do Node.js (gerado automaticamente)
+│   └── ...
 ├── public/ # Arquivos públicos acessíveis pelo navegador
+│   └── css/ # Estilos
+│       └── style.css
 ├── routes/ # Definição das rotas do sistema
+│   └── ...
 ├── scripts/ # Scripts JS públicos ou utilitários
+│   └── init.sql
+│   └── runSQLScript.js
 ├── services/ # Serviços auxiliares do sistema
+│   └── ...
 ├── tests/ # Arquivos de testes unitários
+│   └── ...
 ├── views/ # Views da aplicação (EJS ou outro template engine)
-│
+│   └── ...
 ├── .env # Variáveis de ambiente (NUNCA suba para o GitHub)
 ├── .gitattributes # Configurações de atributos do Git
 ├── .gitignore # Arquivo para ignorar arquivos no Git
