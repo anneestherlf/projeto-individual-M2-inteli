@@ -135,7 +135,7 @@ Principais relacionamentos:
 O modelo físico consiste no script SQL que implementa a estrutura do banco de dados relacional, definindo as tabelas, colunas, tipos de dados, restrições de integridade, chaves primárias e estrangeiras.
 
 O arquivo contendo o script SQL está disponível no repositório do projeto, no caminho: 
-``projeto-individual-M2-inteli\scripts\init.sql``
+``projeto-individual-M2-inteli\scripts\init.sql``.
 
 ```sql
 -- Tabela de usuários

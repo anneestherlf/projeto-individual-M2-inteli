@@ -1,23 +1,16 @@
-# Sistema de Controle Financeiro para Universitários 
-💸 Projeto Individual Integrado - Módulo 2025-1B
-
-Por [Anne Esther](https://www.linkedin.com/in/anneestherlf/)
-## Descrição do Sistema
-
-💰 A opção escolhida para o desenvolvimento do presente projeto foi um **gerenciador de tarefas para organização e produtividade**. Com a finalidade de explorar um nicho específico, o tema do projeto será voltado para gestão financeira, destinado especialmente a jovens universitários com dificuldades em controlar seus gastos e que estão pouco familiarizados com termos econômicos complexos.
-
-O projeto está em em processo de desenvolvimento e incluirá:
-
- ✅ Banco de Dados: Estrutura relacional para armazenamento das informações.
-
- ✅ Backend: Implementação da lógica de negócio e conexão com o banco de dados.
-
- ✅ Frontend: Interface intuitiva para interação do usuário.
-
- ✅ Integração: Comunicação entre frontend e backend utilizando API.
+#
+## Sistema de Controle Financeiro para Universitários 
+## 👩‍💻 Em desenvolvimento por: [Anne Esther](https://www.linkedin.com/in/anneestherlf/) | [GitHub](https://github.com/anneestherlf)
+Projeto Individual Integrado - Módulo 2025-1B
 
 
-## Estrutura de Pastas e Arquivos (Arquitetura MVC)
+## 🌟 Sobre o Sistema
+Sistema de gestão financeira simplificada desenvolvido especialmente para universitários que:
+✔️ Possuem renda limitada (bolsas, estágios ou mesada)
+✔️ Têm dificuldade em organizar gastos
+✔️ Buscam alcançar metas financeiras sem complicações
+
+## 🗂️ Estrutura de Pastas e Arquivos (Arquitetura MVC)
 
 ```
 
@@ -52,7 +45,7 @@ projeto-individual-M2-inteli/
 
 ---
 
-## Como Executar o Projeto Localmente
+## 💻 Como Executar o Projeto Localmente
 
 Siga os passos abaixo para rodar o projeto na sua máquina local.
 
@@ -88,7 +81,7 @@ Siga os passos abaixo para rodar o projeto na sua máquina local.
 
 4. **Configure as variáveis de ambiente**
 
-- Crie um arquivo `.env` na raiz do projeto com as variáveis necessárias, por exemplo:
+- Crie (ou edite o arquivo existente) um `.env` na raiz do projeto com as variáveis necessárias, por exemplo:
 
 ``PORT=3000``
 ``DATABASE_URL=postgresql://seu_usuario:sua_senha@localhost:5432/seu_banco``
