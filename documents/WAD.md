@@ -101,9 +101,98 @@ Essa abordagem assegura que todas as features desenvolvidas entreguem valor real
 
 ### 3.1. Modelagem do banco de dados  (Semana 3)
 
-*Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
+<!-- *Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
 
-*Posicione também o modelo físico com o Schema do BD (arquivo .sql)*
+*Posicione também o modelo físico com o Schema do BD (arquivo .sql)* -->
+
+#### 3.1.1. Modelo Relacional
+
+A priori, o modelo conceitual foi desenvolvido para gerar a organização das ideias das principais entidades do sistema de gestão financeira e seus relacionamentos. As entidades identificadas são:
+
+- **User**: Armazena os dados dos usuários do sistema (cadastro e autenticação);
+- **Expenses**: Registra todas as despesas dos usuários com categorização;
+- **Earnings**: Armazena os ganhos e rendimentos dos usuários;
+- **Goals**: Gerencia as metas financeiras estabelecidas pelos usuários;
+- **To_do_list_item**: Controla as tarefas relacionadas ao planejamento financeiro.
+
+O diagrama relacional abaixo ilustra a estrutura completa do banco de dados, mostrando tabelas, atributos, tipos de dados, chaves primárias (PK), chaves estrangeiras (FK) e os relacionamentos entre as entidades:
+
+<div align="center">
+  <sub>Diagrama Relacional do Banco de Dados</sub><br>
+  <img src="../assets/wad-assets/modelo-banco.png" width="100%" 
+  alt="Modelagem Relacional"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+Principais relacionamentos:
+- **1:N** entre User e Expenses (um usuário pode ter várias despesas);
+- **1:N** entre User e Earnings (um usuário pode ter múltiplos ganhos);
+- **1:N** entre User e Goals (um usuário pode definir várias metas);
+- **1:N** entre User e To_do_list_item (um usuário pode criar múltiplas tarefas).
+
+#### 3.1.2. Modelo Físico (SQL Schema)
+
+O modelo físico consiste no script SQL que implementa a estrutura do banco de dados relacional, definindo as tabelas, colunas, tipos de dados, restrições de integridade, chaves primárias e estrangeiras.
+
+O arquivo contendo o script SQL está disponível no repositório do projeto, no caminho: 
+``projeto-individual-M2-inteli\scripts\init.sql``
+
+```sql
+-- Tabela de usuários
+CREATE TABLE users (
+  user_id SERIAL PRIMARY KEY,
+  user_email VARCHAR(100) UNIQUE NOT NULL,
+  user_password VARCHAR(100) NOT NULL,
+  user_name TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de despesas
+CREATE TABLE expenses (
+  id_expense SERIAL PRIMARY KEY,
+  value_expense FLOAT NOT NULL,
+  description_expense TEXT,
+  date_expense TIMESTAMP NOT NULL,
+  category_expense TEXT,
+  user_id INT NOT NULL,
+  CONSTRAINT fk_expenses_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Tabela de ganhos
+CREATE TABLE earnings (
+  id_earning SERIAL PRIMARY KEY,
+  value_earning FLOAT NOT NULL,
+  description_earning TEXT,
+  date_earning TIMESTAMP NOT NULL,
+  category_earning TEXT,
+  user_id INT NOT NULL,
+  CONSTRAINT fk_earnings_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Tabela de metas
+CREATE TABLE goals (
+  goal_id SERIAL PRIMARY KEY,
+  goal_title TEXT NOT NULL,
+  goal_total_value FLOAT NOT NULL,
+  goal_accumulated_value FLOAT DEFAULT 0,
+  goal_is_completed BOOLEAN DEFAULT FALSE,
+  user_id INT NOT NULL,
+  CONSTRAINT fk_goals_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Tabela de itens da lista de tarefas
+CREATE TABLE to_do_list_item (
+  id SERIAL PRIMARY KEY,
+  to_do_list_item_desc TEXT NOT NULL,
+  to_do_list_item_is_completed BOOLEAN DEFAULT FALSE,
+  user_id INT NOT NULL,
+  CONSTRAINT fk_todolist_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+```
+
+Este script pode ser utilizado para criar a estrutura completa do banco de dados em um sistema gerenciador de banco de dados relacional (SGBD), como o próprio PostgreSQL.
+
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
