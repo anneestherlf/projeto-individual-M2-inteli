@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ganhos | FinanceU</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main class="container">
+    <h1>Meus Ganhos</h1>
+    <form id="form-ganho" method="POST" action="/earnings">
+      <input type="number" name="value_earning" placeholder="Valor (R$)" required step="0.01">
+      <input type="text" name="description_earning" placeholder="Descrição" required>
+      <input type="date" name="date_earning" required>
+      <input type="text" name="category_earning" placeholder="Categoria" required>
+      <input type="number" name="user_id_FK" placeholder="ID do Usuário" required>
+      <button type="submit">Adicionar Ganho</button>
+    </form>
+    <hr>
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Valor</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Categoria</th>
+        </tr>
+      </thead>
+      <tbody id="lista-ganhos">
+        <!-- Ganhos serão renderizados aqui -->
+      </tbody>
+    </table>
+  </main>
+  <script>
+    // Exemplo de fetch para popular a tabela (substitua por chamada real à API)
+    fetch('/earnings')
+      .then(res => res.json())
+      .then(ganhos => {
+        const tbody = document.getElementById('lista-ganhos');
+        tbody.innerHTML = '';
+        ganhos.forEach(g => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>R$ ${g.value_earning.toFixed(2)}</td><td>${g.description_earning}</td><td>${new Date(g.date_earning).toLocaleDateString()}</td><td>${g.category_earning}</td>`;
+          tbody.appendChild(tr);
+        });
+      });
+  </script>
+  <%- include('../partials/footer') %>
+</body>
+</html>

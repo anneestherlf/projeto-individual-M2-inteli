@@ -1,5 +1,14 @@
+-- Comando "npm run init-db"
+
+-- Remove todas as tabelas existentes relacionadas ao projeto
+DROP TABLE IF EXISTS to_do_list_item CASCADE;
+DROP TABLE IF EXISTS expenses CASCADE;
+DROP TABLE IF EXISTS goals CASCADE;
+DROP TABLE IF EXISTS earnings CASCADE;
+DROP TABLE IF EXISTS "User" CASCADE;
+
 -- Tabela de usuários
-CREATE TABLE User (
+CREATE TABLE "User" (
   user_id_PK SERIAL PRIMARY KEY,
   user_email VARCHAR(100) UNIQUE NOT NULL,
   user_password VARCHAR(100) NOT NULL,

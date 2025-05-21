@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Despesas | FinanceU</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main class="container">
+    <h1>Minhas Despesas</h1>
+    <form id="form-despesa" method="POST" action="/expenses">
+      <input type="number" name="value_expense" placeholder="Valor (R$)" required step="0.01">
+      <input type="text" name="description_expense" placeholder="Descrição" required>
+      <input type="date" name="date_expense" required>
+      <input type="text" name="category_expense" placeholder="Categoria" required>
+      <input type="number" name="user_id_FK" placeholder="ID do Usuário" required>
+      <button type="submit">Adicionar Despesa</button>
+    </form>
+    <hr>
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Valor</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Categoria</th>
+        </tr>
+      </thead>
+      <tbody id="lista-despesas">
+        <!-- Despesas serão renderizadas aqui -->
+      </tbody>
+    </table>
+  </main>
+  <script>
+    fetch('/expenses')
+      .then(res => res.json())
+      .then(despesas => {
+        const tbody = document.getElementById('lista-despesas');
+        tbody.innerHTML = '';
+        despesas.forEach(d => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>R$ ${d.value_expense.toFixed(2)}</td><td>${d.description_expense}</td><td>${new Date(d.date_expense).toLocaleDateString()}</td><td>${d.category_expense}</td>`;
+          tbody.appendChild(tr);
+        });
+      });
+  </script>
+  <%- include('../partials/footer') %>
+</body>
+</html>

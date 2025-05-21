@@ -2,16 +2,91 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title><%= titulo %></title>
+  <title>Dashboard | FinanceU</title>
   <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <%- include('../partials/header') %>
 
   <main class="container">
-    <h1><%= mensagem %></h1>
-    <p>Este site foi desenvolvido para explicar MVC na prática.</p>
+    <h1>Visão Geral Financeira</h1>
+    <section class="dashboard-cards">
+      <div class="card">
+        <h3>Saldo Atual</h3>
+        <p id="saldo">R$ 0,00</p>
+      </div>
+      <div class="card">
+        <h3>Ganhos</h3>
+        <p id="ganhos">R$ 0,00</p>
+      </div>
+      <div class="card">
+        <h3>Despesas</h3>
+        <p id="despesas">R$ 0,00</p>
+      </div>
+      <div class="card">
+        <h3>Metas Ativas</h3>
+        <p id="metas">0</p>
+      </div>
+      <div class="card">
+        <h3>Tarefas Pendentes</h3>
+        <p id="tarefas">0</p>
+      </div>
+    </section>
+
+    <section class="dashboard-graphs">
+      <div style="width: 350px; display: inline-block;">
+        <h4>Distribuição de Gastos</h4>
+        <canvas id="graficoGastos"></canvas>
+      </div>
+      <div style="width: 350px; display: inline-block;">
+        <h4>Progresso das Metas</h4>
+        <canvas id="graficoMetas"></canvas>
+      </div>
+    </section>
   </main>
+
+  <script>
+    // Exemplo de dados mockados (substitua por fetch da API depois)
+    const ganhos = 2500;
+    const despesas = 1800;
+    const saldo = ganhos - despesas;
+    const metasAtivas = 2;
+    const tarefasPendentes = 3;
+    const gastosPorCategoria = [800, 500, 300, 200];
+    const categorias = ['Alimentação', 'Transporte', 'Lazer', 'Outros'];
+    const progressoMetas = [60, 30];
+    const nomesMetas = ['Viagem', 'Notebook'];
+
+    document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
+    document.getElementById('ganhos').innerText = `R$ ${ganhos.toFixed(2)}`;
+    document.getElementById('despesas').innerText = `R$ ${despesas.toFixed(2)}`;
+    document.getElementById('metas').innerText = metasAtivas;
+    document.getElementById('tarefas').innerText = tarefasPendentes;
+
+    new Chart(document.getElementById('graficoGastos'), {
+      type: 'pie',
+      data: {
+        labels: categorias,
+        datasets: [{
+          data: gastosPorCategoria,
+          backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#e91e63']
+        }]
+      }
+    });
+    new Chart(document.getElementById('graficoMetas'), {
+      type: 'bar',
+      data: {
+        labels: nomesMetas,
+        datasets: [{
+          label: '% Concluído',
+          data: progressoMetas,
+          backgroundColor: ['#2196f3', '#ff9800']
+        }]
+      },
+      options: {scales: {y: {beginAtZero: true, max: 100}}}
+    });
+  </script>
 
   <%- include('../partials/footer') %>
 </body>
