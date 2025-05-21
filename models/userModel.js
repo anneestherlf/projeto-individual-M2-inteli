@@ -1,36 +1,23 @@
 const db = require('../config/db');
 
-class User {
-  static async getAll() {
-    const result = await db.query('SELECT * FROM users');
+const userModel = {
+  async getAllUsers() {
+    const result = await db.query('SELECT * FROM "User"');
     return result.rows;
-  }
+  },
 
-  static async getById(id) {
-    const result = await db.query('SELECT * FROM users WHERE id = $1', [id]);
+  async getUserById(user_id_PK) {
+    const result = await db.query('SELECT * FROM "User" WHERE user_id_PK = $1', [user_id_PK]);
     return result.rows[0];
-  }
+  },
 
-  static async create(data) {
+  async createUser({ user_name, user_email, user_password }) {
     const result = await db.query(
-      'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *',
-      [data.name, data.email]
+      'INSERT INTO "User" (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *',
+      [user_name, user_email, user_password]
     );
     return result.rows[0];
   }
+};
 
-  static async update(id, data) {
-    const result = await db.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *',
-      [data.name, data.email, id]
-    );
-    return result.rows[0];
-  }
-
-  static async delete(id) {
-    const result = await db.query('DELETE FROM users WHERE id = $1 RETURNING *', [id]);
-    return result.rowCount > 0;
-  }
-}
-
-module.exports = User;
+module.exports = userModel;
