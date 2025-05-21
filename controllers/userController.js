@@ -1,5 +1,3 @@
-// controllers/userController.js
-
 const userService = require('../services/userService');
 
 const getAllUsers = async (req, res) => {
@@ -13,7 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    const user = await userService.getUserById(req.params.id);
+    const user = await userService.getUserById(Number(req.params.id));
     if (user) {
       res.status(200).json(user);
     } else {
@@ -26,36 +24,12 @@ const getUserById = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { name, email } = req.body;
-    const newUser = await userService.createUser(name, email);
+    const { user_name, user_email, user_password } = req.body;
+    if (!user_name || !user_email || !user_password) {
+      return res.status(400).json({ error: 'Dados obrigatórios não fornecidos' });
+    }
+    const newUser = await userService.createUser({ user_name, user_email, user_password });
     res.status(201).json(newUser);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const updateUser = async (req, res) => {
-  try {
-    const { name, email } = req.body;
-    const updatedUser = await userService.updateUser(req.params.id, name, email);
-    if (updatedUser) {
-      res.status(200).json(updatedUser);
-    } else {
-      res.status(404).json({ error: 'Usuário não encontrado' });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const deleteUser = async (req, res) => {
-  try {
-    const deletedUser = await userService.deleteUser(req.params.id);
-    if (deletedUser) {
-      res.status(200).json(deletedUser);
-    } else {
-      res.status(404).json({ error: 'Usuário não encontrado' });
-    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -64,7 +38,5 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
-  createUser,
-  updateUser,
-  deleteUser
+  createUser
 };

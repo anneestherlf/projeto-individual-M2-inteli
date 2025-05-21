@@ -1,12 +1,17 @@
+// Importa a configuração do banco de dados
 const db = require('../config/db');
 
+// Define o objeto earningsModel com métodos para manipular os dados de ganhos (earnings)
 const earningsModel = {
+  // Busca todos os registros da tabela earnings
   async getAllEarnings() {
     const result = await db.query('SELECT * FROM earnings');
     return result.rows;
   },
 
+  // Busca um ganho específico pelo seu ID primário
   async getEarningById(earning_id_PK) {
+    // Valida se o ID fornecido é um número inteiro
     if (!Number.isInteger(earning_id_PK)) {
       throw new Error('Invalid earning_id_PK');
     }
@@ -14,7 +19,9 @@ const earningsModel = {
     return result.rows[0];
   },
 
+  // Cria um novo registro de ganho na tabela earnings
   async createEarning({ value_earning, description_earning, date_earning, category_earning, user_id_FK }) {
+    // Valida os tipos dos dados recebidos
     if (
       typeof value_earning !== 'number' ||
       typeof description_earning !== 'string' ||
@@ -24,6 +31,7 @@ const earningsModel = {
     ) {
       throw new Error('Invalid input data');
     }
+    // Insere o novo ganho no banco de dados e retorna o registro criado
     const result = await db.query(
       `INSERT INTO earnings 
         (value_earning, description_earning, date_earning, category_earning, user_id_FK)
@@ -34,7 +42,9 @@ const earningsModel = {
     return result.rows[0];
   },
 
+  // Busca todos os ganhos de um usuário específico pelo seu ID
   async getEarningsByUserId(user_id_FK) {
+    // Valida se o ID do usuário é um número inteiro
     if (!Number.isInteger(user_id_FK)) {
       throw new Error('Invalid user_id_FK');
     }
@@ -43,4 +53,5 @@ const earningsModel = {
   }
 };
 
+// Exporta o earningsModel para ser utilizado em outras partes da aplicação
 module.exports = earningsModel;
