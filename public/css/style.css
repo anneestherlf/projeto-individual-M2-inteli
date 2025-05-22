@@ -1,35 +1,40 @@
+/*
+  style.css - Estilos principais do FinanceU
+  Este arquivo define o visual global do site, incluindo layout, cores, tipografia e componentes comuns.
+*/
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', sans-serif; /* Fonte principal para todo o site */
+    background-color: #f8f9fa;           /* Cor de fundo suave */
+    margin: 0;                          /* Remove margens padrão */
+    padding: 0;                         /* Remove padding padrão */
   }
   
   header, footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 15px;
-    text-align: center;
+    background-color: #2c3e50;          /* Fundo escuro para cabeçalho e rodapé */
+    color: white;                       /* Texto branco para contraste */
+    padding: 15px;                      /* Espaçamento interno */
+    text-align: center;                 /* Centraliza o texto */
   }
   
   nav a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-    font-weight: bold;
+    color: white;                       /* Links do menu em branco */
+    margin: 0 10px;                     /* Espaçamento entre links */
+    text-decoration: none;              /* Remove sublinhado dos links */
+    font-weight: bold;                  /* Deixa os links em negrito */
   }
   
   .container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 900px;                   /* Largura máxima do conteúdo central */
+    margin: 30px auto;                  /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;                      /* Espaçamento interno */
+    background: white;                  /* Fundo branco para destaque */
+    border-radius: 12px;                /* Cantos arredondados */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave para profundidade */
   }
   
   form input, form textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
+    width: 100%;                        /* Campos ocupam toda a largura do form */
+    margin-bottom: 10px;                /* Espaço entre campos */
+    padding: 10px;                      /* Espaçamento interno dos campos */
   }

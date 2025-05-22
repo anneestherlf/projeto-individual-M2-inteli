@@ -1,14 +1,24 @@
+<!--
+  Página de Metas Financeiras (goals.ejs)
+  - Permite ao usuário cadastrar novas metas financeiras
+  - Exibe uma tabela com as metas já cadastradas
+  - Utiliza includes para header e footer
+  - Faz requisição para a API para listar metas em tempo real
+-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Metas | FinanceU</title>
+  <title>Metas</title>
+  <!-- Importa o CSS global do projeto -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <!-- Inclui o cabeçalho padrão do site -->
   <%- include('../partials/header') %>
   <main class="container">
     <h1>Minhas Metas Financeiras</h1>
+    <!-- Formulário para adicionar uma nova meta -->
     <form id="form-meta" method="POST" action="/goals">
       <input type="text" name="goal_title" placeholder="Título da Meta" required>
       <input type="number" name="goal_total_value" placeholder="Valor Total (R$)" required step="0.01">
@@ -21,6 +31,7 @@
       <button type="submit">Adicionar Meta</button>
     </form>
     <hr>
+    <!-- Tabela para exibir as metas cadastradas -->
     <table border="1" width="100%">
       <thead>
         <tr>
@@ -31,24 +42,28 @@
         </tr>
       </thead>
       <tbody id="lista-metas">
-        <!-- Metas serão renderizadas aqui -->
+        <!-- As metas serão renderizadas dinamicamente aqui pelo JS -->
       </tbody>
     </table>
   </main>
   <script>
+    // Ao carregar a página, busca as metas cadastradas via API e preenche a tabela
     fetch('/goals')
       .then(res => res.json())
       .then(metas => {
         const tbody = document.getElementById('lista-metas');
         tbody.innerHTML = '';
         metas.forEach(m => {
+          // Define o status textual da meta
           const status = m.goal_is_completed ? 'Concluída' : 'Em andamento';
+          // Cria uma linha da tabela para cada meta
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${m.goal_title}</td><td>R$ ${m.goal_total_value.toFixed(2)}</td><td>R$ ${m.goal_accumulated_value.toFixed(2)}</td><td>${status}</td>`;
           tbody.appendChild(tr);
         });
       });
   </script>
+  <!-- Inclui o rodapé padrão do site -->
   <%- include('../partials/footer') %>
 </body>
 </html>

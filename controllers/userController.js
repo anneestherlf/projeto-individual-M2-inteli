@@ -26,17 +26,48 @@ const getUserById = async (req, res) => {
   }
 };
 
+// Atualizar um usuário
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email } = req.body;
+    const updatedUser = await userService.updateUser(id, name, email);
+    if (updatedUser) {
+      res.status(200).json(updatedUser);
+    } else {
+      res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Deletar um usuário
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await userService.deleteUser(id);
+    if (deleted) {
+      res.status(200).json({ message: 'Usuário deletado' });
+    } else {
+      res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Controlador para criar um novo usuário
 const createUser = async (req, res) => {
   try {
     // Extrai os dados do corpo da requisição
-    const { user_name, user_email, user_password } = req.body;
+    const { name, email } = req.body;
     // Valida se todos os campos obrigatórios foram fornecidos
-    if (!user_name || !user_email || !user_password) {
+    if (!name || !email) {
       return res.status(400).json({ error: 'Dados obrigatórios não fornecidos' });
     }
     // Cria o novo usuário usando o serviço
-    const newUser = await userService.createUser({ user_name, user_email, user_password });
+    const newUser = await userService.createUser(name, email);
     res.status(201).json(newUser); // Retorna o usuário criado
   } catch (error) {
     res.status(500).json({ error: error.message }); // Erro interno do servidor
@@ -47,5 +78,7 @@ const createUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
-  createUser
+  createUser,
+  updateUser,
+  deleteUser
 };

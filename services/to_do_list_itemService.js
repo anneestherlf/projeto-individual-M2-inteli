@@ -1,27 +1,29 @@
-// services/to_do_list_itemService.js
+// Serviço de negócios para itens da lista de tarefas (to_do_list_item)
+// Faz a ponte entre o controller e o model, podendo aplicar regras de negócio
 
-const toDoListItemModel = require('../models/to_do_list_itemModel');
+const toDoListItemModel = require('../models/to_do_list_itemModel'); // Importa o model de itens de tarefas
 
-// Função para obter todos os itens da lista de tarefas
-toDoListItemService = {
+const toDoListItemService = {
+  // Busca todos os itens cadastrados
   async getAllItems() {
     return await toDoListItemModel.getAllItems();
   },
 
-  // Função para obter um item por ID
+  // Busca um item específico pelo ID
   async getItemById(id) {
     return await toDoListItemModel.getItemById(id);
   },
 
-  // Função para criar um novo item
+  // Cria um novo item de tarefa
   async createItem(data) {
     return await toDoListItemModel.createItem(data);
   },
 
-  // Função para obter todos os itens de um usuário específico
+  // Busca todos os itens de tarefa de um usuário específico
   async getItemsByUserId(user_id) {
     return await toDoListItemModel.getItemsByUserId(user_id);
   }
 };
 
+// Exporta o service para ser usado nos controllers
 module.exports = toDoListItemService;

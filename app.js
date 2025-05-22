@@ -10,7 +10,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// Rotas de frontend do FinanceU
+// Rotas de frontend 
 const frontendRoutes = require('./routes/frontRoutes');
 app.use('/', frontendRoutes);
 
