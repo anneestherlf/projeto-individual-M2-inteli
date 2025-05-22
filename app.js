@@ -1,8 +1,16 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+
+// Configuração de sessão
+app.use(session({
+  secret: 'financeu-secret',
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

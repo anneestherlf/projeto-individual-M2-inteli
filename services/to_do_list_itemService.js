@@ -22,6 +22,16 @@ const toDoListItemService = {
   // Busca todos os itens de tarefa de um usuário específico
   async getItemsByUserId(user_id) {
     return await toDoListItemModel.getItemsByUserId(user_id);
+  },
+
+  // Atualiza um item do usuário
+  async updateItem(data) {
+    return await toDoListItemModel.updateItem(data);
+  },
+
+  // Deleta um item do usuário
+  async deleteItem(to_do_list_item_id_PK, user_id_FK) {
+    return await toDoListItemModel.deleteItem(to_do_list_item_id_PK, user_id_FK);
   }
 };
 

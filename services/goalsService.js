@@ -22,6 +22,15 @@ const goalsService = {
   // Busca todas as metas de um usuário específico
   async getGoalsByUserId(user_id) {
     return await goalsModel.getGoalsByUserId(user_id);
+  },
+
+  // Atualiza uma meta do usuário
+  async updateGoal(data) {
+    return await goalsModel.updateGoal(data);
+  },
+  // Deleta uma meta do usuário
+  async deleteGoal(goal_id_PK, user_id_FK) {
+    return await goalsModel.deleteGoal(goal_id_PK, user_id_FK);
   }
 };
 

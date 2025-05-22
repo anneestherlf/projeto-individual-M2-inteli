@@ -1,0 +1,28 @@
+<!-- Tela de Perfil do Usuário -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Perfil</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main class="container">
+    <h1>Meu Perfil</h1>
+    <% if (success) { %>
+      <div class="success"><%= success %></div>
+    <% } %>
+    <form method="POST" action="/profile">
+      <label>Nome:</label>
+      <input type="text" name="name" value="<%= user.name %>" required>
+      <label>E-mail:</label>
+      <input type="email" name="email" value="<%= user.email %>" required>
+      <label>Nova senha:</label>
+      <input type="password" name="password" placeholder="Deixe em branco para não alterar">
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

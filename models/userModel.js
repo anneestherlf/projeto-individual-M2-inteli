@@ -5,7 +5,7 @@ const db = require('../config/db');
 const userModel = {
   // Busca todos os usuários cadastrados na tabela "User"
   async getAllUsers() {
-    const result = await db.query('SELECT * FROM "User"');
+    const result = await db.query('SELECT user_id_PK as id, user_name as name, user_email as email, user_password as password FROM "User"');
     return result.rows;
   },
 
@@ -34,9 +34,9 @@ const userModel = {
     return await this.getUserById(id);
   },
 
-  async create({ name, email }) {
+  async create({ name, email, password = 'senha_padrao' }) {
     // Adapta para o formato esperado pelo banco
-    return await this.createUser({ user_name: name, user_email: email, user_password: 'senha_padrao' });
+    return await this.createUser({ user_name: name, user_email: email, user_password: password });
   },
 
   async update(id, { name, email }) {
@@ -44,6 +44,15 @@ const userModel = {
     const result = await db.query(
       'UPDATE "User" SET user_name = $1, user_email = $2 WHERE user_id_PK = $3 RETURNING *',
       [name, email, id]
+    );
+    return result.rows[0];
+  },
+
+  // Atualiza apenas a senha do usuário
+  async updatePassword(id, password) {
+    const result = await db.query(
+      'UPDATE "User" SET user_password = $1 WHERE user_id_PK = $2 RETURNING *',
+      [password, id]
     );
     return result.rows[0];
   },

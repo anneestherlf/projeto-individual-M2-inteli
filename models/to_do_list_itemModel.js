@@ -54,6 +54,38 @@ const toDoListItemModel = {
       [user_id_FK]
     );
     return result.rows;
+  },
+
+  // Atualiza um item (apenas se pertencer ao usuário)
+  async updateItem({ to_do_list_item_id_PK, to_do_list_item_description, to_do_list_item_is_completed, user_id_FK }) {
+    if (
+      !Number.isInteger(to_do_list_item_id_PK) ||
+      typeof to_do_list_item_description !== 'string' ||
+      typeof to_do_list_item_is_completed !== 'boolean' ||
+      !Number.isInteger(user_id_FK)
+    ) {
+      throw new Error('Invalid input data');
+    }
+    const result = await db.query(
+      `UPDATE to_do_list_item SET to_do_list_item_description = $1, to_do_list_item_is_completed = $2
+       WHERE to_do_list_item_id_PK = $3 AND user_id_FK = $4 RETURNING *`,
+      [to_do_list_item_description, to_do_list_item_is_completed, to_do_list_item_id_PK, user_id_FK]
+    );
+    if (result.rows.length === 0) throw new Error('Item não encontrado ou acesso negado');
+    return result.rows[0];
+  },
+
+  // Deleta um item (apenas se pertencer ao usuário)
+  async deleteItem(to_do_list_item_id_PK, user_id_FK) {
+    if (!Number.isInteger(to_do_list_item_id_PK) || !Number.isInteger(user_id_FK)) {
+      throw new Error('Invalid input data');
+    }
+    const result = await db.query(
+      'DELETE FROM to_do_list_item WHERE to_do_list_item_id_PK = $1 AND user_id_FK = $2 RETURNING *',
+      [to_do_list_item_id_PK, user_id_FK]
+    );
+    if (result.rows.length === 0) throw new Error('Item não encontrado ou acesso negado');
+    return result.rows[0];
   }
 };
 

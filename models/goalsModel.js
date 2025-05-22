@@ -50,6 +50,40 @@ const goalsModel = {
     }
     const result = await db.query('SELECT * FROM goals WHERE user_id_FK = $1', [user_id_FK]);
     return result.rows;
+  },
+
+  // Atualiza uma meta (apenas se pertencer ao usuário)
+  async updateGoal({ goal_id_PK, goal_title, goal_total_value, goal_accumulated_value, goal_is_completed, user_id_FK }) {
+    if (
+      !Number.isInteger(goal_id_PK) ||
+      typeof goal_title !== 'string' ||
+      typeof goal_total_value !== 'number' ||
+      typeof goal_accumulated_value !== 'number' ||
+      typeof goal_is_completed !== 'boolean' ||
+      !Number.isInteger(user_id_FK)
+    ) {
+      throw new Error('Invalid input data');
+    }
+    const result = await db.query(
+      `UPDATE goals SET goal_title = $1, goal_total_value = $2, goal_accumulated_value = $3, goal_is_completed = $4
+       WHERE goal_id_PK = $5 AND user_id_FK = $6 RETURNING *`,
+      [goal_title, goal_total_value, goal_accumulated_value, goal_is_completed, goal_id_PK, user_id_FK]
+    );
+    if (result.rows.length === 0) throw new Error('Meta não encontrada ou acesso negado');
+    return result.rows[0];
+  },
+
+  // Deleta uma meta (apenas se pertencer ao usuário)
+  async deleteGoal(goal_id_PK, user_id_FK) {
+    if (!Number.isInteger(goal_id_PK) || !Number.isInteger(user_id_FK)) {
+      throw new Error('Invalid input data');
+    }
+    const result = await db.query(
+      'DELETE FROM goals WHERE goal_id_PK = $1 AND user_id_FK = $2 RETURNING *',
+      [goal_id_PK, user_id_FK]
+    );
+    if (result.rows.length === 0) throw new Error('Meta não encontrada ou acesso negado');
+    return result.rows[0];
   }
 };
 

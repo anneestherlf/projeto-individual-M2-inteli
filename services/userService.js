@@ -19,13 +19,21 @@ const userService = {
   },
 
   // Cria um novo usuário
-  async createUser(name, email) {
-    return await userModel.create({ name, email });
+  async createUser(name, email, password = 'senha_padrao') {
+    return await userModel.create({ name, email, password });
   },
 
-  // Atualiza um usuário existente
-  async updateUser(id, name, email) {
-    return await userModel.update(id, { name, email });
+  // Atualiza um usuário existente (nome, email e senha)
+  async updateUser(id, name, email, password) {
+    // Atualiza nome e email
+    let result = await userModel.update(id, { name, email });
+    // Atualiza senha se fornecida
+    if (password && password.trim() !== '') {
+      await userModel.updatePassword(id, password);
+      // Atualiza o objeto retornado para refletir a nova senha
+      result = { ...result, user_password: password };
+    }
+    return result;
   },
 
   // Deleta um usuário pelo ID

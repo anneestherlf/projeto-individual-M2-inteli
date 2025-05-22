@@ -50,6 +50,42 @@ const earningsModel = {
     }
     const result = await db.query('SELECT * FROM earnings WHERE user_id_FK = $1', [user_id_FK]);
     return result.rows;
+  },
+
+  // Atualiza um ganho (apenas se pertencer ao usuário)
+  async updateEarning({ earning_id_PK, value_earning, description_earning, date_earning, category_earning, user_id_FK }) {
+    // Valida os tipos dos dados recebidos
+    if (
+      !Number.isInteger(earning_id_PK) ||
+      typeof value_earning !== 'number' ||
+      typeof description_earning !== 'string' ||
+      isNaN(Date.parse(date_earning)) ||
+      typeof category_earning !== 'string' ||
+      !Number.isInteger(user_id_FK)
+    ) {
+      throw new Error('Invalid input data');
+    }
+    // Atualiza apenas se o ganho pertencer ao usuário
+    const result = await db.query(
+      `UPDATE earnings SET value_earning = $1, description_earning = $2, date_earning = $3, category_earning = $4
+       WHERE earning_id_PK = $5 AND user_id_FK = $6 RETURNING *`,
+      [value_earning, description_earning, date_earning, category_earning, earning_id_PK, user_id_FK]
+    );
+    if (result.rows.length === 0) throw new Error('Ganho não encontrado ou acesso negado');
+    return result.rows[0];
+  },
+
+  // Deleta um ganho (apenas se pertencer ao usuário)
+  async deleteEarning(earning_id_PK, user_id_FK) {
+    if (!Number.isInteger(earning_id_PK) || !Number.isInteger(user_id_FK)) {
+      throw new Error('Invalid input data');
+    }
+    const result = await db.query(
+      'DELETE FROM earnings WHERE earning_id_PK = $1 AND user_id_FK = $2 RETURNING *',
+      [earning_id_PK, user_id_FK]
+    );
+    if (result.rows.length === 0) throw new Error('Ganho não encontrado ou acesso negado');
+    return result.rows[0];
   }
 };
 

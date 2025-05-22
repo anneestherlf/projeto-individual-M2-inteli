@@ -22,6 +22,15 @@ const expensesService = {
   // Busca todas as despesas de um usuário específico
   async getExpensesByUserId(user_id) {
     return await expensesModel.getExpensesByUserId(user_id);
+  },
+
+  // Atualiza uma despesa do usuário
+  async updateExpense(data) {
+    return await expensesModel.updateExpense(data);
+  },
+  // Deleta uma despesa do usuário
+  async deleteExpense(expense_id_PK, user_id_FK) {
+    return await expensesModel.deleteExpense(expense_id_PK, user_id_FK);
   }
 };
 
