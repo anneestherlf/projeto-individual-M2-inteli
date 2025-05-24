@@ -9,13 +9,14 @@
   <%- include('../partials/header') %>
   <main class="container">
     <h1>Meus Ganhos</h1>
-    <form id="form-ganho" method="POST" action="/earnings">
+    <form id="form-ganho">
       <input type="number" name="value_earning" placeholder="Valor (R$)" required step="0.01">
       <input type="text" name="description_earning" placeholder="Descrição" required>
       <input type="date" name="date_earning" required>
       <input type="text" name="category_earning" placeholder="Categoria" required>
       <button type="submit">Adicionar Ganho</button>
     </form>
+    <div id="erro-ganho" style="color:red; margin:10px 0;"></div>
     <hr>
     <table border="1" width="100%">
       <thead>
@@ -32,18 +33,100 @@
     </table>
   </main>
   <script>
-    // Exemplo de fetch para popular a tabela (substitua por chamada real à API)
-    fetch('/earnings')
-      .then(res => res.json())
-      .then(ganhos => {
-        const tbody = document.getElementById('lista-ganhos');
-        tbody.innerHTML = '';
-        ganhos.forEach(g => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>R$ ${g.value_earning.toFixed(2)}</td><td>${g.description_earning}</td><td>${new Date(g.date_earning).toLocaleDateString()}</td><td>${g.category_earning}</td>`;
-          tbody.appendChild(tr);
+    function carregarGanhos() {
+      fetch('/earnings/me')
+        .then(res => res.json())
+        .then(ganhos => {
+          const tbody = document.getElementById('lista-ganhos');
+          tbody.innerHTML = '';
+          ganhos.forEach(g => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>R$ ${g.value_earning.toFixed(2)}</td><td>${g.description_earning}</td><td>${new Date(g.date_earning).toLocaleDateString()}</td><td>${g.category_earning}</td>`;
+            tbody.appendChild(tr);
+          });
         });
-      });
+    }
+    carregarGanhos();
+
+    // Exibe mensagem de erro na tela
+    function mostrarErro(msg) {
+      let erroDiv = document.getElementById('erro-ganho');
+      if (!erroDiv) {
+        erroDiv = document.createElement('div');
+        erroDiv.id = 'erro-ganho';
+        erroDiv.style.color = 'red';
+        erroDiv.style.margin = '10px 0';
+        document.getElementById('form-ganho').before(erroDiv);
+      }
+      erroDiv.textContent = msg;
+    }
+    function limparErro() {
+      const erroDiv = document.getElementById('erro-ganho');
+      if (erroDiv) erroDiv.textContent = '';
+    }
+
+    document.getElementById('form-ganho').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      limparErro();
+      const form = e.target;
+      let value_earning = form.value_earning.value;
+      const description_earning = form.description_earning.value;
+      let date_earning = form.date_earning.value;
+      const category_earning = form.category_earning.value;
+      // Corrige vírgula para ponto no valor
+      if (typeof value_earning === 'string') value_earning = value_earning.replace(',', '.');
+      // Corrige data para formato yyyy-mm-dd
+      if (date_earning && date_earning.includes('/')) {
+        const partes = date_earning.split('/');
+        if (partes.length === 3) date_earning = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
+      }
+      // Validação rápida no frontend
+      if (!value_earning || isNaN(Number(value_earning)) || Number(value_earning) <= 0) {
+        mostrarErro('Informe um valor válido e maior que zero.');
+        return;
+      }
+      if (!description_earning.trim()) {
+        mostrarErro('Descrição obrigatória.');
+        return;
+      }
+      if (!date_earning) {
+        mostrarErro('Data obrigatória.');
+        return;
+      }
+      if (!category_earning.trim()) {
+        mostrarErro('Categoria obrigatória.');
+        return;
+      }
+      const data = {
+        value_earning: Number(value_earning),
+        description_earning: description_earning.trim(),
+        date_earning: date_earning,
+        category_earning: category_earning.trim()
+      };
+      try {
+        const res = await fetch('/earnings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          form.reset();
+          carregarGanhos();
+          limparErro();
+        } else {
+          let erroMsg = 'Erro ao adicionar ganho';
+          try {
+            const erro = await res.json();
+            erroMsg = erro.error || erroMsg;
+          } catch {
+            // resposta não é JSON, erro genérico
+          }
+          mostrarErro(erroMsg);
+        }
+      } catch (err) {
+        mostrarErro('Erro ao conectar com o servidor');
+      }
+    });
   </script>
   <%- include('../partials/footer') %>
 </body>

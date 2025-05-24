@@ -3,12 +3,20 @@ const express = require('express');
 const app = express();
 const db = require('./config/db');
 const path = require('path');
+const session = require('express-session');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middleware para JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'financeu-secret',
+  resave: false,
+  saveUninitialized: false,
+}));
 
 // Rotas de API
 const userRoutes = require('./routes/userRoutes');

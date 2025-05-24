@@ -7,6 +7,7 @@ const getAllEarnings = async (req, res) => {
     const earnings = await earningsService.getAllEarnings();
     res.status(200).json(earnings); // Retorna todos os ganhos em formato JSON
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: error.message }); // Erro interno do servidor
   }
 };
@@ -29,25 +30,37 @@ const getEarningById = async (req, res) => {
 // Controlador para criar um novo ganho
 const createEarning = async (req, res) => {
   try {
-    // Sempre usa o userId da sessão, ignorando user_id_FK do body
     const userId = req.session.userId;
     if (!userId) return res.status(401).json({ error: 'Não autenticado' });
-    const { value_earning, description_earning, date_earning, category_earning } = req.body;
-    // Valida se todos os campos obrigatórios foram fornecidos e são válidos
+    // Debug: veja exatamente o que chega no body
+    console.log('REQ.BODY:', req.body);
+    let value_earning = req.body.value_earning;
+    let description_earning = req.body.description_earning;
+    let date_earning = req.body.date_earning;
+    let category_earning = req.body.category_earning;
+    // Aceita tanto string quanto number para value_earning
+    if (typeof value_earning === 'string') value_earning = value_earning.replace(',', '.');
+    const value = Number(value_earning);
+    // Corrige tipos para garantir robustez
+    description_earning = (description_earning || '').toString();
+    category_earning = (category_earning || '').toString();
+    date_earning = (date_earning || '').toString();
+    // Validação robusta dos campos obrigatórios
     if (
-      typeof value_earning !== 'number' ||
-      typeof description_earning !== 'string' ||
-      !date_earning ||
-      typeof category_earning !== 'string'
+      value_earning === undefined ||
+      isNaN(value) ||
+      value <= 0 ||
+      description_earning.trim() === '' ||
+      category_earning.trim() === '' ||
+      date_earning.trim() === ''
     ) {
-      return res.status(400).json({ error: 'Dados obrigatórios não fornecidos ou inválidos' });
+      return res.status(400).json({ error: 'Dados obrigatórios não fornecidos ou inválidos. value_earning=' + value_earning + ', description_earning=' + description_earning + ', date_earning=' + date_earning + ', category_earning=' + category_earning });
     }
-    // Cria o novo ganho usando o serviço
     const newEarning = await earningsService.createEarning({
-      value_earning,
-      description_earning,
-      date_earning,
-      category_earning,
+      value_earning: value,
+      description_earning: description_earning.trim(),
+      date_earning: date_earning.trim(),
+      category_earning: category_earning.trim(),
       user_id_FK: Number(userId)
     });
     res.status(201).json(newEarning); // Retorna o ganho criado
@@ -129,32 +142,7 @@ const deleteEarning = async (req, res) => {
 module.exports = {
   getAllEarnings, // Apenas para debug/admin, não use no frontend
   getEarningById, // Apenas para debug/admin, não use no frontend
-  createEarning: async (req, res) => {
-    try {
-      // Sempre usa o userId da sessão, ignorando user_id_FK do body
-      const userId = req.session.userId;
-      if (!userId) return res.status(401).json({ error: 'Não autenticado' });
-      const { value_earning, description_earning, date_earning, category_earning } = req.body;
-      if (
-        typeof value_earning !== 'number' ||
-        typeof description_earning !== 'string' ||
-        !date_earning ||
-        typeof category_earning !== 'string'
-      ) {
-        return res.status(400).json({ error: 'Dados obrigatórios não fornecidos ou inválidos' });
-      }
-      const newEarning = await earningsService.createEarning({
-        value_earning,
-        description_earning,
-        date_earning,
-        category_earning,
-        user_id_FK: Number(userId)
-      });
-      res.status(201).json(newEarning);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
+  createEarning,
   getEarningsByUserId, // Apenas para debug/admin, não use no frontend
   getEarningsByLoggedUser, // Use esta rota para listar ganhos do usuário logado
   updateEarning, // Atualiza ganho do usuário logado
