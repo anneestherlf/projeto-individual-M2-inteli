@@ -6,7 +6,7 @@
 
 <!-- Pensar no nome do projeto -->
 
-####  Anne Esther Lins Figueirôa
+#### Por Anne Esther Lins Figueirôa
 - LinkedIn: <https://www.linkedin.com/in/anneestherlf/>
 - GitHub: <https://github.com/anneestherlf>
 <!-- Lembrar de colocar meu nome, linkedin e github aqui  -->
@@ -214,7 +214,7 @@ Abaixo, você encontrará uma ilustração dos processos que acontecem por trás
   <sub>Diagrama de Arquitetura da Aplicação Web</sub><br>
   <img src="../assets/wad-assets/diagrama-mvc.png" width="100%" 
   alt="Diagrama de Arquitetura MVC"><br>
-  <sup>Fonte: a autora. Link para acesso ao documento com mais detalhes no Figma: <https://www.figma.com/design/BaMMKxsQq8ahLz2iGgysEr/Untitled?node-id=0-1&t=pcLZ0SmZYVguS3b5-1> </sup>
+  <sup>Fonte: a autora. Link para acesso ao documento com mais detalhes no Figma: <a href="https://www.figma.com/design/BaMMKxsQq8ahLz2iGgysEr/Untitled?node-id=0-1&t=pcLZ0SmZYVguS3b5-1">clique aqui.</a> </sup>
 </div>
 
 Tudo começa quando o usuário, utilizando um navegador web, realiza uma ação, como acessar uma página ou enviar um formulário. Essa ação gera uma requisição que é enviada do cliente para o servidor da aplicação. No servidor, a primeira camada a ser acionada é a dos Controllers. Cada controller é responsável por uma área específica do sistema, como usuários, ganhos, despesas, metas ou itens de lista de tarefas, conforme explicitado no diagrama. Por exemplo, ao acessar a página de perfil, o controller de usuários (User) é acionado e executa métodos como getUserById para buscar as informações do usuário requisitado.
@@ -292,11 +292,11 @@ Para visualizar o wireflow (user flow) e wireframes das demais telas da aplicaç
 
 A aplicação expõe uma API RESTful organizada na pasta `routes`, permitindo a integração e o consumo dos dados por meio de endpoints bem definidos. Cada recurso principal do sistema possui seu próprio conjunto de rotas: usuários (`userRoutes.js`), ganhos (`earningsRoutes.js`), despesas (`expensesRoutes.js`), metas (`goalsRoutes.js`) e tarefas (`to_do_list_itemRoutes.js`). Os endpoints seguem o padrão REST, permitindo operações de criação (POST), leitura (GET), atualização (PUT/PATCH) e exclusão (DELETE). 
 
-Por exemplo, para consultar todos os ganhos do usuário autenticado, utiliza-se o endpoint `GET /api/earnings/me`; para adicionar uma nova despesa, utiliza-se `POST /api/expenses`. Todos os endpoints estão documentados no código e podem ser testados facilmente utilizando ferramentas como o arquivo rest.http presente na raiz do projeto, o Insomnia ou o Postman. 
+Por exemplo, para consultar todos os ganhos do usuário autenticado, utiliza-se o endpoint `GET /api/earnings/me`; para adicionar uma nova despesa, utiliza-se `POST /api/expenses`. Todos os endpoints estão documentados no código e podem ser testados facilmente utilizando ferramentas como o arquivo `rest.http` presente na raiz do projeto, o Insomnia ou o Postman. 
 
 Para testar as APIs, basta garantir que o servidor esteja rodando (comando `node server.js` no terminal; mais detalhes podem ser encontrados no arquivo `README.md` na capa do repositório) e enviar requisições HTTP para os endpoints desejados, utilizando o token de autenticação quando necessário. 
 
-As rotas de autenticação e registro de usuário também estão disponíveis, permitindo o fluxo completo de cadastro, login e uso da aplicação. Caso precise rodar as migrações do banco de dados novamente, basta executar o script SQL correspondente, e para configurar o acesso ao banco, ajuste as variáveis de ambiente no arquivo `.env` conforme as instruções do README.
+As rotas de autenticação e registro de usuário também estão disponíveis, permitindo o fluxo completo de cadastro, login e uso da aplicação. Caso precise rodar as migrações do banco de dados novamente, basta executar o script SQL correspondente, e para configurar o acesso ao banco, ajuste as variáveis de ambiente no arquivo `.env` conforme as instruções do `README.md`.
 
 
 Uma observação importante é que endpoints protegidos exigem autenticação. Caso tente acessar ou modificar recursos protegidos sem estar autenticado, o middleware de autenticação (`requireLogin`) redirecionará para a tela de login ou retornará uma resposta de erro apropriada, dependendo do tipo de requisição (HTML ou JSON).
@@ -362,5 +362,4 @@ Dessa forma, a API garante segurança, flexibilidade e facilidade de uso tanto p
 
 
 
----
 ---
