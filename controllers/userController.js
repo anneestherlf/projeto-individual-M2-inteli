@@ -14,8 +14,11 @@ const getAllUsers = async (req, res) => {
 // Controlador para buscar um usuário pelo ID
 const getUserById = async (req, res) => {
   try {
-    // Busca o usuário pelo ID passado na URL
-    const user = await userService.getUserById(Number(req.params.id));
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
+    const user = await userService.getUserById(id);
     if (user) {
       res.status(200).json(user); // Usuário encontrado
     } else {
@@ -30,7 +33,12 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email } = req.body;
+    // Aceita tanto name/email quanto user_name/user_email
+    const name = req.body.name || req.body.user_name;
+    const email = req.body.email || req.body.user_email;
+    if (!name || !email) {
+      return res.status(400).json({ error: 'Dados obrigatórios não fornecidos (nome e email)' });
+    }
     const updatedUser = await userService.updateUser(id, name, email);
     if (updatedUser) {
       res.status(200).json(updatedUser);
@@ -60,14 +68,16 @@ const deleteUser = async (req, res) => {
 // Controlador para criar um novo usuário
 const createUser = async (req, res) => {
   try {
-    // Extrai os dados do corpo da requisição
-    const { name, email } = req.body;
+    // Aceita tanto name/email/password quanto user_name/user_email/user_password
+    const name = req.body.name || req.body.user_name;
+    const email = req.body.email || req.body.user_email;
+    const password = req.body.password || req.body.user_password;
     // Valida se todos os campos obrigatórios foram fornecidos
-    if (!name || !email) {
-      return res.status(400).json({ error: 'Dados obrigatórios não fornecidos' });
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'Dados obrigatórios não fornecidos (nome, email e senha)' });
     }
     // Cria o novo usuário usando o serviço
-    const newUser = await userService.createUser(name, email);
+    const newUser = await userService.createUser(name, email, password);
     res.status(201).json(newUser); // Retorna o usuário criado
   } catch (error) {
     res.status(500).json({ error: error.message }); // Erro interno do servidor

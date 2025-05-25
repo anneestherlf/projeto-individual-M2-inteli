@@ -6,10 +6,9 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <%- include('../partials/header') %>
-  <main class="container">
+  <%- include('../partials/header') %>  <main class="container">
     <h1>Minhas Tarefas</h1>
-    <form id="form-tarefa" method="POST" action="/to_do_list_items">
+    <form id="form-tarefa">
       <input type="text" name="to_do_list_item_description" placeholder="Descrição da Tarefa" required>
       <select name="to_do_list_item_is_completed">
         <option value="false">Pendente</option>
@@ -17,6 +16,7 @@
       </select>
       <button type="submit">Adicionar Tarefa</button>
     </form>
+    <div id="erro-tarefa" style="color:red; margin:10px 0;"></div>
     <hr>
     <table border="1" width="100%">
       <thead>
@@ -28,21 +28,83 @@
       <tbody id="lista-tarefas">
         <!-- Tarefas serão renderizadas aqui -->
       </tbody>
-    </table>
-  </main>
-  <script>
-    fetch('/to_do_list_items')
-      .then(res => res.json())
-      .then(tarefas => {
-        const tbody = document.getElementById('lista-tarefas');
-        tbody.innerHTML = '';
-        tarefas.forEach(t => {
-          const status = t.to_do_list_item_is_completed ? 'Concluída' : 'Pendente';
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${t.to_do_list_item_description}</td><td>${status}</td>`;
-          tbody.appendChild(tr);
+    </table>  </main>  <script>
+    function carregarTarefas() {
+      fetch('/api/to-do-list-items/me')
+        .then(res => res.json())
+        .then(tarefas => {
+          // Se a resposta não for um array, não renderiza nada
+          if (!Array.isArray(tarefas)) return;
+          const tbody = document.getElementById('lista-tarefas');
+          tbody.innerHTML = '';
+          tarefas.forEach(t => {
+            const status = t.to_do_list_item_is_completed ? 'Concluída' : 'Pendente';
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${t.to_do_list_item_description}</td><td>${status}</td>`;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(() => {
+          // Se a resposta não for JSON, não faz nada (evita tela preta)
         });
-      });
+    }
+
+    carregarTarefas();
+
+    function mostrarErro(msg) {
+      const erroDiv = document.getElementById('erro-tarefa');
+      erroDiv.textContent = msg;
+    }
+
+    function limparErro() {
+      const erroDiv = document.getElementById('erro-tarefa');
+      erroDiv.textContent = '';
+    }
+
+    document.getElementById('form-tarefa').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      limparErro();
+      
+      const form = e.target;
+      const to_do_list_item_description = form.to_do_list_item_description.value;
+      const to_do_list_item_is_completed = form.to_do_list_item_is_completed.value === 'true';
+
+      // Validação rápida no frontend
+      if (!to_do_list_item_description.trim()) {
+        mostrarErro('Descrição da tarefa obrigatória.');
+        return;
+      }
+
+      const data = {
+        to_do_list_item_description: to_do_list_item_description.trim(),
+        to_do_list_item_is_completed: to_do_list_item_is_completed
+      };
+
+      try {
+        const res = await fetch('/api/to-do-list-items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          form.reset();
+          carregarTarefas(); // Recarrega a tabela imediatamente
+          limparErro();
+        } else {
+          let erroMsg = 'Erro ao adicionar tarefa';
+          try {
+            const erro = await res.json();
+            erroMsg = erro.error || erroMsg;
+          } catch {
+            // resposta não é JSON, erro genérico
+          }
+          mostrarErro(erroMsg);
+        }
+      } catch (err) {
+        mostrarErro('Erro ao conectar com o servidor');
+      }
+    });
   </script>
   <%- include('../partials/footer') %>
 </body>

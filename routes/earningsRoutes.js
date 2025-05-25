@@ -10,7 +10,7 @@ router.get('/me', requireLogin, earningsController.getEarningsByLoggedUser);
 // Rota para buscar um ganho pelo ID
 router.get('/:id', earningsController.getEarningById);
 // Rota para criar um novo ganho
-router.post('/', earningsController.createEarning);
+router.post('/', requireLogin, earningsController.createEarning);
 // Rota para buscar todos os ganhos de um usuário específico
 router.get('/user/:user_id', earningsController.getEarningsByUserId);
 // Rotas protegidas para update e delete de ganhos do usuário logado

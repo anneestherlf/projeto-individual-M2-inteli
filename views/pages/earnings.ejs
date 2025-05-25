@@ -32,9 +32,8 @@
       </tbody>
     </table>
   </main>
-  <script>
-    function carregarGanhos() {
-      fetch('/earnings/me')
+  <script>    function carregarGanhos() {
+      fetch('/api/earnings/me')
         .then(res => res.json())
         .then(ganhos => {
           const tbody = document.getElementById('lista-ganhos');
@@ -102,9 +101,8 @@
         description_earning: description_earning.trim(),
         date_earning: date_earning,
         category_earning: category_earning.trim()
-      };
-      try {
-        const res = await fetch('/earnings', {
+      };      try {
+        const res = await fetch('/api/earnings', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)

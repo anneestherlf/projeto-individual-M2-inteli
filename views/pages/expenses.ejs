@@ -6,16 +6,16 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <%- include('../partials/header') %>
-  <main class="container">
+  <%- include('../partials/header') %>  <main class="container">
     <h1>Minhas Despesas</h1>
-    <form id="form-despesa" method="POST" action="/expenses">
+    <form id="form-despesa">
       <input type="number" name="value_expense" placeholder="Valor (R$)" required step="0.01">
       <input type="text" name="description_expense" placeholder="Descrição" required>
       <input type="date" name="date_expense" required>
       <input type="text" name="category_expense" placeholder="Categoria" required>
       <button type="submit">Adicionar Despesa</button>
     </form>
+    <div id="erro-despesa" style="color:red; margin:10px 0;"></div>
     <hr>
     <table border="1" width="100%">
       <thead>
@@ -29,20 +29,97 @@
       <tbody id="lista-despesas">
         <!-- Despesas serão renderizadas aqui -->
       </tbody>
-    </table>
-  </main>
+    </table>  </main>
   <script>
-    fetch('/expenses')
-      .then(res => res.json())
-      .then(despesas => {
-        const tbody = document.getElementById('lista-despesas');
-        tbody.innerHTML = '';
-        despesas.forEach(d => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>R$ ${d.value_expense.toFixed(2)}</td><td>${d.description_expense}</td><td>${new Date(d.date_expense).toLocaleDateString()}</td><td>${d.category_expense}</td>`;
-          tbody.appendChild(tr);
+    function carregarDespesas() {
+      fetch('/api/expenses/me')
+        .then(res => res.json())
+        .then(despesas => {
+          const tbody = document.getElementById('lista-despesas');
+          tbody.innerHTML = '';
+          despesas.forEach(d => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>R$ ${d.value_expense.toFixed(2)}</td><td>${d.description_expense}</td><td>${new Date(d.date_expense).toLocaleDateString()}</td><td>${d.category_expense}</td>`;
+            tbody.appendChild(tr);
+          });
         });
-      });
+    }
+
+    carregarDespesas();
+
+    function mostrarErro(msg) {
+      const erroDiv = document.getElementById('erro-despesa');
+      erroDiv.textContent = msg;
+    }
+
+    function limparErro() {
+      const erroDiv = document.getElementById('erro-despesa');
+      erroDiv.textContent = '';
+    }
+
+    document.getElementById('form-despesa').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      limparErro();
+      
+      const form = e.target;
+      let value_expense = form.value_expense.value;
+      const description_expense = form.description_expense.value;
+      let date_expense = form.date_expense.value;
+      const category_expense = form.category_expense.value;
+
+      // Corrige vírgula para ponto no valor
+      if (typeof value_expense === 'string') value_expense = value_expense.replace(',', '.');
+
+      // Validação rápida no frontend
+      if (!value_expense || isNaN(Number(value_expense)) || Number(value_expense) <= 0) {
+        mostrarErro('Informe um valor válido e maior que zero.');
+        return;
+      }
+      if (!description_expense.trim()) {
+        mostrarErro('Descrição obrigatória.');
+        return;
+      }
+      if (!date_expense) {
+        mostrarErro('Data obrigatória.');
+        return;
+      }
+      if (!category_expense.trim()) {
+        mostrarErro('Categoria obrigatória.');
+        return;
+      }
+
+      const data = {
+        value_expense: Number(value_expense),
+        description_expense: description_expense.trim(),
+        date_expense: date_expense,
+        category_expense: category_expense.trim()
+      };
+
+      try {
+        const res = await fetch('/api/expenses', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          form.reset();
+          carregarDespesas(); // Recarrega a tabela imediatamente
+          limparErro();
+        } else {
+          let erroMsg = 'Erro ao adicionar despesa';
+          try {
+            const erro = await res.json();
+            erroMsg = erro.error || erroMsg;
+          } catch {
+            // resposta não é JSON, erro genérico
+          }
+          mostrarErro(erroMsg);
+        }
+      } catch (err) {
+        mostrarErro('Erro ao conectar com o servidor');
+      }
+    });
   </script>
   <%- include('../partials/footer') %>
 </body>

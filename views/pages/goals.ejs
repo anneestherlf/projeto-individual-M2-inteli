@@ -1,25 +1,14 @@
-<!--
-  Página de Metas Financeiras (goals.ejs)
-  - Permite ao usuário cadastrar novas metas financeiras
-  - Exibe uma tabela com as metas já cadastradas
-  - Utiliza includes para header e footer
-  - Faz requisição para a API para listar metas em tempo real
--->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>Metas</title>
-  <!-- Importa o CSS global do projeto -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <!-- Inclui o cabeçalho padrão do site -->
   <%- include('../partials/header') %>
   <main class="container">
-    <h1>Minhas Metas Financeiras</h1>
-    <!-- Formulário para adicionar uma nova meta -->
-    <form id="form-meta" method="POST" action="/goals">
+    <h1>Minhas Metas</h1>    <form id="form-meta">
       <input type="text" name="goal_title" placeholder="Título da Meta" required>
       <input type="number" name="goal_total_value" placeholder="Valor Total (R$)" required step="0.01">
       <input type="number" name="goal_accumulated_value" placeholder="Valor Acumulado (R$)" step="0.01">
@@ -29,40 +18,149 @@
       </select>
       <button type="submit">Adicionar Meta</button>
     </form>
+    <div id="erro-meta" style="color:red; margin:10px 0;"></div>
     <hr>
-    <!-- Tabela para exibir as metas cadastradas -->
     <table border="1" width="100%">
       <thead>
         <tr>
           <th>Título</th>
           <th>Valor Total</th>
           <th>Acumulado</th>
+          <th>Progresso</th>
           <th>Status</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody id="lista-metas">
-        <!-- As metas serão renderizadas dinamicamente aqui pelo JS -->
+        <!-- Metas serão renderizadas aqui -->
       </tbody>
-    </table>
-  </main>
+    </table>  </main>
   <script>
-    // Ao carregar a página, busca as metas cadastradas via API e preenche a tabela
-    fetch('/goals')
-      .then(res => res.json())
-      .then(metas => {
-        const tbody = document.getElementById('lista-metas');
-        tbody.innerHTML = '';
-        metas.forEach(m => {
-          // Define o status textual da meta
-          const status = m.goal_is_completed ? 'Concluída' : 'Em andamento';
-          // Cria uma linha da tabela para cada meta
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${m.goal_title}</td><td>R$ ${m.goal_total_value.toFixed(2)}</td><td>R$ ${m.goal_accumulated_value.toFixed(2)}</td><td>${status}</td>`;
-          tbody.appendChild(tr);
+    function carregarMetas() {
+      fetch('/api/goals/me')
+        .then(res => res.json())
+        .then(metas => {
+          const tbody = document.getElementById('lista-metas');
+          tbody.innerHTML = '';
+          if (!metas || metas.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">Nenhuma meta cadastrada.</td></tr>';
+            return;
+          }
+          metas.forEach(meta => {
+            const percent = Math.min(100, Math.round((meta.goal_accumulated_value/meta.goal_total_value)*100));
+            const status = meta.goal_is_completed ? 'Concluída' : 'Em andamento';
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${meta.goal_title}</td>
+              <td>R$ ${Number(meta.goal_total_value).toFixed(2)}</td>
+              <td>R$ ${Number(meta.goal_accumulated_value).toFixed(2)}</td>
+              <td>${percent}%</td>
+              <td>${status}</td>
+              <td>
+                <form method="POST" action="/goals/update/${meta.goal_id_PK}" style="display:inline;">
+                  <input type="number" name="goal_accumulated_value" min="0" max="${meta.goal_total_value}" step="0.01" value="${Number(meta.goal_accumulated_value).toFixed(2)}" style="width:80px; margin-right:5px;">
+                  <button type="submit" style="font-size:12px;">Atualizar</button>
+                </form>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(err => {
+          document.getElementById('lista-metas').innerHTML = `<tr><td colspan="6" style="color:red;text-align:center;">Erro ao carregar metas: ${err.message}</td></tr>`;
         });
-      });
+    }
+      carregarMetas();
+    
+    function mostrarErro(msg) {
+      const erroDiv = document.getElementById('erro-meta');
+      erroDiv.textContent = msg;
+    }
+
+    function limparErro() {
+      const erroDiv = document.getElementById('erro-meta');
+      erroDiv.textContent = '';
+    }
+
+    document.getElementById('form-meta').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      limparErro();
+      
+      const form = e.target;
+      const goal_title = form.goal_title.value;
+      let goal_total_value = form.goal_total_value.value;
+      let goal_accumulated_value = form.goal_accumulated_value.value || 0;
+      const goal_is_completed = form.goal_is_completed.value === 'true';
+
+      // Corrige vírgula para ponto nos valores
+      if (typeof goal_total_value === 'string') goal_total_value = goal_total_value.replace(',', '.');
+      if (typeof goal_accumulated_value === 'string') goal_accumulated_value = goal_accumulated_value.replace(',', '.');
+
+      // Validação rápida no frontend
+      if (!goal_title.trim()) {
+        mostrarErro('Título da meta obrigatório.');
+        return;
+      }
+      if (!goal_total_value || isNaN(Number(goal_total_value)) || Number(goal_total_value) <= 0) {
+        mostrarErro('Informe um valor total válido e maior que zero.');
+        return;
+      }
+      if (isNaN(Number(goal_accumulated_value)) || Number(goal_accumulated_value) < 0) {
+        mostrarErro('Valor acumulado deve ser um número válido e não negativo.');
+        return;
+      }
+
+      const data = {
+        goal_title: goal_title.trim(),
+        goal_total_value: Number(goal_total_value),
+        goal_accumulated_value: Number(goal_accumulated_value),
+        goal_is_completed: goal_is_completed
+      };
+
+      try {
+        const res = await fetch('/api/goals', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          form.reset();
+          carregarMetas(); // Recarrega a tabela imediatamente
+          limparErro();
+        } else {
+          let erroMsg = 'Erro ao adicionar meta';
+          try {
+            const erro = await res.json();
+            erroMsg = erro.error || erroMsg;
+          } catch {
+            // resposta não é JSON, erro genérico
+          }
+          mostrarErro(erroMsg);
+        }
+      } catch (err) {
+        mostrarErro('Erro ao conectar com o servidor');
+      }
+    });
+    
+    document.addEventListener('submit', function(e) {
+      if (e.target.action && e.target.action.includes('/goals/update/')) {
+        e.preventDefault();
+        const form = e.target;
+        const id = form.action.split('/').pop();
+        const value = form.goal_accumulated_value.value;
+        fetch(`/api/goals/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ goal_accumulated_value: Number(value) })
+        })
+        .then(res => res.json())
+        .then(() => carregarMetas())
+        .catch(err => console.error('Erro ao atualizar meta:', err));
+      }
+    });
   </script>
-  <!-- Inclui o rodapé padrão do site -->
+  <%- include('../partials/footer') %>
   <%- include('../partials/footer') %>
 </body>
 </html>

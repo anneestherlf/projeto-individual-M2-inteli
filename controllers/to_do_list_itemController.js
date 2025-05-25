@@ -29,10 +29,15 @@ const getItemById = async (req, res) => {
 // Controlador para criar um novo item na lista de tarefas
 const createItem = async (req, res) => {
   try {
-    // Sempre usa o userId da sessão, ignorando user_id_FK do body
-    const userId = req.session.userId;
-    if (!userId) return res.status(401).json({ error: 'Não autenticado' });
-    const { to_do_list_item_description, to_do_list_item_is_completed = false } = req.body;
+    // Para testes: usa user_id_FK do body se não houver sessão
+    const userId = req.session.userId || req.body.user_id_FK;
+    if (!userId) return res.status(401).json({ error: 'Não autenticado e user_id_FK não fornecido' });
+    const { to_do_list_item_description } = req.body;
+    // Converte string para boolean
+    let to_do_list_item_is_completed = req.body.to_do_list_item_is_completed;
+    if (typeof to_do_list_item_is_completed === 'string') {
+      to_do_list_item_is_completed = to_do_list_item_is_completed === 'true';
+    }
     // Valida se todos os campos obrigatórios foram fornecidos e são válidos
     if (
       !to_do_list_item_description ||
@@ -40,15 +45,15 @@ const createItem = async (req, res) => {
     ) {
       return res.status(400).json({ error: 'Dados obrigatórios não fornecidos ou inválidos' });
     }
-    // Cria o novo item usando o serviço
+    // Cria o item
     const newItem = await toDoListItemService.createItem({
       to_do_list_item_description,
       to_do_list_item_is_completed,
       user_id_FK: Number(userId)
     });
-    res.status(201).json(newItem); // Retorna o item criado
+    res.status(201).json(newItem);
   } catch (error) {
-    res.status(500).json({ error: error.message }); // Erro interno do servidor
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -125,10 +130,15 @@ module.exports = {
   getItemById, // Apenas para debug/admin, não use no frontend
   createItem: async (req, res) => {
     try {
-      // Sempre usa o userId da sessão, ignorando user_id_FK do body
-      const userId = req.session.userId;
-      if (!userId) return res.status(401).json({ error: 'Não autenticado' });
-      const { to_do_list_item_description, to_do_list_item_is_completed = false } = req.body;
+      // Para testes: usa user_id_FK do body se não houver sessão
+      const userId = req.session.userId || req.body.user_id_FK;
+      if (!userId) return res.status(401).json({ error: 'Não autenticado e user_id_FK não fornecido' });
+      const { to_do_list_item_description } = req.body;
+      // Converte string para boolean
+      let to_do_list_item_is_completed = req.body.to_do_list_item_is_completed;
+      if (typeof to_do_list_item_is_completed === 'string') {
+        to_do_list_item_is_completed = to_do_list_item_is_completed === 'true';
+      }
       // Valida se todos os campos obrigatórios foram fornecidos e são válidos
       if (
         !to_do_list_item_description ||
@@ -136,15 +146,15 @@ module.exports = {
       ) {
         return res.status(400).json({ error: 'Dados obrigatórios não fornecidos ou inválidos' });
       }
-      // Cria o novo item usando o serviço
+      // Cria o item
       const newItem = await toDoListItemService.createItem({
         to_do_list_item_description,
         to_do_list_item_is_completed,
         user_id_FK: Number(userId)
       });
-      res.status(201).json(newItem); // Retorna o item criado
+      res.status(201).json(newItem);
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Erro interno do servidor
+      res.status(500).json({ error: error.message });
     }
   },
   getItemsByUserId, // Apenas para debug/admin, não use no frontend

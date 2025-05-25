@@ -6,14 +6,14 @@ const { requireLogin } = require('../middleware/authMiddleware'); // Middleware 
 
 // Rota para buscar todos os itens de tarefas
 router.get('/', toDoListItemController.getAllItems);
-// Rota para buscar um item de tarefa pelo ID
-router.get('/:id', toDoListItemController.getItemById);
+// Rota para buscar itens do usuário logado (deve vir antes de /:id)
+router.get('/me', requireLogin, toDoListItemController.getItemsByLoggedUser);
 // Rota para criar um novo item de tarefa
 router.post('/', toDoListItemController.createItem);
 // Rota para buscar todos os itens de tarefa de um usuário específico
 router.get('/user/:user_id', toDoListItemController.getItemsByUserId);
-// Rota para buscar itens do usuário logado
-router.get('/me', requireLogin, toDoListItemController.getItemsByLoggedUser);
+// Rota para buscar um item de tarefa pelo ID
+router.get('/:id', toDoListItemController.getItemById);
 // Rotas protegidas para update e delete de itens do usuário logado
 router.put('/:id', requireLogin, toDoListItemController.updateItem);
 router.delete('/:id', requireLogin, toDoListItemController.deleteItem);

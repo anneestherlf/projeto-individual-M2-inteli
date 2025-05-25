@@ -18,22 +18,22 @@ app.use(session({
   saveUninitialized: false,
 }));
 
-// Rotas de API
+// Rotas de frontend devem ser registradas PRIMEIRO para views
+const frontendRoutes = require('./routes/frontRoutes');
+app.use('/', frontendRoutes);
+
+// Rotas de API (registradas depois com prefixo /api para evitar conflitos)
 const userRoutes = require('./routes/userRoutes');
 const toDoListItemRoutes = require('./routes/to_do_list_itemRoutes');
 const goalsRoutes = require('./routes/goalsRoutes');
 const expensesRoutes = require('./routes/expensesRoutes');
 const earningsRoutes = require('./routes/earningsRoutes');
 
-app.use('/users', userRoutes);
-app.use('/to_do_list_items', toDoListItemRoutes);
-app.use('/goals', goalsRoutes);
-app.use('/expenses', expensesRoutes);
-app.use('/earnings', earningsRoutes);
-
-// Rotas de frontend devem ser registradas por último
-const frontendRoutes = require('./routes/frontRoutes');
-app.use('/', frontendRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/to-do-list-items', toDoListItemRoutes);
+app.use('/api/goals', goalsRoutes);
+app.use('/api/expenses', expensesRoutes);
+app.use('/api/earnings', earningsRoutes);
 
 // Middleware para lidar com erros de rota não encontrada
 app.use((req, res, next) => {
