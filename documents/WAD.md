@@ -2,12 +2,13 @@
 
 <!-- **_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._** -->
 
-## Nome do Projeto
+## Projeto FinUni
 
 <!-- Pensar no nome do projeto -->
 
-#### Autor do projeto
-
+####  Anne Esther Lins Figueirôa
+- LinkedIn: <https://www.linkedin.com/in/anneestherlf/>
+- GitHub: <https://github.com/anneestherlf>
 <!-- Lembrar de colocar meu nome, linkedin e github aqui  -->
 
 ## Sumário
@@ -193,18 +194,45 @@ Este script pode ser utilizado para criar a estrutura completa do banco de dados
 
 
 ### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+<!-- *Descreva aqui os Models implementados no sistema web* -->
+
+O sistema utiliza o banco de dados PostgreSQL para armazenar todas as informações essenciais, como usuários, ganhos, despesas, metas e tarefas. A estrutura do banco é definida por meio de scripts SQL localizados na pasta `scripts`, especialmente o arquivo `init.sql`, que contém os comandos para criação das tabelas. 
+
+Os Models do projeto, localizados na pasta `models`, são responsáveis por representar e manipular cada uma dessas tabelas no código. O `userModel.js` gerencia os dados dos usuários, incluindo autenticação e cadastro. O `earningsModel.js` lida com os registros de ganhos financeiros, enquanto o `expensesModel.js` trata das despesas cadastradas pelos usuários. O `goalsModel.js` representa as metas financeiras, permitindo o acompanhamento do progresso individual, e o `to_do_list_itemModel.js` gerencia as tarefas da lista pessoal do usuário. 
+
+Cada model encapsula as operações de acesso ao banco, como inserção, consulta, atualização e remoção de dados, garantindo uma separação clara entre a lógica de negócio e a persistência dos dados. 
+
+Para configurar o banco de dados, basta editar o arquivo `.env` com a string de conexão adequada e executar o script `init.sql` no seu PostgreSQL local ou no painel do Supabase, conforme preferir. Um tutorial mais claro pode ser encontrado na seção "Como Executar o Projeto Localmente" no `README.md` do projeto (capa do repositório).
+
+
 
 ### 3.2. Arquitetura (Semana 5)
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+Abaixo, você encontrará uma ilustração dos processos que acontecem por trás da plataforma, mostrando de forma visual como os dados circulam entre o usuário, as camadas do servidor (Views, Controllers e Models) e o banco de dados.
+
+<div align="center">
+  <sub>Diagrama de Arquitetura da Aplicação Web</sub><br>
+  <img src="../assets/wad-assets/diagrama-mvc.png" width="100%" 
+  alt="Diagrama de Arquitetura MVC"><br>
+  <sup>Fonte: a autora. Link para acesso ao documento com mais detalhes no Figma: <https://www.figma.com/design/BaMMKxsQq8ahLz2iGgysEr/Untitled?node-id=0-1&t=pcLZ0SmZYVguS3b5-1> </sup>
+</div>
+
+Tudo começa quando o usuário, utilizando um navegador web, realiza uma ação, como acessar uma página ou enviar um formulário. Essa ação gera uma requisição que é enviada do cliente para o servidor da aplicação. No servidor, a primeira camada a ser acionada é a dos Controllers. Cada controller é responsável por uma área específica do sistema, como usuários, ganhos, despesas, metas ou itens de lista de tarefas, conforme explicitado no diagrama. Por exemplo, ao acessar a página de perfil, o controller de usuários (User) é acionado e executa métodos como getUserById para buscar as informações do usuário requisitado.
+
+O controller, ao receber a solicitação, precisa acessar ou manipular dados. Para isso, ele se comunica com o Model correspondente. Os Models, detalhados no diagrama para cada entidade do sistema, encapsulam toda a lógica de acesso ao banco de dados. Eles recebem comandos dos controllers, realizam consultas ou alterações no banco PostgreSQL, e retornam os resultados para o controller. Por exemplo, o Model de usuários executa a busca pelo ID solicitado e devolve ao controller um objeto com os dados do usuário, incluindo campos como email, nome e senha (quando necessário).
+
+De posse dos dados retornados pelo Model, o controller então escolhe qual View será renderizada e transmite essas informações para ela. As Views, organizadas em layouts, páginas principais e componentes reutilizáveis (no presente projeto), são responsáveis por apresentar os dados de forma visual ao usuário. Por exemplo, ao renderizar a página de perfil, a View profile recebe do controller os dados do usuário e monta a interface que será exibida no navegador. O mesmo processo ocorre para outras áreas do sistema: controllers de ganhos, despesas, metas e tarefas solicitam dados aos seus respectivos models e, após receberem as informações, encaminham-nas para as views apropriadas, como earnings, expenses, goals ou to_do_list_items.
+
+Por fim, a View já montada é enviada de volta ao cliente, fechando o ciclo de comunicação. O usuário vê na tela os dados atualizados, podendo interagir novamente e reiniciar o fluxo. Todo esse processo garante que a lógica de apresentação, a lógica de negócio e o acesso a dados estejam devidamente separados, promovendo organização, segurança e facilidade de manutenção. 
+
+<!-- *Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
 
 **Instruções para criação do diagrama de arquitetura**  
 - **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
 - **View**: A camada responsável pela interface de usuário.
 - **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
   
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.* -->
 
 ### 3.3. Wireframes (Semana 03)
 
@@ -224,7 +252,7 @@ Abaixo, encontram-se as duas telas principais de uso: o **painel de dados financ
 <div align="center">
   <sub>Tela de controle de metas e tarefas - Wireframe</sub><br>
   <img src="../assets/wad-assets/Tarefas.png" width="100%" 
-  alt="Lucas Souza Persona"><br>
+  alt="Wireframe"><br>
   <sup>Fonte: a autora.</sup>
 </div>
 
@@ -260,7 +288,43 @@ Para visualizar o wireflow (user flow) e wireframes das demais telas da aplicaç
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+<!-- *Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*   -->
+
+A aplicação expõe uma API RESTful organizada na pasta `routes`, permitindo a integração e o consumo dos dados por meio de endpoints bem definidos. Cada recurso principal do sistema possui seu próprio conjunto de rotas: usuários (`userRoutes.js`), ganhos (`earningsRoutes.js`), despesas (`expensesRoutes.js`), metas (`goalsRoutes.js`) e tarefas (`to_do_list_itemRoutes.js`). Os endpoints seguem o padrão REST, permitindo operações de criação (POST), leitura (GET), atualização (PUT/PATCH) e exclusão (DELETE). 
+
+Por exemplo, para consultar todos os ganhos do usuário autenticado, utiliza-se o endpoint `GET /api/earnings/me`; para adicionar uma nova despesa, utiliza-se `POST /api/expenses`. Todos os endpoints estão documentados no código e podem ser testados facilmente utilizando ferramentas como o arquivo rest.http presente na raiz do projeto, o Insomnia ou o Postman. 
+
+Para testar as APIs, basta garantir que o servidor esteja rodando (comando `node server.js` no terminal; mais detalhes podem ser encontrados no arquivo `README.md` na capa do repositório) e enviar requisições HTTP para os endpoints desejados, utilizando o token de autenticação quando necessário. 
+
+As rotas de autenticação e registro de usuário também estão disponíveis, permitindo o fluxo completo de cadastro, login e uso da aplicação. Caso precise rodar as migrações do banco de dados novamente, basta executar o script SQL correspondente, e para configurar o acesso ao banco, ajuste as variáveis de ambiente no arquivo `.env` conforme as instruções do README.
+
+
+Uma observação importante é que endpoints protegidos exigem autenticação. Caso tente acessar ou modificar recursos protegidos sem estar autenticado, o middleware de autenticação (`requireLogin`) redirecionará para a tela de login ou retornará uma resposta de erro apropriada, dependendo do tipo de requisição (HTML ou JSON).
+
+Para facilitar testes durante o desenvolvimento, o controller de tarefas (`to_do_list_items`) pode aceitar um user_id_FK diretamente no corpo da requisição caso não haja sessão ativa, permitindo criar itens fictícios sem autenticação. Esse ajuste é recomendado apenas para ambiente de testes e pode ser removido em produção. Exemplo de lógica implementada:
+
+```javascript
+// Para testes: usa user_id_FK do body se não houver sessão
+const userId = req.session.userId || req.body.user_id_FK;
+if (!userId) return res.status(401).json({ error: 'Não autenticado e user_id_FK não fornecido' });
+```
+
+<div align="center">
+  <sub>Exemplo de teste no Postman de POST bem sucedido. </sub><br>
+  <img src="../assets/wad-assets/exemplo1-testeAPIpostman.png" width="100%" 
+  alt="Postman teste"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+<div align="center">
+  <sub>Exemplo de teste no Postman no caso de PUT sem autenticação (recebe a página de login).</sub><br>
+  <img src="../assets/wad-assets/exemplo2-teste-APIpostman.png" width="100%" 
+  alt="Postman teste"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+Dessa forma, a API garante segurança, flexibilidade e facilidade de uso tanto para usuários finais quanto para desenvolvedores e testadores.
+
 
 ### 3.7 Interface e Navegação (Semana 07)
 

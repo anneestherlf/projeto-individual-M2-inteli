@@ -1,5 +1,5 @@
-# Sistema de Controle Financeiro para Universitários 
-## 👩‍💻 Em desenvolvimento por: [Anne Esther](https://www.linkedin.com/in/anneestherlf/) | [GitHub](https://github.com/anneestherlf)
+# Plataforma de Controle Financeiro para Universitários 
+## 👩‍💻 Em desenvolvimento por: [Anne Esther](https://www.linkedin.com/in/anneestherlf/)
 Projeto Individual Integrado - Módulo 2025-1B para avaliação no Inteli (Instituto de Tecnologia e Liderança)
 
 
@@ -12,44 +12,83 @@ A opção escolhida para o desenvolvimento do presente projeto foi um **gerencia
 
 projeto-individual-M2-inteli/
 │
-├── assets/ # Arquivos públicos como imagens e fontes
-│   └── wad-assets/ # Pasta de arquivos de imagem da documentação (WAD)
-│       └── ...
-│   └── favicon.ico # Ícone para a guia do navegador
-├── config/ # Arquivos de configuração (ex: conexão com banco)
-│   └── db.js
-├── controllers/ # Lógica de controle das requisições
-│   └── ...
-├── documents/ # Documentação do projeto
-│   └── WAD.md # Web Application Document
-├── models/ # Definição dos modelos de dados (estrutura do banco)
-│   └── ...
-├── node_modules/ # Dependências do Node.js (gerado automaticamente)
-│   └── ...
-├── public/ # Arquivos públicos acessíveis pelo navegador
-│   └── css/ # Estilos
-│       └── style.css
-├── routes/ # Definição das rotas do sistema
-│   └── ...
-├── scripts/ # Scripts JS públicos ou utilitários
-│   └── init.sql
-│   └── runSQLScript.js
-├── services/ # Serviços auxiliares do sistema
-│   └── ...
-├── tests/ # Arquivos de testes unitários
-│   └── ...
-├── views/ # Views da aplicação (EJS ou outro template engine)
-│   └── ...
-├── .env # Variáveis de ambiente (NUNCA suba para o GitHub)
-├── .gitattributes # Configurações de atributos do Git
-├── .gitignore # Arquivo para ignorar arquivos no Git
-├── app.js # Arquivo principal alternativo ao server.js
-├── jest.config.js # Configuração do Jest para testes
-├── package.json # Gerenciador de dependências do Node.js
-├── package-lock.json # Lockfile de dependências do Node.js
-├── readme.md # Documentação principal do projeto
-├── rest.http # Arquivo para testar endpoints HTTP (opcional)
-├── server.js # Arquivo principal que inicializa o servidor
+├── 📁 assets/                    # Recursos gráficos e estáticos do projeto
+│   ├── 📁 wad-assets/           # Imagens usadas na documentação WAD
+│   └── 📄 favicon.ico           # Ícone da aplicação para o navegador
+│
+├── 📁 config/                    # Configurações do sistema
+│   └── 📄 db.js                 # Configuração de conexão com o banco de dados
+│
+├── 📁 controllers/               # Controladores MVC
+│   ├── 📄 userController.js     # Gerencia operações de usuário
+│   ├── 📄 earningsController.js # Gerencia operações de ganhos
+│   ├── 📄 expensesController.js # Gerencia operações de despesas
+│   ├── 📄 goalsController.js    # Gerencia operações de metas
+│   └── 📄 to_do_list_itemController.js # Gerencia operações de tarefas
+│
+├── 📁 documents/                 # Documentação do projeto
+│   └── 📄 WAD.md                # Web Application Document detalhado
+│
+├── 📁 models/                    # Modelos de dados (camada de acesso ao banco)
+│   ├── 📄 userModel.js          # Modelo para tabela de usuários
+│   ├── 📄 earningsModel.js      # Modelo para tabela de ganhos
+│   ├── 📄 expensesModel.js      # Modelo para tabela de despesas
+│   ├── 📄 goalsModel.js         # Modelo para tabela de metas
+│   └── 📄 to_do_list_itemModel.js # Modelo para tabela de tarefas
+│
+├── 📁 public/                    # Arquivos acessíveis diretamente pelo navegador
+│   ├── 📁 css/                  # Folhas de estilo CSS
+│   │   └── 📄 style.css         # Estilos principais da aplicação
+│   └── 📁 js/                   # Scripts JavaScript do cliente
+│
+├── 📁 routes/                    # Definição das rotas da aplicação
+│   ├── 📄 frontRoutes.js        # Rotas para renderização de páginas
+│   ├── 📄 userRoutes.js         # Rotas de API para usuários
+│   ├── 📄 earningsRoutes.js     # Rotas de API para ganhos
+│   ├── 📄 expensesRoutes.js     # Rotas de API para despesas
+│   ├── 📄 goalsRoutes.js        # Rotas de API para metas
+│   └── 📄 to_do_list_itemRoutes.js # Rotas de API para tarefas
+│
+├── 📁 scripts/                   # Scripts de banco de dados e utilitários
+│   ├── 📄 init.sql              # Script SQL inicial para criar tabelas
+│   └── 📄 runSQLScript.js       # Script para executar comandos SQL
+│
+├── 📁 services/                  # Camada de serviços (lógica de negócios)
+│   ├── 📄 userService.js        # Serviços relacionados a usuários
+│   ├── 📄 earningsService.js    # Serviços relacionados a ganhos
+│   ├── 📄 expensesService.js    # Serviços relacionados a despesas
+│   ├── 📄 goalsService.js       # Serviços relacionados a metas
+│   └── 📄 to_do_list_itemService.js # Serviços relacionados a tarefas
+│
+├── 📁 tests/                     # Testes automatizados
+│   ├── 📄 user.test.js          # Testes para operações de usuário
+│   └── 📄 earnings.test.js      # Testes para operações de ganhos
+│
+├── 📁 views/                     # Templates de visualização (EJS)
+│   ├── 📁 pages/                # Páginas completas da aplicação
+│   │   ├── 📄 dashboard.ejs     # Página inicial (resumo)
+│   │   ├── 📄 earnings.ejs      # Página de gerenciamento de ganhos
+│   │   ├── 📄 expenses.ejs      # Página de gerenciamento de despesas
+│   │   ├── 📄 goals.ejs         # Página de gerenciamento de metas
+│   │   ├── 📄 login.ejs         # Página de login
+│   │   ├── 📄 profile.ejs       # Página de perfil do usuário
+│   │   ├── 📄 register.ejs      # Página de registro de usuário
+│   │   └── 📄 to_do_list_items.ejs # Página de gerenciamento de tarefas
+│   │
+│   └── 📁 partials/             # Componentes reutilizáveis
+│       ├── 📄 header.ejs        # Cabeçalho com navegação
+│       └── 📄 footer.ejs        # Rodapé da página
+│
+├── 📄 .env                      # Variáveis de ambiente (não versionado)
+├── 📄 .gitattributes            # Configurações de atributos do Git
+├── 📄 .gitignore                # Lista de arquivos ignorados pelo Git
+├── 📄 app.js                    # Configuração da aplicação Express
+├── 📄 jest.config.js            # Configuração do framework de testes Jest
+├── 📄 package.json              # Dependências e scripts do projeto
+├── 📄 package-lock.json         # Versões exatas das dependências
+├── 📄 README.md                 # Documentação principal do projeto
+├── 📄 rest.http                 # Arquivo para testar endpoints HTTP via extensão REST Client
+└── 📄 server.js                 # Ponto de entrada principal da aplicação
 
 ```
 
