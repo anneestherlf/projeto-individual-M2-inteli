@@ -279,12 +279,80 @@ Para visualizar o wireflow (user flow) e wireframes das demais telas da aplicaç
 
 ### 3.4. Guia de estilos (Semana 05)
 
-*Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.*
+<!-- *Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.* -->
+
+O guia de estilos apresentado a seguir foi desenvolvido para garantir a consistência visual e a identidade da plataforma Fin.uni em todas as suas interfaces. Ele serve como referência para o desenvolvimento e a manutenção do sistema, orientando a aplicação correta de tipografia, cores, componentes e demais elementos visuais. Ao adotar este guia, assegura-se que todas as telas mantenham uma linguagem visual coesa, facilitando a experiência do usuário e promovendo a identidade da marca.
+
+A tipografia principal utilizada na plataforma é a Kumbh Sans, escolhida por sua legibilidade e modernidade, alinhando-se ao público jovem universitário. Os títulos de nível 1 (H1) são destacados com tamanho 64.14 e peso forte, enquanto os títulos de nível 2 (H2) utilizam tamanho 32.11, mantendo a hierarquia visual clara. Os textos de parágrafo seguem o tamanho 20.07, proporcionando conforto na leitura das instruções e informações financeiras. Recomenda-se manter esses padrões em todas as páginas para garantir uniformidade na apresentação do conteúdo.
+
+<div align="center">
+  <sub>Guia de estilos</sub><br>
+  <img src="../assets/wad-assets/Style Guide (2).png" width="100%" 
+  alt="Wireflow"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+No que diz respeito à paleta de cores, foram selecionadas quatro cores principais: o roxo (#5941FF), utilizado para elementos de destaque e botões; o amarelo-lima (#C8FF16), empregado em detalhes e ícones para chamar a atenção do usuário; o branco (#FFFFFF), que garante contraste e clareza nos textos e fundos; e o cinza escuro (#3A3A40), aplicado como cor de fundo para proporcionar sofisticação e ressaltar os demais elementos. O uso consistente dessas cores contribui para a identidade visual da plataforma e facilita a navegação.
+
+Os componentes da interface seguem padrões bem definidos. O botão padrão para páginas é apresentado em roxo, com texto em branco, transmitindo modernidade e incentivando a ação do usuário. Os campos de seleção e dropdowns mantêm o fundo branco e bordas suaves, promovendo clareza e acessibilidade nos formulários. O botão da barra lateral, utilizado para navegação entre as principais seções, adota o mesmo padrão visual dos botões principais, reforçando a coerência. Além disso, os textos com função de hyperlink são destacados em roxo e sublinhados, facilitando sua identificação como elementos interativos.
+
+Para garantir a aplicação correta do guia de estilos, recomenda-se que todos os desenvolvedores e designers consultem este documento ao criar novas telas ou componentes para a plataforma. A padronização dos elementos visuais não só fortalece a identidade da Fin.uni, mas também contribui para uma experiência de uso mais intuitiva e agradável para o público-alvo.
 
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
-*Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
+<!-- *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).* -->
+
+Abaixo, apresento o protótipo de alta fidelidade desenvolvido para a plataforma Fin.uni. O protótipo foi elaborado no Figma, seguindo os wireframes e user stories definidos previamente, e contempla o fluxo principal de navegação e uso do sistema, permitindo visualizar de forma clara a experiência do usuário desde o primeiro acesso até a gestão das finanças pessoais.
+
+O protótipo inicia com a tela de login, onde o usuário pode acessar sua conta ou optar por criar uma nova. O layout é dividido em duas áreas: uma imagem ilustrativa que reforça o contexto universitário e um painel de autenticação, onde estão localizados os campos de e-mail e senha, além dos botões de ação. 
+
+<div align="center">
+  <sub>Tela de Login - Protótipo de Alta Fidelidade</sub><br>
+  <img src="../assets/wad-assets/Login.png" width="100%" 
+  alt="Protótipo Login"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+Após pressionar "Entrar", (no primeiro acesso) o usuário encontra a tela de boas-vindas, que apresenta uma mensagem introdutória sobre a Fin.uni e orienta o usuário a prosseguir para o uso da plataforma. 
+
+<div align="center">
+  <sub>Tela de Onboarding - Protótipo de Alta Fidelidade</sub><br>
+  <img src="../assets/wad-assets/Como usar_ - Primeiro Acesso.png" width="100%" 
+  alt="Protótipo Login"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+O fluxo de cadastro é igualmente simples e intuitivo. O usuário preenche seus dados básicos em um formulário enxuto, com campos para nome, sobrenome, e-mail e senha, e é direcionado para a continuidade do onboarding. Após o acesso, o usuário é apresentado ao painel principal, que reúne de forma organizada as informações essenciais: receitas, despesas, resumo financeiro do mês, gráficos de gastos por categoria e um menu lateral para navegação entre as seções de ganhos, despesas, metas e tarefas. O painel utiliza uma paleta de cores vibrante, com predominância do azul e detalhes em roxo, transmitindo modernidade e foco no público jovem. Os dados são apresentados em tabelas e gráficos, facilitando a compreensão rápida da situação financeira.
+
+<div align="center">
+  <sub>Dashboard ou Painel - Protótipo de Alta Fidelidade</sub><br>
+  <img src="../assets/wad-assets/Painel (1).png" width="100%" 
+  alt="Protótipo"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+Na área de perfil, o usuário pode visualizar e editar suas informações pessoais, incluindo a possibilidade de adicionar uma foto. O design mantém a consistência visual com o restante da plataforma, utilizando os mesmos padrões de espaçamento, tipografia e cores. A seção de metas e tarefas permite ao usuário cadastrar e acompanhar objetivos financeiros, bem como criar listas de ações necessárias para atingi-los, promovendo o engajamento com o planejamento financeiro de forma leve e acessível.
+
+As telas de atualização de dados financeiros, tanto para ganhos quanto para despesas, seguem o mesmo padrão visual e organizacional. O usuário pode adicionar, editar ou remover registros de forma rápida, com feedback visual claro para cada ação realizada. Todos os elementos da interface foram desenhados para garantir acessibilidade, clareza e facilidade de uso, alinhados aos princípios de design centrado no usuário.
+
+<div align="center">
+  <sub>Metas e tarefas - Protótipo de Alta Fidelidade</sub><br>
+  <img src="../assets/wad-assets/Tarefas (1).png" width="100%" 
+  alt="Protótipo"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+Uma das principais melhorias implementadas em relação aos wireframes iniciais foi a decisão de segmentar as tabelas de ganhos, gastos e metas/tarefas em telas distintas. Essa escolha foi motivada pelo objetivo de evitar a sobrecarga de informações e proporcionar uma experiência mais clara e intuitiva para o usuário, alinhando-se ao perfil das personas, que valorizam praticidade e facilidade na interpretação dos dados financeiros. Assim, em vez de concentrar todas as informações em uma única página de atualização de dados financeiros, o sistema agora apresentará três telas separadas: uma para gastos, outra para ganhos e uma terceira para metas e tarefas. Essa organização facilita o uso, reduz possíveis confusões e torna o gerenciamento financeiro mais acessível e eficiente para o público-alvo.
+
+<div align="center">
+  <sub>Antes e depois com exemplo da tela de gastos.</sub><br>
+  <img src="../assets/wad-assets/alteração.png" width="100%" 
+  alt="Protótipo"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
+O protótipo de alta fidelidade está disponível para visualização pública no Figma, permitindo que qualquer pessoa interessada possa navegar pelas telas e compreender os fluxos principais do sistema. <a href="https://www.figma.com/design/ZzWG5CXQ2gUs8lin330KKf/Untitled?node-id=1-143&t=XXtKRXKK5WYgG6dH-1"> Clique aqui para acessar e entender o fluxo de telas com detalhes. </a> Também é possível explorar o fluxo navegável do protótipo nesse link: <https://www.figma.com/proto/ZzWG5CXQ2gUs8lin330KKf/Untitled?node-id=1-528&t=fa84Gf8dD6DWvvyG-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A528>
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
