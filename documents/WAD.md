@@ -338,7 +338,7 @@ As telas de atualização de dados financeiros, tanto para ganhos quanto para de
 
 <div align="center">
   <sub>Metas e tarefas - Protótipo de Alta Fidelidade</sub><br>
-  <img src="../assets/wad-assets/Tarefas (1).png" width="100%" 
+  <img src="../assets/wad-assets/Tarefas (2).png" width="100%" 
   alt="Protótipo"><br>
   <sup>Fonte: a autora.</sup>
 </div>
