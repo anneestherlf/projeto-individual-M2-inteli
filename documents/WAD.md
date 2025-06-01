@@ -2,7 +2,7 @@
 
 <!-- **_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._** -->
 
-## Projeto Fin.uni
+## Projeto Geri
 
 <!-- Pensar no nome do projeto -->
 
@@ -281,13 +281,13 @@ Para visualizar o wireflow (user flow) e wireframes das demais telas da aplicaç
 
 <!-- *Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.* -->
 
-O guia de estilos apresentado a seguir foi desenvolvido para garantir a consistência visual e a identidade da plataforma Fin.uni em todas as suas interfaces. Ele serve como referência para o desenvolvimento e a manutenção do sistema, orientando a aplicação correta de tipografia, cores, componentes e demais elementos visuais. Ao adotar este guia, assegura-se que todas as telas mantenham uma linguagem visual coesa, facilitando a experiência do usuário e promovendo a identidade da marca.
+O guia de estilos apresentado a seguir foi desenvolvido para garantir a consistência visual e a identidade da plataforma Geri em todas as suas interfaces. Ele serve como referência para o desenvolvimento e a manutenção do sistema, orientando a aplicação correta de tipografia, cores, componentes e demais elementos visuais. Ao adotar este guia, assegura-se que todas as telas mantenham uma linguagem visual coesa, facilitando a experiência do usuário e promovendo a identidade da marca.
 
 A tipografia principal utilizada na plataforma é a Kumbh Sans, escolhida por sua legibilidade e modernidade, alinhando-se ao público jovem universitário. Os títulos de nível 1 (H1) são destacados com tamanho 64.14 e peso forte, enquanto os títulos de nível 2 (H2) utilizam tamanho 32.11, mantendo a hierarquia visual clara. Os textos de parágrafo seguem o tamanho 20.07, proporcionando conforto na leitura das instruções e informações financeiras. Recomenda-se manter esses padrões em todas as páginas para garantir uniformidade na apresentação do conteúdo.
 
 <div align="center">
   <sub>Guia de estilos</sub><br>
-  <img src="../assets/wad-assets/Style Guide (2).png" width="100%" 
+  <img src="../assets/wad-assets/Style Guide (3).png" width="100%" 
   alt="Wireflow"><br>
   <sup>Fonte: a autora.</sup>
 </div>
@@ -296,29 +296,29 @@ No que diz respeito à paleta de cores, foram selecionadas quatro cores principa
 
 Os componentes da interface seguem padrões bem definidos. O botão padrão para páginas é apresentado em roxo, com texto em branco, transmitindo modernidade e incentivando a ação do usuário. Os campos de seleção e dropdowns mantêm o fundo branco e bordas suaves, promovendo clareza e acessibilidade nos formulários. O botão da barra lateral, utilizado para navegação entre as principais seções, adota o mesmo padrão visual dos botões principais, reforçando a coerência. Além disso, os textos com função de hyperlink são destacados em roxo e sublinhados, facilitando sua identificação como elementos interativos.
 
-Para garantir a aplicação correta do guia de estilos, recomenda-se que todos os desenvolvedores e designers consultem este documento ao criar novas telas ou componentes para a plataforma. A padronização dos elementos visuais não só fortalece a identidade da Fin.uni, mas também contribui para uma experiência de uso mais intuitiva e agradável para o público-alvo.
+Para garantir a aplicação correta do guia de estilos, recomenda-se que todos os desenvolvedores e designers consultem este documento ao criar novas telas ou componentes para a plataforma. A padronização dos elementos visuais não só fortalece a identidade da Geri, mas também contribui para uma experiência de uso mais intuitiva e agradável para o público-alvo.
 
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
 <!-- *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).* -->
 
-Abaixo, apresento o protótipo de alta fidelidade desenvolvido para a plataforma Fin.uni. O protótipo foi elaborado no Figma, seguindo os wireframes e user stories definidos previamente, e contempla o fluxo principal de navegação e uso do sistema, permitindo visualizar de forma clara a experiência do usuário desde o primeiro acesso até a gestão das finanças pessoais.
+Abaixo, apresento o protótipo de alta fidelidade desenvolvido para a plataforma Geri. O protótipo foi elaborado no Figma, seguindo os wireframes e user stories definidos previamente, e contempla o fluxo principal de navegação e uso do sistema, permitindo visualizar de forma clara a experiência do usuário desde o primeiro acesso até a gestão das finanças pessoais.
 
 O protótipo inicia com a tela de login, onde o usuário pode acessar sua conta ou optar por criar uma nova. O layout é dividido em duas áreas: uma imagem ilustrativa que reforça o contexto universitário e um painel de autenticação, onde estão localizados os campos de e-mail e senha, além dos botões de ação. 
 
 <div align="center">
   <sub>Tela de Login - Protótipo de Alta Fidelidade</sub><br>
-  <img src="../assets/wad-assets/Login.png" width="100%" 
+  <img src="../assets/wad-assets/Login (1).png" width="100%" 
   alt="Protótipo Login"><br>
   <sup>Fonte: a autora.</sup>
 </div>
 
-Após pressionar "Entrar", (no primeiro acesso) o usuário encontra a tela de boas-vindas, que apresenta uma mensagem introdutória sobre a Fin.uni e orienta o usuário a prosseguir para o uso da plataforma. 
+Após pressionar "Entrar", (no primeiro acesso) o usuário encontra a tela de boas-vindas, que apresenta uma mensagem introdutória sobre a Geri e orienta o usuário a prosseguir para o uso da plataforma. 
 
 <div align="center">
   <sub>Tela de Onboarding - Protótipo de Alta Fidelidade</sub><br>
-  <img src="../assets/wad-assets/Como usar_ - Primeiro Acesso.png" width="100%" 
+  <img src="../assets/wad-assets/Como usar_ - Primeiro Acesso (1).png" width="100%" 
   alt="Protótipo Login"><br>
   <sup>Fonte: a autora.</sup>
 </div>
@@ -327,7 +327,7 @@ O fluxo de cadastro é igualmente simples e intuitivo. O usuário preenche seus 
 
 <div align="center">
   <sub>Dashboard ou Painel - Protótipo de Alta Fidelidade</sub><br>
-  <img src="../assets/wad-assets/Painel (1).png" width="100%" 
+  <img src="../assets/wad-assets/Painel (2).png" width="100%" 
   alt="Protótipo"><br>
   <sup>Fonte: a autora.</sup>
 </div>
@@ -338,7 +338,7 @@ As telas de atualização de dados financeiros, tanto para ganhos quanto para de
 
 <div align="center">
   <sub>Metas e tarefas - Protótipo de Alta Fidelidade</sub><br>
-  <img src="../assets/wad-assets/Tarefas (2).png" width="100%" 
+  <img src="../assets/wad-assets/Tarefas (3).png" width="100%" 
   alt="Protótipo"><br>
   <sup>Fonte: a autora.</sup>
 </div>
@@ -349,7 +349,7 @@ Uma das principais melhorias implementadas em relação aos wireframes iniciais 
   <sub>Antes e depois com exemplo da tela de gastos.</sub><br>
   <img src="../assets/wad-assets/alteração.png" width="100%" 
   alt="Protótipo"><br>
-  <sup>Fonte: a autora.</sup>
+  <sup>Fonte: a autora. (OBS.: na segunda tela, o nome "Fin.uni" foi descartado e substituído pelo atual "Geri" — "Fin.uni" foi um nome da primeira versão do protótipo). </sup>
 </div>
 
 O protótipo de alta fidelidade está disponível para visualização pública no Figma, permitindo que qualquer pessoa interessada possa navegar pelas telas e compreender os fluxos principais do sistema. <a href="https://www.figma.com/design/ZzWG5CXQ2gUs8lin330KKf/Untitled?node-id=1-143&t=XXtKRXKK5WYgG6dH-1"> Clique aqui para acessar e entender o fluxo de telas com detalhes. </a> Também é possível explorar o fluxo navegável do protótipo nesse link: <https://www.figma.com/proto/ZzWG5CXQ2gUs8lin330KKf/Untitled?node-id=1-528&t=fa84Gf8dD6DWvvyG-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A528>
