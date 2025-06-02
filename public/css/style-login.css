@@ -1,0 +1,62 @@
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #EDF0F2;
+    color: #5941FF;
+    font-family: "Kumbh Sans", sans-serif;
+}
+
+.photo-side {
+    width: 62.70%;
+    height: max-content;
+}
+
+.login-side {
+    margin: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login-side h1 {
+    font-size: 66.14px;
+    font-weight: 700;
+}
+
+.login-side h2 {
+    font-size: 20.48px;
+    font-weight: 400;
+}
+
+.input-login input {
+    width: 100%;
+    height: 50px;
+    width: 60%;
+    border: none;
+    padding-left: 20px;
+    background: #D9D9D9;
+
+}
+
+button {
+    background: #5941FF;
+    color: #EDF0F2;
+    font-size: 20.479px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 405.346px;
+    height: 56.187px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border: none;
+}
