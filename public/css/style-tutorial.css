@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* Alinha os elementos verticalmente */
+    /* Garante que o body ocupe toda a altura da viewport */
+    margin: 0;
+    padding: 0;
+    background-color: #EDF0F2;
+    color: #5941FF;
+    font-family: "Kumbh Sans", sans-serif;
+}
+
+.title {
+    margin-top: 6rem;
+    margin-left: 6rem;
+}
+
+a {
+    color: #3A3A40;
+}
+
+.title p {
+    color: #3A3A40;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 2rem;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    margin-top: 2rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+    color: #3A3A40;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background: #5941FF;
+    color: #EDF0F2;
+    font-size: 20.479px;
+    font-style: normal;
+    font-weight: 700;
+    width: 405.346px;
+    height: 56.187px;
+    border: none;
+    cursor: pointer;
+    margin-top: 4rem;
+}
+
+.license {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 13rem;
+    margin-bottom: 4rem;
+    justify-content: flex-end;
+    color: #3A3A40;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    /* Espaçamento acima do bloco */
+}

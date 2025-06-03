@@ -103,12 +103,12 @@ router.post('/to-do-list-items', requireLogin, async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const userService = require('../services/userService');
-  
+
   try {
     // Busca usuário pelo email
     const users = await userService.getAllUsers();
     const user = users.find(u => u.email === email && u.password === password);
-    
+
     if (user) {
       req.session.userId = Number(user.id);
       // Se for uma requisição AJAX (JSON), retorna JSON
@@ -137,10 +137,10 @@ router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const userService = require('../services/userService');
-    
+
     // Log para debug
     console.log('Tentando cadastrar:', { name, email, password });
-    
+
     // Verifica se já existe usuário com o mesmo email
     const users = await userService.getAllUsers();
     if (users.find(u => u.email === email)) {
@@ -150,36 +150,36 @@ router.post('/register', async (req, res) => {
       }
       return res.render('pages/register', { error: 'E-mail já cadastrado.' });
     }
-    
+
     // Tenta criar o usuário
     const newUser = await userService.createUser(name, email, password);
-    
+
     // Verifica se o usuário foi criado
     if (newUser) {
       console.log('Novo usuário criado com sucesso:', newUser);
-      
+
       // Se for uma requisição JSON, retorna sucesso em JSON
       if (req.headers['content-type'] === 'application/json') {
         return res.json({ success: true, redirectUrl: '/login' });
       }
-      
+
       return res.redirect('/login');
     } else {
       // Se for uma requisição JSON, retorna erro em JSON
       if (req.headers['content-type'] === 'application/json') {
         return res.status(500).json({ error: 'Não foi possível criar o usuário. Tente novamente.' });
       }
-      
+
       return res.render('pages/register', { error: 'Não foi possível criar o usuário. Tente novamente.' });
     }
   } catch (error) {
     console.error('Erro ao cadastrar usuário:', error);
-    
+
     // Se for uma requisição JSON, retorna erro em JSON
     if (req.headers['content-type'] === 'application/json') {
       return res.status(500).json({ error: 'Erro ao criar usuário: ' + error.message });
     }
-    
+
     return res.render('pages/register', { error: 'Erro ao criar usuário: ' + error.message });
   }
 });
@@ -213,6 +213,10 @@ router.post('/profile', requireLogin, async (req, res) => {
   await userService.updateUser(req.session.userId, name, email, password);
   const user = await userService.getUserById(req.session.userId);
   res.render('pages/profile', { user, success: 'Dados atualizados com sucesso!' });
+});
+
+router.get('/tutorial', (req, res) => {
+  res.render('pages/tutorial', { pageTitle: 'Tutorial', error: null });
 });
 
 module.exports = router;
