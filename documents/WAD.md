@@ -309,7 +309,7 @@ O protótipo inicia com a tela de login, onde o usuário pode acessar sua conta 
 
 <div align="center">
   <sub>Tela de Login - Protótipo de Alta Fidelidade</sub><br>
-  <img src="../assets/wad-assets/Login (3).png" width="100%" 
+  <img src="../assets/wad-assets/Login (4).png" width="100%" 
   alt="Protótipo Login"><br>
   <sup>Fonte: a autora.</sup>
 </div>
