@@ -1,26 +1,55 @@
 <!-- Tela de Cadastro -->
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
-  <title>Cadastro | FinanceU</title>
-  <link rel="stylesheet" href="/css/style.css">
-  
+  <title>Geri | Cadastro </title>
+  <link rel="stylesheet" href="/css/style-register.css">
+
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-  <main class="container">
-    <h1>Cadastro</h1>
-    <form method="POST" action="/register">
-      <input type="text" name="name" placeholder="Nome" required>
-      <input type="email" name="email" placeholder="E-mail" required>
-      <input type="password" name="password" placeholder="Senha" required>
-      <button type="submit">Cadastrar</button>
-    </form>
-    <p>Já tem conta? <a href="/login">Entrar</a></p>
-    <% if (error) { %>
-      <div class="error"><%= error %></div>
-    <% } %>
+  <div class="photo-side">
+    <img src="/assets/feliz-page-login.png" alt="" srcset="">
+  </div>
+  <div class="login-side">
+    <main class="container">
+      <div class="title">
+        <h1>Geri</h1>
+        <h2>Gestão financeira para universitários</h2>
+      </div>
+      <form method="POST" action="/register">
+        <div class="input-login">
+          <p>E-mail</p>
+          <input type="email" name="email" placeholder="E-mail" required>
+        </div>
+        <div class="input-login">
+          <p>Nome e Sobrenome</p>
+          <input type="text" name="name" placeholder="Nome" required>
+        </div>
+        <div class="input-login">
+          <p>Senha</p>
+          <input type="password" name="password" placeholder="Senha" required>
+        </div>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <div class="create-account">
+      <p>Já tem conta?</p>
+      <a href="/login">Entrar</a>
+      </div>
+      <% if (error) { %>
+        <div class="error">
+          <%= error %>
+        </div>
+        <% } %>
+          <a class="license" href="https://github.com/anneestherlf/projeto-individual-M2-inteli" target="_blank">Feito
+            por
+            Anne Esther © MIT
+            License 2025</a>
+  </div>
   </main>
 </body>
+
 </html>
