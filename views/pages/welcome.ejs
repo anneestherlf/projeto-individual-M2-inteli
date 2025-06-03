@@ -1,0 +1,40 @@
+<!-- Tela de Login -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Geri | Login</title>
+  <link rel="stylesheet" href="/css/style-login.css">
+
+  <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="photo-side">
+    <img src="/assets/feliz-page-login.png" alt="" srcset="">
+  </div>
+  <div class="login-side">
+    <main class="container">
+      <div class="title">
+        <h1>TESTE</h1>
+        <h2>Gestão financeira para universitários</h2>
+      </div>
+
+      <div class="create-account">
+        <p>Novo(a) por aqui?</p>
+        <a href="/register">Criar conta</a>
+        <% if (error) { %>
+          <div class="error">
+            <%= error %>
+          </div>
+          <% } %>
+      </div>
+      <a class="license" href="https://github.com/anneestherlf/projeto-individual-M2-inteli" target="_blank">Feito por
+        Anne Esther © MIT
+        License 2025</a>
+  </div>
+  </main>
+</body>
+
+</html>

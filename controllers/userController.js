@@ -1,5 +1,6 @@
 // Importa o serviço responsável pela lógica de usuários
 const userService = require('../services/userService');
+const User = require('../models/userModel');
 
 // Controlador para buscar todos os usuários
 const getAllUsers = async (req, res) => {
@@ -84,11 +85,32 @@ const createUser = async (req, res) => {
   }
 };
 
+// Método de login
+const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email, password } });
+
+    if (!user) {
+      return res.status(401).json({ error: 'Credenciais inválidas. Verifique seu email e senha.' });
+    }
+
+    // Autenticação bem-sucedida
+    req.session.user = user; // Salva o usuário na sessão
+    res.status(200).json({ message: 'Login bem-sucedido.' });
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    res.status(500).json({ error: 'Ocorreu um erro ao fazer login. Tente novamente mais tarde.' });
+  }
+};
+
 // Exporta os métodos do controlador para uso nas rotas
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  login
 };

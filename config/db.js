@@ -2,7 +2,7 @@
 const { Pool } = require('pg');
 require('dotenv').config(); // Carrega variáveis de ambiente do arquivo .env
 
-// Verifica se a conexão deve usar SSL (útil para ambientes de produção/cloud)
+// Verifica se a conexão deve usar SSL 
 const isSSL = process.env.DB_SSL === 'true';
 
 // Cria um pool de conexões com as configurações vindas das variáveis de ambiente

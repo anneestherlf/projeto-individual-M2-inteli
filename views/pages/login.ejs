@@ -20,7 +20,7 @@
         <h1>Geri</h1>
         <h2>Gestão financeira para universitários</h2>
       </div>
-      <form method="POST" action="/login">
+      <form method="POST" action="/login" onsubmit="return handleLoginSubmit(event)">
         <div class="input-login">
           <p>E-mail</p>
           <input type="email" name="email" placeholder="E-mail" required>
@@ -30,21 +30,80 @@
           <input type="password" name="password" placeholder="Senha" required>
         </div>
         <button type="submit">Entrar</button>
-      </form>
-      <div class="create-account">
+      </form>      <div class="create-account">
         <p>Novo(a) por aqui?</p>
         <a href="/register">Criar conta</a>
-        <% if (error) { %>
-          <div class="error">
-            <%= error %>
-          </div>
-          <% } %>
       </div>
+      <div class="error" style="display:none;"></div>
       <a class="license" href="https://github.com/anneestherlf/projeto-individual-M2-inteli" target="_blank">Feito por
         Anne Esther © MIT
         License 2025</a>
   </div>
-  </main>
+  </main>  <script>
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const email = form.email.value;
+      const password = form.password.value;
+
+      // Oculta erro anterior
+      const errorDiv = document.querySelector('.error');
+      if (errorDiv) {
+        errorDiv.style.display = 'none';
+      }
+
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({ email: email, password: password })
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json().then(data => {
+              if (data.success) {
+                window.location.href = data.redirectUrl;
+              }
+            });
+          } else {
+            return response.json().then(data => {
+              const errorDiv = document.querySelector('.error');
+              if (errorDiv) {
+                errorDiv.textContent = data.error || 'Email e senha não existem.';
+                errorDiv.style.display = 'block';
+              }
+            }).catch(() => {
+              // Se não conseguir analisar como JSON
+              const errorDiv = document.querySelector('.error');
+              if (errorDiv) {
+                errorDiv.textContent = 'Erro de autenticação. Verifique seu email e senha.';
+                errorDiv.style.display = 'block';
+              }
+            });
+          }
+        })
+        .catch(error => {
+          const errorDiv = document.querySelector('.error');
+          if (errorDiv) {
+            errorDiv.textContent = 'Erro ao fazer login. Tente novamente mais tarde.';
+            errorDiv.style.display = 'block';
+          }
+          console.error('Erro:', error);
+        });
+
+      return false;
+    }
+  </script>
+
+  <style>
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
 </body>
 
 </html>
