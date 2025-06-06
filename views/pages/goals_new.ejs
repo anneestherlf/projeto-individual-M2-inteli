@@ -17,7 +17,7 @@
         <a href="/earnings" class="nav-item">Ganhos</a>
         <a href="/expenses" class="nav-item">Despesas</a>
         <a href="/goals" class="nav-item active">Metas</a>
-        <a href="/to-do-list-items" class="nav-item">Tarefas</a>
+        <a href="/to_do_list_items" class="nav-item">Tarefas</a>
         <a href="/tutorial" class="nav-item">Como usar?</a>
         <a href="/logout" class="nav-item">Sair</a>
       </nav>
@@ -70,8 +70,9 @@
                   <option value="false">Em andamento</option>
                   <option value="true">Concluída</option>
                 </select>
-              </div>              <div style="grid-column: 1 / -1; display: flex; gap: 10px;">
-                <button type="submit" style="background: #5941FF; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; cursor: pointer; flex: 1;">
+              </div>
+              <div style="grid-column: 1 / -1; display: flex; gap: 10px;">
+                <button type="submit" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; cursor: pointer; flex: 1;">
                   Adicionar Meta
                 </button>
               </div>
@@ -128,10 +129,11 @@
               <td>R$ ${Number(meta.goal_total_value).toFixed(2)}</td>
               <td>R$ ${Number(meta.goal_accumulated_value).toFixed(2)}</td>
               <td>${percent}%</td>
-              <td>${status}</td>              <td>
+              <td>${status}</td>
+              <td>
                 <form method="POST" action="/goals/update/${meta.goal_id_PK}" style="display:inline;">
                   <input type="number" name="goal_accumulated_value" min="0" max="${meta.goal_total_value}" step="0.01" value="${Number(meta.goal_accumulated_value).toFixed(2)}" style="width:80px; margin-right:5px;">
-                  <button type="submit" style="font-size:12px; background: #5941FF; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Atualizar</button>
+                  <button type="submit" style="font-size:12px; background: #6366f1; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Atualizar</button>
                 </form>
               </td>
             `;

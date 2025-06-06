@@ -29,6 +29,11 @@ router.get('/dashboard', requireLogin, (req, res) => {
   res.render('pages/home', { userId: req.session.userId, error: null });
 });
 
+// Tutorial page
+router.get('/tutorial', requireLogin, (req, res) => {
+  res.render('pages/tutorial', { userId: req.session.userId, error: null });
+});
+
 // Ganhos
 router.get('/earnings', requireLogin, (req, res) => res.render('pages/earnings', { userId: req.session.userId, error: null }));
 // Adicionar ganho (salva usando a API REST)
@@ -213,10 +218,6 @@ router.post('/profile', requireLogin, async (req, res) => {
   await userService.updateUser(req.session.userId, name, email, password);
   const user = await userService.getUserById(req.session.userId);
   res.render('pages/profile', { user, success: 'Dados atualizados com sucesso!' });
-});
-
-router.get('/tutorial', (req, res) => {
-  res.render('pages/tutorial', { pageTitle: 'Tutorial', error: null });
 });
 
 module.exports = router;

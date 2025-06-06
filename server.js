@@ -28,12 +28,17 @@ const toDoListItemRoutes = require('./routes/to_do_list_itemRoutes');
 const goalsRoutes = require('./routes/goalsRoutes');
 const expensesRoutes = require('./routes/expensesRoutes');
 const earningsRoutes = require('./routes/earningsRoutes');
+const dashboardController = require('./controllers/dashboardController');
 
 app.use('/api/users', userRoutes);
 app.use('/api/to-do-list-items', toDoListItemRoutes);
 app.use('/api/goals', goalsRoutes);
 app.use('/api/expenses', expensesRoutes);
 app.use('/api/earnings', earningsRoutes);
+
+// Rota da API do dashboard
+const { requireLogin } = require('./middleware/authMiddleware');
+app.get('/api/dashboard', requireLogin, dashboardController.getDashboardData);
 
 // Middleware para lidar com erros de rota não encontrada
 app.use((req, res, next) => {

@@ -2,131 +2,160 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Ganhos </title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Geri - Ganhos</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <%- include('../partials/header') %>
-  <main class="container">
-    <h1>Meus Ganhos</h1>
-    <form id="form-ganho">
-      <input type="number" name="value_earning" placeholder="Valor (R$)" required step="0.01">
-      <input type="text" name="description_earning" placeholder="Descrição" required>
-      <input type="date" name="date_earning" required>
-      <input type="text" name="category_earning" placeholder="Categoria" required>
-      <button type="submit">Adicionar Ganho</button>
-    </form>
-    <div id="erro-ganho" style="color:red; margin:10px 0;"></div>
-    <hr>
-    <table border="1" width="100%">
-      <thead>
-        <tr>
-          <th>Valor</th>
-          <th>Descrição</th>
-          <th>Data</th>
-          <th>Categoria</th>
-        </tr>
-      </thead>
-      <tbody id="lista-ganhos">
-        <!-- Ganhos serão renderizados aqui -->
-      </tbody>
-    </table>
-  </main>
-  <script>    function carregarGanhos() {
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>Geri</h1>
+      </div>      <nav class="nav-menu">
+        <a href="/dashboard" class="nav-item">Painel</a>
+        <a href="/earnings" class="nav-item active">Ganhos</a>
+        <a href="/expenses" class="nav-item">Despesas</a>
+        <a href="/goals" class="nav-item">Metas</a>
+        <a href="/to_do_list_items" class="nav-item">Tarefas</a>
+        <a href="/tutorial" class="nav-item">Como usar?</a>
+        <a href="/logout" class="nav-item">Sair</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <h2>Meus Ganhos</h2>
+        </div>
+        <div class="header-right">
+          <div class="user-profile">
+            <span class="user-name" id="user-name">Melissa Silva</span>
+            <span class="user-link">Meu Perfil</span>
+            <div class="user-avatar">
+              <img src="/assets/favicon.ico" alt="Avatar" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Earnings Content -->
+      <div class="dashboard-content">
+        <div class="receitas-section">
+          <div class="section-header">
+            <h3>Adicionar Novo Ganho</h3>
+          </div>
+          <div style="background: white; border: 1px solid #e9ecef; border-top: none; border-radius: 0 0 8px 8px; padding: 20px;">
+            <form id="form-ganho" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+              <input type="number" name="value_earning" placeholder="Valor (R$)" required step="0.01" style="padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px;">
+              <input type="text" name="description_earning" placeholder="Descrição" required style="padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px;">
+              <input type="date" name="date_earning" required style="padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px;">
+              <input type="text" name="category_earning" placeholder="Categoria" required style="padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px;">
+              <button type="submit" style="grid-column: 1 / -1; padding: 12px; background: #5941FF; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Adicionar Ganho</button>
+            </form>
+            <div id="erro-ganho" style="color: #dc3545; margin: 10px 0; font-weight: 500;"></div>
+          </div>
+        </div>
+
+        <div class="receitas-section">
+          <div class="section-header">
+            <h3>Histórico de Ganhos</h3>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Valor</th>
+                  <th>Descrição</th>
+                  <th>Data</th>
+                  <th>Categoria</th>
+                </tr>
+              </thead>
+              <tbody id="lista-ganhos">
+                <!-- Ganhos serão renderizados aqui -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Feito por Anne Esther e MIT License 2025</p>
+      </footer>
+    </main>
+  </div>  <script>
+    function carregarGanhos() {
       fetch('/api/earnings/me')
         .then(res => res.json())
         .then(ganhos => {
           const tbody = document.getElementById('lista-ganhos');
           tbody.innerHTML = '';
+          if (!ganhos || ganhos.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888;">Nenhum ganho cadastrado.</td></tr>';
+            return;
+          }
           ganhos.forEach(g => {
             const tr = document.createElement('tr');
             tr.innerHTML = `<td>R$ ${g.value_earning.toFixed(2)}</td><td>${g.description_earning}</td><td>${new Date(g.date_earning).toLocaleDateString()}</td><td>${g.category_earning}</td>`;
             tbody.appendChild(tr);
           });
+        })
+        .catch(error => {
+          console.error('Erro ao carregar ganhos:', error);
+          const tbody = document.getElementById('lista-ganhos');
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#dc3545;">Erro ao carregar dados.</td></tr>';
         });
     }
+    
     carregarGanhos();
 
-    // Exibe mensagem de erro na tela
-    function mostrarErro(msg) {
-      let erroDiv = document.getElementById('erro-ganho');
-      if (!erroDiv) {
-        erroDiv = document.createElement('div');
-        erroDiv.id = 'erro-ganho';
-        erroDiv.style.color = 'red';
-        erroDiv.style.margin = '10px 0';
-        document.getElementById('form-ganho').before(erroDiv);
-      }
-      erroDiv.textContent = msg;
-    }
-    function limparErro() {
+    function exibirErro(mensagem) {
       const erroDiv = document.getElementById('erro-ganho');
-      if (erroDiv) erroDiv.textContent = '';
+      erroDiv.style.color = '#dc3545';
+      erroDiv.textContent = mensagem;
+      setTimeout(() => {
+        erroDiv.textContent = '';
+      }, 5000);
     }
 
-    document.getElementById('form-ganho').addEventListener('submit', async function(e) {
+    function exibirSucesso(mensagem) {
+      const erroDiv = document.getElementById('erro-ganho');
+      erroDiv.style.color = '#28a745';
+      erroDiv.textContent = mensagem;
+      setTimeout(() => {
+        erroDiv.textContent = '';
+        erroDiv.style.color = '#dc3545';
+      }, 3000);
+    }
+
+    document.getElementById('form-ganho').addEventListener('submit', function(e) {
       e.preventDefault();
-      limparErro();
-      const form = e.target;
-      let value_earning = form.value_earning.value;
-      const description_earning = form.description_earning.value;
-      let date_earning = form.date_earning.value;
-      const category_earning = form.category_earning.value;
-      // Corrige vírgula para ponto no valor
-      if (typeof value_earning === 'string') value_earning = value_earning.replace(',', '.');
-      // Corrige data para formato yyyy-mm-dd
-      if (date_earning && date_earning.includes('/')) {
-        const partes = date_earning.split('/');
-        if (partes.length === 3) date_earning = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
-      }
-      // Validação rápida no frontend
-      if (!value_earning || isNaN(Number(value_earning)) || Number(value_earning) <= 0) {
-        mostrarErro('Informe um valor válido e maior que zero.');
-        return;
-      }
-      if (!description_earning.trim()) {
-        mostrarErro('Descrição obrigatória.');
-        return;
-      }
-      if (!date_earning) {
-        mostrarErro('Data obrigatória.');
-        return;
-      }
-      if (!category_earning.trim()) {
-        mostrarErro('Categoria obrigatória.');
-        return;
-      }
-      const data = {
-        value_earning: Number(value_earning),
-        description_earning: description_earning.trim(),
-        date_earning: date_earning,
-        category_earning: category_earning.trim()
-      };      try {
-        const res = await fetch('/api/earnings', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        if (res.ok) {
-          form.reset();
-          carregarGanhos();
-          limparErro();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      fetch('/api/earnings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          exibirErro(result.error);
         } else {
-          let erroMsg = 'Erro ao adicionar ganho';
-          try {
-            const erro = await res.json();
-            erroMsg = erro.error || erroMsg;
-          } catch {
-            // resposta não é JSON, erro genérico
-          }
-          mostrarErro(erroMsg);
+          exibirSucesso('Ganho adicionado com sucesso!');
+          this.reset();
+          carregarGanhos();
         }
-      } catch (err) {
-        mostrarErro('Erro ao conectar com o servidor');
-      }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        exibirErro('Erro ao adicionar ganho');
+      });
     });
   </script>
-  <%- include('../partials/footer') %>
 </body>
 </html>

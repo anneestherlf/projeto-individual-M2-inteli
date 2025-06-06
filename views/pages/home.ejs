@@ -2,94 +2,299 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Geri - Meu Painel</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <%- include('../partials/header') %>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>Geri</h1>
+      </div>      <nav class="nav-menu">
+        <a href="/dashboard" class="nav-item active">Painel</a>
+        <a href="/earnings" class="nav-item">Ganhos</a>
+        <a href="/expenses" class="nav-item">Despesas</a>
+        <a href="/goals" class="nav-item">Metas</a>
+        <a href="/to-do-list-items" class="nav-item">Tarefas</a>
+        <a href="/tutorial" class="nav-item">Como usar?</a>
+        <a href="/logout" class="nav-item">Sair</a>
+      </nav>
+    </aside>
 
-  <main class="container">
-    <h1>Visão Geral Financeira</h1>
-    <section class="dashboard-cards">
-      <div class="card">
-        <h3>Saldo Atual</h3>
-        <p id="saldo">R$ 0,00</p>
-      </div>
-      <div class="card">
-        <h3>Ganhos</h3>
-        <p id="ganhos">R$ 0,00</p>
-      </div>
-      <div class="card">
-        <h3>Despesas</h3>
-        <p id="despesas">R$ 0,00</p>
-      </div>
-      <div class="card">
-        <h3>Metas Ativas</h3>
-        <p id="metas">0</p>
-      </div>
-      <div class="card">
-        <h3>Tarefas Pendentes</h3>
-        <p id="tarefas">0</p>
-      </div>
-    </section>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <h2>Meu Painel</h2>
+          <div class="month-year-selector">
+            <select id="month-select">
+              <option value="04">Abril</option>
+              <option value="05">Maio</option>
+              <option value="06">Junho</option>
+            </select>
+            <select id="year-select">
+              <option value="2025">2025</option>
+            </select>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="user-profile">
+            <span class="user-name" id="user-name">Melissa Silva</span>
+            <span class="user-link">Meu Perfil</span>
+            <div class="user-avatar">
+              <img src="/assets/favicon.ico" alt="Avatar" />
+            </div>
+          </div>
+        </div>
+      </header>
 
-    <section class="dashboard-graphs">
-      <div style="width: 350px; display: inline-block;">
-        <h4>Distribuição de Gastos</h4>
-        <canvas id="graficoGastos"></canvas>
+      <!-- Dashboard Content -->
+      <div class="dashboard-content">
+        <!-- Top Section: Receitas and Resumo -->
+        <div class="top-section">
+          <!-- Receitas Section -->
+          <div class="receitas-section">
+            <div class="section-header">
+              <h3>Receitas (Ganhos)</h3>
+            </div>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody id="receitas-tbody">
+                  <tr>
+                    <td>Bolsa</td>
+                    <td>Fixa</td>
+                    <td>Bolsas</td>
+                    <td>R$553,85</td>
+                  </tr>
+                  <tr>
+                    <td>Prêmio</td>
+                    <td>Variável</td>
+                    <td>Hackathon</td>
+                    <td>R$1753,9</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Resumo Section -->
+          <div class="resumo-section">
+            <div class="section-header">
+              <h3>Resumo do Mês de Abril</h3>
+            </div>
+            <div class="resumo-content">
+              <div class="saldo-info">
+                <p><strong>Saldo (quanto tenho disponível) do mês: R$1.231,28</strong></p>
+                <div class="totals">
+                  <span>Total Ganhos: R$2.307,75</span>
+                  <span>Total Gastos: R$1.076,47</span>
+                </div>
+              </div>
+              
+              <div class="chart-section">
+                <h4>Gastos por categoria:</h4>
+                <div class="chart-container">
+                  <canvas id="expenseChart"></canvas>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #4FC3F7;"></div>
+                    <span>Transporte</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #FFEB3B;"></div>
+                    <span>Alimentação</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #FF9800;"></div>
+                    <span>Moradia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Section: Despesas -->
+        <div class="despesas-section">
+          <div class="section-header">
+            <h3>Despesas (Gastos)</h3>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Tipo</th>
+                  <th>Categoria</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody id="despesas-tbody">
+                <tr>
+                  <td>Uber</td>
+                  <td>Variável</td>
+                  <td>Transporte</td>
+                  <td>R$400,00</td>
+                </tr>
+                <tr>
+                  <td>Mercado</td>
+                  <td>Variável</td>
+                  <td>Alimentação</td>
+                  <td>R$300,00</td>
+                </tr>
+                <tr>
+                  <td>Aluguel</td>
+                  <td>Fixa</td>
+                  <td>Moradia</td>
+                  <td>R$374,47</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bottom Section: Renda Total -->
+        <div class="renda-total-section">
+          <div class="section-header">
+            <h3>Renda total:</h3>
+          </div>
+          <div class="renda-content">
+            <div class="renda-row">
+              <div class="renda-item">
+                <span>Ganhos fixos: R$553,85</span>
+              </div>
+              <div class="renda-item">
+                <span>Ganhos variáveis:</span>
+              </div>
+            </div>
+            <div class="renda-row">
+              <div class="renda-title">
+                <span><strong>Despesa total:</strong></span>
+              </div>
+            </div>
+            <div class="renda-row">
+              <div class="renda-item">
+                <span>Despesa fixa: -R$696,96</span>
+              </div>
+              <div class="renda-item">
+                <span>Despesa variável: -R$379,51</span>
+              </div>
+            </div>
+            <div class="saldo-final">
+              <span><strong>Saldo final: R$1.234,28</strong></span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="width: 350px; display: inline-block;">
-        <h4>Progresso das Metas</h4>
-        <canvas id="graficoMetas"></canvas>
-      </div>
-    </section>
-  </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Feito por Anne Esther e MIT License 2025</p>
+      </footer>
+    </main>
+  </div>
 
   <script>
-    // Exemplo de dados mockados (substitua por fetch da API depois)
-    const ganhos = 2500;
-    const despesas = 1800;
-    const saldo = ganhos - despesas;
-    const metasAtivas = 2;
-    const tarefasPendentes = 3;
-    const gastosPorCategoria = [800, 500, 300, 200];
-    const categorias = ['Alimentação', 'Transporte', 'Lazer', 'Outros'];
-    const progressoMetas = [60, 30];
-    const nomesMetas = ['Viagem', 'Notebook'];
+    // Carregar dados do dashboard
+    async function carregarDadosDashboard() {
+      try {
+        const response = await fetch('/api/dashboard');
+        
+        if (!response.ok) {
+          throw new Error('Erro ao carregar dados do dashboard');
+        }
+        
+        const data = await response.json();
+        
+        // Atualizar dados do usuário
+        document.getElementById('user-name').textContent = data.user.name;
+        
+        // Atualizar tabela de receitas
+        const receitasTbody = document.getElementById('receitas-tbody');
+        if (receitasTbody && data.recentEarnings && data.recentEarnings.length > 0) {
+          receitasTbody.innerHTML = '';
+          data.recentEarnings.forEach(earning => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${earning.description}</td>
+              <td>Variável</td>
+              <td>${earning.category}</td>
+              <td>R$${earning.value.toFixed(2).replace('.', ',')}</td>
+            `;
+            receitasTbody.appendChild(row);
+          });
+        }
 
-    document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
-    document.getElementById('ganhos').innerText = `R$ ${ganhos.toFixed(2)}`;
-    document.getElementById('despesas').innerText = `R$ ${despesas.toFixed(2)}`;
-    document.getElementById('metas').innerText = metasAtivas;
-    document.getElementById('tarefas').innerText = tarefasPendentes;
+        // Atualizar tabela de despesas
+        const despesasTbody = document.getElementById('despesas-tbody');
+        if (despesasTbody && data.expenseCategories && data.expenseCategories.length > 0) {
+          despesasTbody.innerHTML = '';
+          data.expenseCategories.forEach(expense => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${expense.name}</td>
+              <td>Variável</td>
+              <td>${expense.name}</td>
+              <td>R$${expense.value.toFixed(2).replace('.', ',')}</td>
+            `;
+            despesasTbody.appendChild(row);
+          });
+        }
 
-    new Chart(document.getElementById('graficoGastos'), {
-      type: 'pie',
-      data: {
-        labels: categorias,
-        datasets: [{
-          data: gastosPorCategoria,
-          backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#e91e63']
-        }]
+        // Criar gráfico de pizza
+        createExpenseChart(data.expenseCategories || []);
+        
+      } catch (error) {
+        console.error('Erro ao carregar dados do dashboard:', error);
+        document.getElementById('user-name').textContent = 'Melissa Silva';
       }
-    });
-    new Chart(document.getElementById('graficoMetas'), {
-      type: 'bar',
-      data: {
-        labels: nomesMetas,
-        datasets: [{
-          label: '% Concluído',
-          data: progressoMetas,
-          backgroundColor: ['#2196f3', '#ff9800']
-        }]
-      },
-      options: {scales: {y: {beginAtZero: true, max: 100}}}
+    }
+
+    // Criar gráfico de despesas
+    function createExpenseChart(categories) {
+      const ctx = document.getElementById('expenseChart').getContext('2d');
+      
+      const colors = ['#4FC3F7', '#FFEB3B', '#FF9800'];
+      const labels = categories.length > 0 ? categories.map(c => c.name) : ['Transporte', 'Alimentação', 'Moradia'];
+      const values = categories.length > 0 ? categories.map(c => c.value) : [400, 300, 374.47];
+      
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: colors,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }    // Inicializar dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+      carregarDadosDashboard();
     });
   </script>
-
-  <%- include('../partials/footer') %>
 </body>
 </html>

@@ -2,52 +2,122 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Tarefas</title>
-  <link rel="stylesheet" href="/css/style.css">
-  
+  <title>Geri - Tarefas</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <%- include('../partials/header') %>  <main class="container">
-    <h1>Minhas Tarefas</h1>
-    <form id="form-tarefa">
-      <input type="text" name="to_do_list_item_description" placeholder="Descrição da Tarefa" required>
-      <select name="to_do_list_item_is_completed">
-        <option value="false">Pendente</option>
-        <option value="true">Concluída</option>
-      </select>
-      <button type="submit">Adicionar Tarefa</button>
-    </form>
-    <div id="erro-tarefa" style="color:red; margin:10px 0;"></div>
-    <hr>
-    <table border="1" width="100%">
-      <thead>
-        <tr>
-          <th>Descrição</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="lista-tarefas">
-        <!-- Tarefas serão renderizadas aqui -->
-      </tbody>
-    </table>  </main>  <script>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>Geri</h1>
+      </div>      <nav class="nav-menu">
+        <a href="/dashboard" class="nav-item">Painel</a>
+        <a href="/earnings" class="nav-item">Ganhos</a>
+        <a href="/expenses" class="nav-item">Despesas</a>
+        <a href="/goals" class="nav-item">Metas</a>
+        <a href="/to-do-list-items" class="nav-item active">Tarefas</a>
+        <a href="/tutorial" class="nav-item">Como usar?</a>
+        <a href="/logout" class="nav-item">Sair</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <h2>Minhas Tarefas</h2>
+        </div>
+        <div class="header-right">
+          <div class="user-profile">
+            <span class="user-name" id="user-name">Melissa Silva</span>
+            <span class="user-link">Meu Perfil</span>
+            <div class="user-avatar">
+              <img src="/assets/favicon.ico" alt="Avatar" />
+            </div>
+          </div>
+        </div>
+      </header>      <!-- Tasks Content -->
+      <div class="dashboard-content">
+        <div class="receitas-section">
+          <div class="section-header">
+            <h3>Adicionar Nova Tarefa</h3>
+          </div>
+          <div style="background: white; border: 1px solid #e9ecef; border-top: none; border-radius: 0 0 8px 8px; padding: 20px;">
+            <form id="form-tarefa" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+              <div style="display: flex; flex-direction: column;">
+                <label style="margin-bottom: 5px; font-weight: 500; color: #374151;">Descrição da Tarefa</label>
+                <input type="text" name="to_do_list_item_description" placeholder="Descrição da tarefa" required
+                       style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <label style="margin-bottom: 5px; font-weight: 500; color: #374151;">Status</label>
+                <select name="to_do_list_item_is_completed" 
+                        style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                  <option value="false">Pendente</option>
+                  <option value="true">Concluída</option>
+                </select>
+              </div>              <div style="grid-column: 1 / -1; display: flex; gap: 10px;">
+                <button type="submit" style="background: #5941FF; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; cursor: pointer; flex: 1;">
+                  Adicionar Tarefa
+                </button>
+              </div>
+            </form>
+            <div id="erro-tarefa" style="display: none; color: #ef4444; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 10px; margin-top: 10px;"></div>
+          </div>
+        </div>
+
+        <div class="receitas-section" style="margin-top: 30px;">
+          <div class="section-header">
+            <h3>Lista de Tarefas</h3>
+          </div>
+          <div style="background: white; border: 1px solid #e9ecef; border-top: none; border-radius: 0 0 8px 8px; padding: 20px;">
+            <div class="table-container">
+              <table class="receitas-table">
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="lista-tarefas">
+                  <!-- Tarefas serão renderizadas aqui -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>  <script>
     function carregarTarefas() {
       fetch('/api/to-do-list-items/me')
         .then(res => res.json())
         .then(tarefas => {
-          // Se a resposta não for um array, não renderiza nada
-          if (!Array.isArray(tarefas)) return;
           const tbody = document.getElementById('lista-tarefas');
           tbody.innerHTML = '';
+          
+          if (!Array.isArray(tarefas) || tarefas.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#888; padding: 20px;">Nenhuma tarefa cadastrada.</td></tr>';
+            return;
+          }
+          
           tarefas.forEach(t => {
             const status = t.to_do_list_item_is_completed ? 'Concluída' : 'Pendente';
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${t.to_do_list_item_description}</td><td>${status}</td>`;
+            tr.innerHTML = `
+              <td>${t.to_do_list_item_description}</td>
+              <td>${status}</td>
+            `;
             tbody.appendChild(tr);
           });
         })
-        .catch(() => {
-          // Se a resposta não for JSON, não faz nada (evita tela preta)
+        .catch(error => {
+          console.error('Erro ao carregar tarefas:', error);
+          const tbody = document.getElementById('lista-tarefas');
+          tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#888; padding: 20px;">Erro ao carregar tarefas.</td></tr>';
         });
     }
 
@@ -56,11 +126,28 @@
     function mostrarErro(msg) {
       const erroDiv = document.getElementById('erro-tarefa');
       erroDiv.textContent = msg;
+      erroDiv.style.display = 'block';
+      erroDiv.style.color = '#ef4444';
+      erroDiv.style.background = '#fef2f2';
+      erroDiv.style.border = '1px solid #fecaca';
     }
 
     function limparErro() {
       const erroDiv = document.getElementById('erro-tarefa');
       erroDiv.textContent = '';
+      erroDiv.style.display = 'none';
+    }
+
+    function mostrarSucesso(msg) {
+      const erroDiv = document.getElementById('erro-tarefa');
+      erroDiv.textContent = msg;
+      erroDiv.style.color = '#10b981';
+      erroDiv.style.background = '#f0fdf4';
+      erroDiv.style.border = '1px solid #bbf7d0';
+      erroDiv.style.display = 'block';
+      setTimeout(() => {
+        limparErro();
+      }, 3000);
     }
 
     document.getElementById('form-tarefa').addEventListener('submit', async function(e) {
@@ -92,7 +179,7 @@
         if (res.ok) {
           form.reset();
           carregarTarefas(); // Recarrega a tabela imediatamente
-          limparErro();
+          mostrarSucesso('Tarefa adicionada com sucesso!');
         } else {
           let erroMsg = 'Erro ao adicionar tarefa';
           try {
@@ -104,10 +191,10 @@
           mostrarErro(erroMsg);
         }
       } catch (err) {
+        console.error('Erro ao conectar:', err);
         mostrarErro('Erro ao conectar com o servidor');
       }
     });
   </script>
-  <%- include('../partials/footer') %>
 </body>
 </html>
