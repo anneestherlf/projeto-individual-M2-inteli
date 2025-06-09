@@ -396,7 +396,46 @@ Dessa forma, a API garante segurança, flexibilidade e facilidade de uso tanto p
 
 ### 3.7 Interface e Navegação (Semana 07)
 
-*Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+O desenvolvimento do frontend do sistema web de gerenciamento financeiro para universitários representou uma etapa fundamental na construção da aplicação, focando na implementação das views principais e na integração com o backend através da arquitetura MVC. Durante a sexta e a sétima semana de desenvolvimento, foram desenvolvidas todas as interfaces. As telas de autenticação e onboarding, por exemplo, foram desenvolvidas de forma fiel ao protótipo de alta fidelidade, estabelecendo a base visual e funcional para todo o sistema.
+
+Algumas telas ainda não estão idênticas, mas planejo que a implementação das views siga rigorosamente o protótipo de alta fidelidade desenvolvido anteriormente (tenho como planho aprimorar as views na semana 8 para que isso aconteça), garantindo consistência visual através da aplicação da paleta de cores definida (roxo #5941FF, amarelo-lima #C8FF16, branco #FFFFFF e cinza escuro #3A3A40) e da tipografia Kumbh Sans em toda a interface. O sistema utiliza EJS como engine de template, permitindo a injeção dinâmica de dados do backend nas páginas renderizadas.
+
+A view `login.ejs` foi implementada como o ponto de entrada principal da aplicação, apresentando um layout dividido que combina uma seção visual com uma imagem ilustrativa representando o contexto universitário e um painel funcional contendo os campos de email e senha. O formulário implementa validação tanto no lado cliente quanto no servidor, utilizando JavaScript para feedback imediato e validação backend através do `userController`. A folha de estilos `style-login.css` utiliza flexbox para criar um layout responsivo que se adapta a diferentes tamanhos de tela, mantendo a centralização e proporção dos elementos.
+<!-- 
+<div align="center">
+  <sub>Exemplo de teste no Postman no caso de PUT sem autenticação (recebe a página de login).</sub><br>
+  <img src="../assets/wad-assets/exemplo2-teste-APIpostman.png" width="100%" 
+  alt="Postman teste"><br>
+  <sup>Fonte: a autora.</sup>
+</div> -->
+
+O sistema de cadastro foi materializado na view `register.ejs`, que apresenta um formulário limpo e intuitivo para novos usuários. Esta interface implementa validação de email único através de requisições ao backend. A integração com o `userService` garante que os dados sejam adequadamente armazenados na tabela User do PostgreSQL, estabelecendo o primeiro ponto de persistência de dados do sistema.
+
+--- gif cadastro
+
+Após o processo de autenticação, os usuários são direcionados para a view `welcome.ejs`, que serve como uma tela de transição e primeiro contato com a plataforma Geri. Esta interface fornece orientações sobre os próximos passos na utilização do sistema. 
+
+--- tela onboarding
+
+A view `tutorial.ejs` representa um componente educacional interativo que guia novos usuários através das principais funcionalidades da plataforma. É uma página estática.
+
+--- gif tutorial
+
+Do ponto de vista técnico, todas as views implementadas seguem uma estrutura baseada no template `main.ejs` localizado na pasta `layout`, que define a estrutura HTML base, meta tags, links para folhas de estilo e scripts JavaScript comuns. Esta abordagem modular permite manutenção eficiente e consistência entre as diferentes páginas da aplicação.
+
+--- gif todas as views
+
+As integrações com o backend foram estabelecidas através da criação de rotas específicas no arquivo `frontRoutes.js`, que conecta as requisições HTTP às views apropriadas. O middleware de autenticação `requireLogin` foi implementado para proteger rotas sensíveis, redirecionando usuários não autenticados para a tela de login e mantendo o estado de sessão através do express-session conectado ao PostgreSQL.
+
+Mudanças significativas foram implementadas no backend para suportar as funcionalidades frontend. O `userController` foi expandido para incluir métodos de renderização de views além das funções de API REST, permitindo que o mesmo controller sirva tanto requisições JSON quanto páginas HTML. O sistema de sessões foi configurado para persistir dados de autenticação entre requisições, utilizando um store de sessão baseado em PostgreSQL.
+
+No banco de dados, a estrutura da tabela User foi validada e testada através das operações de cadastro e login, confirmando que os relacionamentos com as futuras tabelas de dados financeiros (earnings, expenses, goals, to_do_list_item) estão adequadamente definidos através das foreign keys estabelecidas no script `init.sql`.
+
+A organização dos estilos CSS seguiu uma abordagem modular, com cada view possuindo sua folha de estilos específica complementada por estilos globais no arquivo `style.css`. Esta estrutura permite customização granular de cada interface mantendo elementos visuais consistentes como botões, campos de formulário e tipografia através de variáveis CSS e classes reutilizáveis. Utilizei flexbox como principal aliado nessa estilização.
+
+--- imagem flexbox
+
+O resultado desta implementação é um sistema frontend funcional que demonstra comunicação efetiva com o backend, persistência de dados no PostgreSQL e uma experiência de usuário polida. As views implementadas estabelecem a base para as futuras interfaces de gerenciamento financeiro, com toda a infraestrutura de autenticação, sessões e comunicação com banco de dados já operacional e testada.
 
 ---
 
