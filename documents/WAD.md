@@ -459,7 +459,7 @@ A organização dos estilos CSS seguiu uma abordagem modular, com cada view poss
   <sub>Flexbox</sub><br>
   <img src="../assets/wad-assets/flexbox.png" width="100%" 
   alt="Flexbox - view"><br>
-  <sup>Fonte: Google e LinkedIn. <https://media.licdn.com/dms/image/v2/D4D12AQGNVLU6cbfwNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1728904809763?e=2147483647&v=beta&t=sVSZOTgUbgeaBzSSspQUbpcvxLbXHcddnDDt9WEzNs4> </sup>
+  <sup>Fonte: Google e LinkedIn. [6] </sup>
 </div>
 
 O resultado desta implementação é um sistema frontend funcional que demonstra comunicação efetiva com o backend, persistência de dados no PostgreSQL e uma experiência de usuário polida. As views implementadas estabelecem a base para as futuras interfaces de gerenciamento financeiro, com toda a infraestrutura de autenticação, sessões e comunicação com banco de dados já operacional e testada.
@@ -491,6 +491,8 @@ O resultado desta implementação é um sistema frontend funcional que demonstra
 [4] Proto-persona: o que é e como criar a sua. Disponível em: <https://www.mergo.com.br/blog/ux-research/proto-persona-o-que-e-e-como-criar-a-sua/>. Acesso em: 28 abr. 2025.
 
 [5] Conheça o INVEST. Disponível em: <https://incuca.net/conheca-o-invest-e-descubra-como-escrever-boas-historias-de-usuarios/>. Acesso em: 28 abr. 2025.
+
+[6] Understanding Flexbox in React: A Practical Guide. Disponível em: <https://www.linkedin.com/pulse/understanding-flexbox-react-practical-guide-alexandre-pereira-5t3cf/>. Acesso em: 09 jun. 2025.
 
 
 
