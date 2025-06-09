@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Geri - Meu Painel</title>
@@ -7,13 +8,15 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="logo">
-        <h1>Geri</h1>
-      </div>      <nav class="nav-menu">
+        <img src="/assets/Geri.png" alt="Geri Logo" />
+      </div>
+      <nav class="nav-menu">
         <a href="/dashboard" class="nav-item active">Painel</a>
         <a href="/earnings" class="nav-item">Ganhos</a>
         <a href="/expenses" class="nav-item">Despesas</a>
@@ -102,7 +105,7 @@
                   <span>Total Gastos: R$1.076,47</span>
                 </div>
               </div>
-              
+
               <div class="chart-section">
                 <h4>Gastos por categoria:</h4>
                 <div class="chart-container">
@@ -212,16 +215,16 @@
     async function carregarDadosDashboard() {
       try {
         const response = await fetch('/api/dashboard');
-        
+
         if (!response.ok) {
           throw new Error('Erro ao carregar dados do dashboard');
         }
-        
+
         const data = await response.json();
-        
+
         // Atualizar dados do usuário
         document.getElementById('user-name').textContent = data.user.name;
-        
+
         // Atualizar tabela de receitas
         const receitasTbody = document.getElementById('receitas-tbody');
         if (receitasTbody && data.recentEarnings && data.recentEarnings.length > 0) {
@@ -256,7 +259,7 @@
 
         // Criar gráfico de pizza
         createExpenseChart(data.expenseCategories || []);
-        
+
       } catch (error) {
         console.error('Erro ao carregar dados do dashboard:', error);
         document.getElementById('user-name').textContent = 'Melissa Silva';
@@ -266,11 +269,11 @@
     // Criar gráfico de despesas
     function createExpenseChart(categories) {
       const ctx = document.getElementById('expenseChart').getContext('2d');
-      
+
       const colors = ['#4FC3F7', '#FFEB3B', '#FF9800'];
       const labels = categories.length > 0 ? categories.map(c => c.name) : ['Transporte', 'Alimentação', 'Moradia'];
       const values = categories.length > 0 ? categories.map(c => c.value) : [400, 300, 374.47];
-      
+
       new Chart(ctx, {
         type: 'pie',
         data: {
@@ -292,9 +295,10 @@
         }
       });
     }    // Inicializar dashboard
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       carregarDadosDashboard();
     });
   </script>
 </body>
+
 </html>
