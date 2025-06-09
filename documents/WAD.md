@@ -3,10 +3,10 @@
 <!-- **_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._** -->
 
 ## Projeto Geri
-
+<img src="../assets/wad-assets/Capa - repo.png" width="100%" >
 <!-- Pensar no nome do projeto -->
 
-#### Por Anne Esther Lins Figueirôa
+#### Por Anne Esther 
 - LinkedIn: <https://www.linkedin.com/in/anneestherlf/>
 - GitHub: <https://github.com/anneestherlf>
 <!-- Lembrar de colocar meu nome, linkedin e github aqui  -->

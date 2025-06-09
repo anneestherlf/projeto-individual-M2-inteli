@@ -1,5 +1,8 @@
 # Plataforma de Controle Financeiro para Universitários 
-## 👩‍💻 Em desenvolvimento por: [Anne Esther](https://www.linkedin.com/in/anneestherlf/)
+
+<img src="assets\wad-assets\Capa - repo.png" width="100%" >
+
+## 👩‍💻 Por [Anne Esther](https://www.linkedin.com/in/anneestherlf/)
 Projeto Individual Integrado - Módulo 2025-1B para avaliação no Inteli (Instituto de Tecnologia e Liderança)
 
 
@@ -145,8 +148,8 @@ Siga os passos abaixo para rodar o projeto na sua máquina local.
 6. **Acesse a aplicação**
 
 - Abra o navegador e acesse `http://localhost:3000`
-  
+
 ---
 
-## Licença
-MIT License
+
+<img src="assets\wad-assets\Capa - repo (1).png" width="100%" >
