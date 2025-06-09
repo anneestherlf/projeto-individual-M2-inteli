@@ -401,29 +401,51 @@ O desenvolvimento do frontend do sistema web de gerenciamento financeiro para un
 Algumas telas ainda não estão idênticas, mas planejo que a implementação das views siga rigorosamente o protótipo de alta fidelidade desenvolvido anteriormente (tenho como planho aprimorar as views na semana 8 para que isso aconteça), garantindo consistência visual através da aplicação da paleta de cores definida (roxo #5941FF, amarelo-lima #C8FF16, branco #FFFFFF e cinza escuro #3A3A40) e da tipografia Kumbh Sans em toda a interface. O sistema utiliza EJS como engine de template, permitindo a injeção dinâmica de dados do backend nas páginas renderizadas.
 
 A view `login.ejs` foi implementada como o ponto de entrada principal da aplicação, apresentando um layout dividido que combina uma seção visual com uma imagem ilustrativa representando o contexto universitário e um painel funcional contendo os campos de email e senha. O formulário implementa validação tanto no lado cliente quanto no servidor, utilizando JavaScript para feedback imediato e validação backend através do `userController`. A folha de estilos `style-login.css` utiliza flexbox para criar um layout responsivo que se adapta a diferentes tamanhos de tela, mantendo a centralização e proporção dos elementos.
-<!-- 
+
 <div align="center">
-  <sub>Exemplo de teste no Postman no caso de PUT sem autenticação (recebe a página de login).</sub><br>
-  <img src="../assets/wad-assets/exemplo2-teste-APIpostman.png" width="100%" 
-  alt="Postman teste"><br>
+  <sub>GIF - Login View</sub><br>
+  <img src="../assets/wad-assets/login.gif" width="100%" 
+  alt="Login view"><br>
   <sup>Fonte: a autora.</sup>
-</div> -->
+</div>
 
 O sistema de cadastro foi materializado na view `register.ejs`, que apresenta um formulário limpo e intuitivo para novos usuários. Esta interface implementa validação de email único através de requisições ao backend. A integração com o `userService` garante que os dados sejam adequadamente armazenados na tabela User do PostgreSQL, estabelecendo o primeiro ponto de persistência de dados do sistema.
 
---- gif cadastro
+<div align="center">
+  <sub>GIF - View Cadastro</sub><br>
+  <img src="../assets/wad-assets/cadastro.gif" width="100%" 
+  alt="Cadastro - view"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
 
 Após o processo de autenticação, os usuários são direcionados para a view `welcome.ejs`, que serve como uma tela de transição e primeiro contato com a plataforma Geri. Esta interface fornece orientações sobre os próximos passos na utilização do sistema. 
 
---- tela onboarding
+
+<div align="center">
+  <sub>Welcome View</sub><br>
+  <img src="../assets/wad-assets/onboarding.png" width="100%" 
+  alt="Welcome - view"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
 
 A view `tutorial.ejs` representa um componente educacional interativo que guia novos usuários através das principais funcionalidades da plataforma. É uma página estática.
 
---- gif tutorial
+<div align="center">
+  <sub>GIF - Tutorial View</sub><br>
+  <img src="../assets/wad-assets/tutorial.gif" width="100%" 
+  alt="Tutorial - view"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
 
 Do ponto de vista técnico, todas as views implementadas seguem uma estrutura baseada no template `main.ejs` localizado na pasta `layout`, que define a estrutura HTML base, meta tags, links para folhas de estilo e scripts JavaScript comuns. Esta abordagem modular permite manutenção eficiente e consistência entre as diferentes páginas da aplicação.
 
---- gif todas as views
+<div align="center">
+  <sub>GIF - Painel</sub><br>
+  <img src="../assets/wad-assets/dashboard.gif" width="100%" 
+  alt="Principais páginas - view"><br>
+  <sup>Fonte: a autora.</sup>
+</div>
+
 
 As integrações com o backend foram estabelecidas através da criação de rotas específicas no arquivo `frontRoutes.js`, que conecta as requisições HTTP às views apropriadas. O middleware de autenticação `requireLogin` foi implementado para proteger rotas sensíveis, redirecionando usuários não autenticados para a tela de login e mantendo o estado de sessão através do express-session conectado ao PostgreSQL.
 
@@ -433,11 +455,14 @@ No banco de dados, a estrutura da tabela User foi validada e testada através da
 
 A organização dos estilos CSS seguiu uma abordagem modular, com cada view possuindo sua folha de estilos específica complementada por estilos globais no arquivo `style.css`. Esta estrutura permite customização granular de cada interface mantendo elementos visuais consistentes como botões, campos de formulário e tipografia através de variáveis CSS e classes reutilizáveis. Utilizei flexbox como principal aliado nessa estilização.
 
---- imagem flexbox
+<div align="center">
+  <sub>Flexbox</sub><br>
+  <img src="../assets/wad-assets/flexbox.png" width="100%" 
+  alt="Flexbox - view"><br>
+  <sup>Fonte: Google e LinkedIn. <https://media.licdn.com/dms/image/v2/D4D12AQGNVLU6cbfwNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1728904809763?e=2147483647&v=beta&t=sVSZOTgUbgeaBzSSspQUbpcvxLbXHcddnDDt9WEzNs4> </sup>
+</div>
 
 O resultado desta implementação é um sistema frontend funcional que demonstra comunicação efetiva com o backend, persistência de dados no PostgreSQL e uma experiência de usuário polida. As views implementadas estabelecem a base para as futuras interfaces de gerenciamento financeiro, com toda a infraestrutura de autenticação, sessões e comunicação com banco de dados já operacional e testada.
-
----
 
 ## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
 
