@@ -153,6 +153,6 @@ Siga os passos abaixo para rodar o projeto na sua máquina local.
 
 ## 🎬 Vídeo demonstração
 
-[![Vídeo Demonstração]({https://www.google.com/url?sa=i&url=https%3A%2F%2Fdepositphotos.com%2Fvectors%2Fyoutube-screen.html&psig=AOvVaw2zK8wAUnnY9WgTDC4PzoEV&ust=1750130161157000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMCDqIj99I0DFQAAAAAdAAAAABAL})]({https://www.youtube.com/embed/VGgSOIX9ihA} "Vídeo Demonstração")
+Vídeo: <https://www.youtube.com/embed/VGgSOIX9ihA>
 
 <img src="assets\wad-assets\Capa - repo (1).png" width="100%" >
