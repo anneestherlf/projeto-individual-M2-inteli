@@ -533,3 +533,17 @@ O desenvolvimento do sistema Geri proporcionou uma experiência rica em termos d
 - Buscar feedbacks reais de usuários para orientar melhorias de UX e novas funcionalidades.
 
 O projeto Geri está pronto para ser utilizado e expandido, servindo como base sólida para futuras evoluções e integrações.
+
+## <a name="c5"></a>5. Referências
+
+[1] Pesquisa Fenaprevi-Datafolha. Disponível em: <https://fenaprevi.org.br/noticias/pesquisa-fenaprevi-datafolha-explora-como-o-brasileiro-se-planeja-e-se-protege-para-o-futuro-e-para-a-aposentadoria>. Acesso em: 28 abr. 2025.
+
+[2] Raio X do Investidor. Disponível em: <https://www.anbima.com.br/pt_br/noticias/raio-x-do-investidor-numero-de-pessoas-que-aplica-em-produtos-financeiros-dispara-na-geracao-z.htm>. Acesso em: 28 abr. 2025.
+
+[3] Maioria dos brasileiros não consegue guardar dinheiro, mostra pesquisa. Disponível em: <https://www.cnnbrasil.com.br/economia/financas/maioria-dos-brasileiros-nao-consegue-guardar-dinheiro-mostra-pesquisa/>. Acesso em: 28 abr. 2025.
+
+[4] Proto-persona: o que é e como criar a sua. Disponível em: <https://www.mergo.com.br/blog/ux-research/proto-persona-o-que-e-e-como-criar-a-sua/>. Acesso em: 28 abr. 2025.
+
+[5] Conheça o INVEST. Disponível em: <https://incuca.net/conheca-o-invest-e-descubra-como-escrever-boas-historias-de-usuarios/>. Acesso em: 28 abr. 2025.
+
+[6] Understanding Flexbox in React: A Practical Guide. Disponível em: <https://www.linkedin.com/pulse/understanding-flexbox-react-practical-guide-alexandre-pereira-5t3cf/>. Acesso em: 09 jun. 2025.
