@@ -465,10 +465,7 @@ O resultado desta implementação é um sistema frontend funcional que demonstra
 ### <a name="c4"></a>4. Desenvolvimento da Aplicação Web 
 
 
-<div align="center">
-  <h3>Vídeo demonstração</h3>
-  <iframe width="80%" height="400" src="https://www.youtube.com/embed/VGgSOIX9ihA" title="Vídeo demonstração" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+Vídeo demonstração: <https://www.youtube.com/embed/VGgSOIX9ihA> 
 
 O desenvolvimento do sistema web Geri foi realizado seguindo o padrão arquitetural MVC, com backend em Node.js/Express, banco de dados PostgreSQL e frontend dinâmico utilizando EJS e CSS modularizado. O sistema entregue contempla:
 
