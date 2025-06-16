@@ -60,6 +60,7 @@ button {
     border: none;
     cursor: pointer;
     margin-top: 4rem;
+    border-radius: 0 !important;
 }
 
 .license {

@@ -1,5 +1,5 @@
 /*
-  sidebar.css - Estilos para o sidebar de navegação lateral
+Estilos para o sidebar de navegação lateral
   Este arquivo define o visual do menu lateral esquerdo
 */
 
@@ -22,6 +22,7 @@
 }
 
 .sidebar-header h3 {
+    width: 136px;
     margin: 0 0 5px 0;
     font-size: 1.5em;
 }

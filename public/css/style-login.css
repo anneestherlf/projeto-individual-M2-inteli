@@ -73,6 +73,7 @@ button {
     height: 56.187px;
     border: none;
     cursor: pointer;
+    border-radius: 0 !important;
 }
 
 .title {

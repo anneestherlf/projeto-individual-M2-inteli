@@ -63,6 +63,10 @@ body {
     margin-bottom: 3rem;
 }
 
+button, .btn, input[type=submit], input[type=button] {
+  border-radius: 0 !important;
+}
+
 button {
     background: #5941FF;
     color: #EDF0F2;

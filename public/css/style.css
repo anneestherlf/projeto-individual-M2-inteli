@@ -38,3 +38,7 @@ body {
     margin-bottom: 10px;                /* Espaço entre campos */
     padding: 10px;                      /* Espaçamento interno dos campos */
   }
+
+  button, .btn, input[type=submit], input[type=button] {
+    border-radius: 0 !important;
+  }
