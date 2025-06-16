@@ -21,7 +21,7 @@
 
 <br>
 
-## <a name="c1"></a>1. Introdução (Semana 01)
+## <a name="c1"></a>1. Introdução 
 <!-- 
 *Preencha com até 300 palavras – sem necessidade de fonte.*
 *Descreva brevemente o sistema que você irá desenvolver.* -->
@@ -36,7 +36,7 @@ Ao combinar usabilidade intuitiva com funcionalidades estratégicas, a solução
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
-### 2.1. Personas (Semana 01)
+### 2.1. Personas 
 
 Para garantir que o produto atenda às reais necessidades do público-alvo, foram desenvolvidas proto-personas [4]  baseadas em observações do cotidiano e vivências da autora. Embora não originadas de pesquisas formais (qualitativas/quantitativas), essas personas representam perfis reais identificados no contexto universitário, permitindo a criação de features mais assertivas.
 
@@ -58,7 +58,7 @@ Essas personas guiarão o desenvolvimento das funcionalidades, mas poderão ser 
 
 <!-- *Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.* -->
 
-### 2.2. User Stories (Semana 01)
+### 2.2. User Stories 
 
 As User Stories abaixo foram cuidadosamente elaboradas para guiar o desenvolvimento do projeto, seguindo os critérios INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable) [5].
 
@@ -100,7 +100,7 @@ Essa abordagem assegura que todas as features desenvolvidas entreguem valor real
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
-### 3.1. Modelagem do banco de dados  (Semana 3)
+### 3.1. Modelagem do banco de dados  
 
 <!-- *Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
 
@@ -193,7 +193,7 @@ CREATE TABLE to_do_list_item (
 Este script pode ser utilizado para criar a estrutura completa do banco de dados em um sistema gerenciador de banco de dados relacional (SGBD), como o próprio PostgreSQL.
 
 
-### 3.1.1 BD e Models (Semana 5)
+### 3.1.1 BD e Models 
 <!-- *Descreva aqui os Models implementados no sistema web* -->
 
 O sistema utiliza o banco de dados PostgreSQL para armazenar todas as informações essenciais, como usuários, ganhos, despesas, metas e tarefas. A estrutura do banco é definida por meio de scripts SQL localizados na pasta `scripts`, especialmente o arquivo `init.sql`, que contém os comandos para criação das tabelas. 
@@ -206,8 +206,7 @@ Para configurar o banco de dados, basta editar o arquivo `.env` com a string de 
 
 
 
-### 3.2. Arquitetura (Semana 5)
-
+### 3.2. Arquitetura 
 Abaixo, você encontrará uma ilustração dos processos que acontecem por trás da plataforma, mostrando de forma visual como os dados circulam entre o usuário, as camadas do servidor (Views, Controllers e Models) e o banco de dados.
 
 <div align="center">
@@ -234,7 +233,7 @@ Por fim, a View já montada é enviada de volta ao cliente, fechando o ciclo de 
   
 *Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.* -->
 
-### 3.3. Wireframes (Semana 03)
+### 3.3. Wireframes 
 
 <!-- *Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).* -->
 
@@ -277,7 +276,7 @@ Além das principais telas, existem:
 Para visualizar o wireflow (user flow) e wireframes das demais telas da aplicação, [clique aqui](https://www.figma.com/design/dkTR4PEGsyifPRIcR5tVbP/Projeto-Individual-Integrado---Wireframes?node-id=0-1&t=ViTLmAcZim5B6GDf-1). 
 
 
-### 3.4. Guia de estilos (Semana 05)
+### 3.4. Guia de estilos 
 
 <!-- *Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.* -->
 
@@ -299,7 +298,7 @@ Os componentes da interface seguem padrões bem definidos. O botão padrão para
 Para garantir a aplicação correta do guia de estilos, recomenda-se que todos os desenvolvedores e designers consultem este documento ao criar novas telas ou componentes para a plataforma. A padronização dos elementos visuais não só fortalece a identidade da Geri, mas também contribui para uma experiência de uso mais intuitiva e agradável para o público-alvo.
 
 
-### 3.5. Protótipo de alta fidelidade (Semana 05)
+### 3.5. Protótipo de alta fidelidade
 
 <!-- *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).* -->
 
@@ -354,7 +353,7 @@ Uma das principais melhorias implementadas em relação aos wireframes iniciais 
 
 O protótipo de alta fidelidade está disponível para visualização pública no Figma, permitindo que qualquer pessoa interessada possa navegar pelas telas e compreender os fluxos principais do sistema. <a href="https://www.figma.com/design/ZzWG5CXQ2gUs8lin330KKf/Untitled?node-id=1-143&t=XXtKRXKK5WYgG6dH-1"> Clique aqui para acessar e entender o fluxo de telas com detalhes. </a> Também é possível explorar o fluxo navegável do protótipo nesse link: <https://www.figma.com/proto/ZzWG5CXQ2gUs8lin330KKf/Untitled?node-id=1-528&t=fa84Gf8dD6DWvvyG-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A528>
 
-### 3.6. WebAPI e endpoints (Semana 05)
+### 3.6. WebAPI e endpoints 
 
 <!-- *Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*   -->
 
@@ -394,7 +393,7 @@ if (!userId) return res.status(401).json({ error: 'Não autenticado e user_id_FK
 Dessa forma, a API garante segurança, flexibilidade e facilidade de uso tanto para usuários finais quanto para desenvolvedores e testadores.
 
 
-### 3.7 Interface e Navegação (Semana 07)
+### 3.7 Interface e Navegação
 
 O desenvolvimento do frontend do sistema web de gerenciamento financeiro para universitários representou uma etapa fundamental na construção da aplicação, focando na implementação das views principais e na integração com o backend através da arquitetura MVC. Durante a sexta e a sétima semana de desenvolvimento, foram desenvolvidas todas as interfaces. As telas de autenticação e onboarding, por exemplo, foram desenvolvidas de forma fiel ao protótipo de alta fidelidade, estabelecendo a base visual e funcional para todo o sistema.
 
@@ -419,7 +418,6 @@ O sistema de cadastro foi materializado na view `register.ejs`, que apresenta um
 </div>
 
 Após o processo de autenticação, os usuários são direcionados para a view `welcome.ejs`, que serve como uma tela de transição e primeiro contato com a plataforma Geri. Esta interface fornece orientações sobre os próximos passos na utilização do sistema. 
-
 
 <div align="center">
   <sub>Welcome View</sub><br>
@@ -464,36 +462,74 @@ A organização dos estilos CSS seguiu uma abordagem modular, com cada view poss
 
 O resultado desta implementação é um sistema frontend funcional que demonstra comunicação efetiva com o backend, persistência de dados no PostgreSQL e uma experiência de usuário polida. As views implementadas estabelecem a base para as futuras interfaces de gerenciamento financeiro, com toda a infraestrutura de autenticação, sessões e comunicação com banco de dados já operacional e testada.
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
-
-### 4.1 Demonstração do Sistema Web (Semana 8)
-
-*VIDEO: Insira o link do vídeo demonstrativo nesta seção*
-*Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
-
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
-
-*Indique pontos fortes e pontos a melhorar de maneira geral.*
-*Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
+### <a name="c4"></a>4. Desenvolvimento da Aplicação Web 
 
 
+<div align="center">
+  <h3>Vídeo demonstração</h3>
+  <iframe width="80%" height="400" src="https://www.youtube.com/embed/VGgSOIX9ihA" title="Vídeo demonstração" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
-## <a name="c5"></a>5. Referências
+O desenvolvimento do sistema web Geri foi realizado seguindo o padrão arquitetural MVC, com backend em Node.js/Express, banco de dados PostgreSQL e frontend dinâmico utilizando EJS e CSS modularizado. O sistema entregue contempla:
 
-<!-- _Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site:_<br> -->
+- Cadastro e login de usuários com autenticação e validação de dados.
+- Dashboard principal com visão geral das finanças, gráficos de gastos por categoria e saldo do mês.
+- Cadastro de ganhos e despesas, com atualização automática dos dados exibidos.
+- Definição e acompanhamento de metas financeiras, com visualização do progresso.
+- Lista de tarefas vinculada às metas, permitindo ao usuário organizar ações para atingir seus objetivos.
+- Proteção de rotas sensíveis via middleware de autenticação.
 
-[1] Pesquisa Fenaprevi-Datafolha. Disponível em: <https://fenaprevi.org.br/noticias/pesquisa-fenaprevi-datafolha-explora-como-o-brasileiro-se-planeja-e-se-protege-para-o-futuro-e-para-a-aposentadoria>. Acesso em: 28 abr. 2025.
+Abaixo, prints e GIFs ilustram as principais telas e funcionalidades:
 
-[2] Raio X do Investidor. Disponível em: <https://www.anbima.com.br/pt_br/noticias/raio-x-do-investidor-numero-de-pessoas-que-aplica-em-produtos-financeiros-dispara-na-geracao-z.htm>. Acesso em: 28 abr. 2025.
+<div align="center">
+  <sub>Login</sub><br>
+  <img src="../assets/wad-assets/login.gif" width="80%" alt="Login view"><br>
+  <sub>Cadastro</sub><br>
+  <img src="../assets/wad-assets/cadastro.gif" width="80%" alt="Cadastro view"><br>
+  <sub>Dashboard</sub><br>
+  <img src="../assets/wad-assets/dashboard.gif" width="80%" alt="Dashboard"><br>
+  <sub>Tutorial</sub><br>
+  <img src="../assets/wad-assets/tutorial.gif" width="80%" alt="Tutorial"><br>
+</div>
 
-[3] Maioria dos brasileiros não consegue guardar dinheiro, mostra pesquisa. Disponível em: <https://www.cnnbrasil.com.br/economia/financas/maioria-dos-brasileiros-nao-consegue-guardar-dinheiro-mostra-pesquisa/>. Acesso em: 28 abr. 2025.
+O código entregue está modularizado, testado e documentado, permitindo fácil manutenção e evolução futura do sistema.
 
-[4] Proto-persona: o que é e como criar a sua. Disponível em: <https://www.mergo.com.br/blog/ux-research/proto-persona-o-que-e-e-como-criar-a-sua/>. Acesso em: 28 abr. 2025.
+### 4.2 Conclusões e Trabalhos Futuros
 
-[5] Conheça o INVEST. Disponível em: <https://incuca.net/conheca-o-invest-e-descubra-como-escrever-boas-historias-de-usuarios/>. Acesso em: 28 abr. 2025.
+O desenvolvimento do sistema Geri proporcionou uma experiência rica em termos de aprendizado técnico e de usabilidade. A seguir, são destacados os principais pontos fortes, aspectos a serem aprimorados, ideias para evolução e um resumo das decisões e desafios do projeto.
 
-[6] Understanding Flexbox in React: A Practical Guide. Disponível em: <https://www.linkedin.com/pulse/understanding-flexbox-react-practical-guide-alexandre-pereira-5t3cf/>. Acesso em: 09 jun. 2025.
+**Pontos Fortes:**
+- Estrutura modular baseada no padrão MVC, facilitando manutenção e expansão.
+- Interface responsiva, moderna e intuitiva, com navegação clara.
+- Documentação detalhada (README.md, WAD.md), com prints, GIFs, vídeo demonstrativo e instruções de uso.
+- Separação clara entre frontend (EJS/CSS) e backend (Node/Express), promovendo organização.
+- Uso de middlewares para autenticação e boas práticas de código.
 
+**Pontos a Melhorar:**
+- Ampliar a cobertura de testes automatizados, especialmente para fluxos críticos e integração.
+- Refino de feedbacks visuais e mensagens de erro para o usuário.
+- Otimização de queries e tratamento de exceções no backend.
+- Melhorar a experiência mobile em telas específicas (ex: dashboard com muitos cards).
 
+**Ideias e Trabalhos Futuros:**
+- Implementar tela de perfil do usuário, permitindo edição de dados e visualização de progresso (conforme planejado no protótipo de alta fidelidade).
+- Integrar funcionalidades de metas e tarefas, possibilitando acompanhamento conjunto e notificações (em uma mesma tela, conforme havia sido planejado no protótipo de alta fidelidade).
+- Adicionar relatórios gráficos e exportação de dados financeiros (PDF/Excel).
+- Permitir customização de categorias de receitas/despesas.
+- Explorar autenticação via redes sociais e integração com APIs externas de finanças.
+- Implementar sistema de notificações e lembretes para metas e tarefas.
 
----
+**Decisões Técnicas, Aprendizados e Desafios:**
+- A escolha do padrão MVC e a separação de responsabilidades entre controllers, models, services e routes foram fundamentais para a organização do projeto.
+- O uso de EJS permitiu flexibilidade na renderização de views dinâmicas, enquanto o CSS modularizado facilitou ajustes rápidos de layout.
+- A integração entre frontend e backend via fetch/REST foi um ponto de aprendizado, especialmente no tratamento de respostas e erros.
+- O principal desafio foi alinhar usabilidade, responsividade e requisitos técnicos, especialmente na dashboard e sidebar. A replicação e padronização do footer em todas as views também exigiu atenção especial. Um grande desafio também foi fazer o possível para o site ficar o mais próximo possível do protótipo da solução (eu notei que tinha que melhorar demais).
+- A documentação contínua e o uso de prints/GIFs ajudaram a validar e comunicar as funcionalidades implementadas.
+
+**Próximos Passos:**
+- Priorizar a integração entre metas e tarefas, criando uma experiência mais completa para o usuário.
+- Evoluir a tela de perfil e permitir personalização do sistema.
+- Investir em testes automatizados e monitoramento de erros.
+- Buscar feedbacks reais de usuários para orientar melhorias de UX e novas funcionalidades.
+
+O projeto Geri está pronto para ser utilizado e expandido, servindo como base sólida para futuras evoluções e integrações.
