@@ -212,7 +212,7 @@ Abaixo, você encontrará uma ilustração dos processos que acontecem por trás
 
 <div align="center">
   <sub>Diagrama de Arquitetura da Aplicação Web</sub><br>
-  <img src="../assets/wad-assets/diagrama-mvc.png" width="100%" 
+  <img src="../assets/wad-assets/Diagrama MVC.png" width="100%" 
   alt="Diagrama de Arquitetura MVC"><br>
   <sup>Fonte: a autora. Link para acesso ao documento com mais detalhes no Figma: <a href="https://www.figma.com/design/BaMMKxsQq8ahLz2iGgysEr/Untitled?node-id=0-1&t=pcLZ0SmZYVguS3b5-1">clique aqui.</a> </sup>
 </div>

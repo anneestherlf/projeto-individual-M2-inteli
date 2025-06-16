@@ -20,7 +20,7 @@
         <h1>Geri</h1>
         <h2>Gestão financeira para universitários</h2>
       </div>
-      
+
       <form method="POST" action="/register" id="registerForm">
         <div class="input-login">
           <p>E-mail</p>
@@ -36,21 +36,21 @@
         </div>
         <button type="submit">Cadastrar</button>
       </form>
-      
+
       <script>
-        document.getElementById('registerForm').addEventListener('submit', function(event) {
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
           event.preventDefault();
-          
+
           const email = document.getElementById('email').value;
           const name = document.getElementById('name').value;
           const password = document.getElementById('password').value;
-          
+
           // Limpa qualquer erro anterior
           const errorDiv = document.getElementById('errorMessage');
           if (errorDiv) {
             errorDiv.style.display = 'none';
           }
-          
+
           fetch('/register', {
             method: 'POST',
             headers: {
@@ -62,62 +62,68 @@
               password: password
             })
           })
-          .then(response => {
-            if (response.redirected) {
-              window.location.href = response.url;
-            } else {
-              return response.text();
-            }
-          })
-          .then(responseData => {
-            if (responseData) {
-              try {
-                // Tenta analisar como JSON primeiro
-                const jsonData = JSON.parse(responseData);
-                if (jsonData.error) {
+            .then(response => {
+              if (response.redirected) {
+                window.location.href = response.url;
+              } else {
+                return response.text();
+              }
+            })
+            .then(responseData => {
+              if (responseData) {
+                try {
+                  // Tenta analisar como JSON primeiro
+                  const jsonData = JSON.parse(responseData);
+                  if (jsonData.error) {
+                    const errorDiv = document.getElementById('errorMessage');
+                    if (errorDiv) {
+                      errorDiv.textContent = jsonData.error;
+                      errorDiv.style.display = 'block';
+                    }
+                  }
+                } catch (e) {
+                  // Se não for JSON, exibe mensagem de erro genérica
                   const errorDiv = document.getElementById('errorMessage');
                   if (errorDiv) {
-                    errorDiv.textContent = jsonData.error;
+                    errorDiv.textContent = 'Erro ao cadastrar. Verifique os dados e tente novamente.';
                     errorDiv.style.display = 'block';
                   }
                 }
-              } catch (e) {
-                // Se não for JSON, exibe mensagem de erro genérica
-                const errorDiv = document.getElementById('errorMessage');
-                if (errorDiv) {
-                  errorDiv.textContent = 'Erro ao cadastrar. Verifique os dados e tente novamente.';
-                  errorDiv.style.display = 'block';
-                }
               }
-            }
-          })
-          .catch(error => {
-            console.error('Erro ao cadastrar:', error);
-            const errorDiv = document.getElementById('errorMessage');
-            if (errorDiv) {
-              errorDiv.textContent = 'Erro ao cadastrar. Tente novamente.';
-              errorDiv.style.display = 'block';
-            }
-          });
+            })
+            .catch(error => {
+              console.error('Erro ao cadastrar:', error);
+              const errorDiv = document.getElementById('errorMessage');
+              if (errorDiv) {
+                errorDiv.textContent = 'Erro ao cadastrar. Tente novamente.';
+                errorDiv.style.display = 'block';
+              }
+            });
         });
       </script>
-      
+
       <div class="create-account">
         <p>Já tem conta?</p>
         <a href="/login">Entrar</a>
+
+
       </div>
-        <!-- Mostra mensagem de erro se existir -->
+      <!-- Mostra mensagem de erro se existir -->
       <div class="error" id="errorMessage" <% if (!error) { %>style="display: none;"<% } %>>
-        <%= error ? error : '' %>
+          <%= error ? error : '' %>
+
+
+
+
       </div>
-      
-    </main>
-  </div>
-  <footer class="footer">
-      <a class="license" href="https://github.com/anneestherlf/projeto-individual-M2-inteli" target="_blank">
-        Feito por Anne Esther © MIT License 2025
-      </a>
+
+      <footer class="footer">
+        <a class="license" href="https://github.com/anneestherlf/projeto-individual-M2-inteli" target="_blank">
+            Feito por Anne Esther © MIT License 2025
+        </a>
     </footer>
+  </div>
+  </main>
 </body>
 
 </html>

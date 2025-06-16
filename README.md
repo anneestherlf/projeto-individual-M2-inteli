@@ -151,5 +151,8 @@ Siga os passos abaixo para rodar o projeto na sua máquina local.
 
 ---
 
+## 🎬 Vídeo demonstração
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/VGgSOIX9ihA" title="Vídeo demonstração" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <img src="assets\wad-assets\Capa - repo (1).png" width="100%" >
